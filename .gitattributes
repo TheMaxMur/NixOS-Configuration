@@ -1,0 +1,4 @@
+* linguist-vendored
+*.nix linguist-vendored=false
+*.lock linguist-vendored=false
+*.lua linguist-vendored=false

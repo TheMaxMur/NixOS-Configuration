@@ -1,0 +1,143 @@
+{ inputs
+, config
+, lib
+, pkgs
+, ...
+}:
+
+with lib;
+
+let
+  cfg = config.module.hyprland;
+in {
+  imports = [
+    ./binds
+    ./monitors
+  ];
+
+  options = {
+    module.hyprland.enable = mkEnableOption "Enable Hyprland";
+  };
+
+  config = mkIf cfg.enable {
+    module.hyprland = {
+      binds.enable = mkDefault cfg.enable;
+      monitors.enable = mkDefault cfg.enable;
+    };
+
+    home.packages = with pkgs; [
+      imagemagick
+      grimblast
+      wl-clipboard
+      wf-recorder
+      hyprpicker
+      waypaper
+      cliphist
+      # dolphin
+      wofi
+      waybar
+      imv
+      gtk3
+      dbus
+      glib
+      swww
+      xdg-utils
+      pavucontrol
+      cinnamon.nemo
+      eww
+      networkmanagerapplet
+      brightnessctl
+    ];
+
+    wayland.windowManager.hyprland = {
+      enable = true;
+      xwayland.enable = true;
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+      # package = pkgs.hyprland;
+
+      systemd = {
+        enable = true;
+        extraCommands = lib.mkBefore [
+          "systemctl --user stop graphical-session.target"
+          "systemctl --user start hyprland-session.target"
+        ];
+      };
+
+      settings = {
+        animations = {
+          enabled = true;
+
+          bezier = ["md3_decel, 0.05, 0.7, 0.1, 1" "workspace,0.17, 1.17, 0.3,1"];
+
+          animation = [
+            "border, 1, 2, default"
+            "fade, 1, 2, md3_decel"
+            "windows, 1, 4, md3_decel, popin 60%"
+            "workspaces, 1, 5, workspace, slidefadevert 8%"
+          ];
+        };
+
+        xwayland = {
+          force_zero_scaling = "true";
+        };
+
+        gestures = {
+          workspace_swipe = true;
+          workspace_swipe_fingers = 3;
+        };
+
+        decoration = {
+          rounding = 3;
+
+          active_opacity = 1.0;
+          inactive_opacity = 1.0;
+          fullscreen_opacity = 1.0;
+
+          drop_shadow = false;
+
+          blur = {
+            enabled = true;
+            passes = 3;
+            size = 16;
+          };
+        };
+
+        master = {
+          new_is_master = false;
+        };
+
+        general = {
+          gaps_in = 3;
+          gaps_out = 7;
+          border_size = 3;
+          # col.inactive_border" = "rgba(181825ee)";
+          "col.active_border" = mkForce "rgb(${config.lib.stylix.colors.base0D})";
+          layout = "master";
+        };
+
+        input = {
+          kb_layout = "us,ru";
+          kb_options = "grp:caps_toggle";
+          accel_profile = "flat";
+          sensitivity = 0.0;
+
+          touchpad = {
+            natural_scroll = true;
+          };
+        };
+
+        /* cursor = {
+          no_warps = false;
+        }; */
+
+        misc = {
+          disable_autoreload = false;
+          disable_hyprland_logo = true;
+          focus_on_activate = true;
+          force_default_wallpaper = 0;
+        };
+      };
+    };
+  };
+}
+

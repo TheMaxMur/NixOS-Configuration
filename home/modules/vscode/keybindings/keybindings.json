@@ -1,0 +1,47 @@
+[
+  {
+    "command": "flutter.launchEmulator",
+    "key": "f5"
+  },
+  {
+    "command": "editor.action.transformToUppercase",
+    "key": "ctrl+shift+q"
+  },
+  {
+    "command": "workbench.action.terminal.toggleTerminal",
+    "key": "ctrl+`",
+    "when": "terminal.active"
+  },
+  {
+    "command": "-workbench.action.terminal.toggleTerminal",
+    "key": "ctrl+`",
+    "when": "terminal.active"
+  },
+  {
+    "command": "-workbench.action.terminal.new",
+    "key": "ctrl+shift+`",
+    "when": "terminalProcessSupported || terminalWebExtensionContributedProfile"
+  },
+  {
+    "command": "workbench.action.terminal.copySelection",
+    "key": "ctrl+c",
+    "when": "terminalFocus"
+  },
+  {
+    "command": "workbench.action.terminal.paste",
+    "key": "ctrl+v",
+    "when": "terminalFocus"
+  },
+  {
+    "args": {
+      "text": "\u0003"
+    },
+    "command": "workbench.action.terminal.sendSequence",
+    "key": "ctrl+shift+c",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+[Backquote]",
+    "command": "workbench.action.terminal.toggleTerminal"
+  }
+]

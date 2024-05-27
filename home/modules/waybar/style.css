@@ -1,0 +1,229 @@
+@define-color background-alt rgba(137, 180, 250, 0.05);
+@define-color background-focus rgba(255, 255, 255, 0.1);
+@define-color border rgba(205, 214, 244, 0.2);
+@define-color red rgb( 243, 139, 168);
+@define-color orange rgb( 250, 179, 135);
+@define-color yellow rgb( 249, 226, 175 );
+@define-color green rgb( 166, 227, 161 );
+@define-color blue rgb( 137, 180, 250 );
+@define-color gray rgb( 108, 112, 134 );
+@define-color black rgb( 49, 50, 68 );
+@define-color white rgb( 205, 214, 244 );
+
+* {
+  all: unset;
+  /* font:
+    10pt "JetBrains Mono Nerd Font"*/
+}
+
+/* Button */
+button {
+  box-shadow: inset 0 -0.25rem transparent;
+  border: none;
+}
+
+button:hover {
+  box-shadow: inherit;
+  text-shadow: inherit;
+}
+
+/* Tooltip */
+tooltip {
+  background: @base00;
+  color: @base05;
+  border: 1px solid @base03;
+  border-radius: 5px;
+}
+
+tooltip label {
+  margin: 0.5rem;
+}
+
+/*  Waybar window */
+window#waybar {
+  background: @base00;
+  border-radius: 7px;
+}
+
+/* Left Modules */
+.modules-left {
+  padding-left: 0.5rem;
+}
+
+/* Right Modules */
+.modules-right {
+  padding-right: 0.5rem;
+}
+
+/* Modules */
+#tray,
+#language,
+#pulseaudio,
+#cpu,
+#memory,
+#network,
+#battery,
+#custom-notification,
+#clock {
+  color: @base05;
+  background: @base01;
+  border: 1px solid @base03;
+  border-radius: 5px;
+  margin: 0.7rem 0.35rem;
+  padding: 0.4rem 0.8rem 0.4rem 0.8rem;
+}
+
+#custom-nixlogo {
+  color: @base05;
+  background: @base01;
+  border: 1px solid @base03;
+  border-radius: 5px;
+  margin: 0.7rem 0.35rem;
+  padding: 0.4rem 0.45rem 0.4rem 0.7rem ;
+}
+
+.modules-left #workspaces button {
+  border-bottom: 1px solid @base03;
+}
+.modules-left #workspaces button.focused,
+.modules-left #workspaces button.active {
+  border-bottom: 1px solid @base03;
+}
+.modules-center #workspaces button {
+  border-bottom: 1px solid @base03;
+}
+.modules-center #workspaces button.focused,
+.modules-center #workspaces button.active {
+  border-bottom: 1px solid @base03;
+}
+.modules-right #workspaces button {
+  border-bottom: 1px solid @base03;
+}
+.modules-right #workspaces button.focused,
+.modules-right #workspaces button.active {
+  border-bottom: 1px solid @base03;
+}
+
+#workspaces button {
+  background: @base01;
+  color: @base05;
+  border: 1px solid @base03;
+  border-radius: 3px;
+  padding: 0.4rem 0.8rem 0.4rem 0.8rem;
+  margin-right: 0.8rem;
+  margin: 0.7rem 0.35rem;
+  transition: 200ms linear;
+}
+
+#workspaces button:last-child {
+  margin-right: 0;
+}
+
+#workspaces button:hover {
+  background: lighter(@base05);
+  color: @black;
+}
+
+#workspaces button.empty {
+  background: @base00;
+  border: 1px solid @base03;
+  color: @base05;
+}
+
+#workspaces button.empty:hover {
+  background: lighter(@base03);
+  color: @base05;
+}
+
+#workspaces button.urgent {
+  background: @base08;
+  color: @base05;
+}
+
+#workspaces button.urgent:hover {
+  background: lighter(@base08);
+  color: @base05;
+}
+
+#workspaces button.special {
+  background: @base0A;
+  color: @base05;
+}
+
+#workspaces button.special:hover {
+  background: lighter(@base0A);
+}
+
+#workspaces button.active {
+  background: @base0D;
+  color: @black;
+}
+
+#workspaces button.active:hover {
+  background: lighter(@base0D);
+  color: @black;
+}
+
+/* Systray */
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background: @base08;
+}
+
+menu {
+  background: @base00;
+  border: 1px solid @base03;
+  border-radius: 8px;
+}
+
+menu separator {
+  background: @base03;
+}
+
+menu menuitem {
+  background: transparent;
+  padding: 0.5rem;
+  transition: 200ms;
+}
+
+menu menuitem:hover {
+  background: @base02;
+}
+
+menu menuitem:first-child {
+  border-radius: 8px 8px 0 0;
+}
+
+menu menuitem:last-child {
+  border-radius: 0 0 8px 8px;
+}
+
+menu menuitem:only-child {
+  border-radius: 8px;
+}
+
+/* Notification */
+#custom-notification {
+  color: @base05;
+}
+
+#pulseaudio-slider highlight {
+  background: @base05;
+  border: 1px solid @base03;
+}
+
+/* Keyframes */
+@keyframes blink {
+  to {
+    color: @base05;
+  }
+}
+
+#network {
+  padding: 0.4rem 1.0rem 0.4rem 0.8rem;
+}
+
