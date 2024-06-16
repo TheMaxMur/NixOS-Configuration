@@ -9,9 +9,12 @@
 
     ./alacritty
     ./chrome
+    ./eza
     ./firefox
     ./flameshot
     ./foot
+    ./fish
+    ./fzf
     ./git
     ./helix
     ./htop
@@ -29,6 +32,7 @@
     ./dconf
     ./xdg
     ./zathura
+    ./zoxide
   ];
 }
 

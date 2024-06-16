@@ -86,7 +86,8 @@ in {
             text = "$TIME";
             color = "rgba(200, 200, 200, 1.0)";
             font_size = 120;
-            font_family = "Noto Sans";
+            # font_family = "Noto Sans";
+            font_famyly = config.stylix.fonts.serif.name;
             rotate = 0.000000;
             shadow_passes = 0;
             shadow_size = 3;
@@ -102,7 +103,8 @@ in {
             text = "$LAYOUT";
             color = "rgba(200, 200, 200, 1.0)";
             font_size = 20;
-            font_family = "Noto Sans";
+            # font_family = "Iosevka Nerd Font Mono";
+            font_famyly = config.stylix.fonts.serif.name;
             rotate = 0.000000;
             shadow_passes = 0;
             shadow_size = 3;

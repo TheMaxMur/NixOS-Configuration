@@ -32,6 +32,7 @@ in {
       file
       zip
       unzip
+      killall
 
       # Hardware utils
       glxinfo

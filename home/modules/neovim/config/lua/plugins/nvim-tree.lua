@@ -19,7 +19,7 @@ return {
         sort_by = "case_sensitive",
 
         view = {
-          number = fasle,
+          number = false,
           float = {
             enable = true,
             open_win_config = function()

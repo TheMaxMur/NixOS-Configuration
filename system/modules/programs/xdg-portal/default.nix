@@ -15,36 +15,24 @@ in {
   };
 
   config = mkIf cfg.enable {
-    /*xdg.portal = {
+    xdg.portal = {
       enable = true;
+      xdgOpenUsePortal = true;
 
       config = {
-        hyprland.default = ["gtk" "hyprland"];
-
         common = {
-          default = "gtk";
+          default = "*";
+
           "org.freedesktop.impl.portal.Screencast" = "hyprland";
           "org.freedesktop.impl.portal.Screenshot" = "hyprland";
         };
       };
 
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-gtk
-        inputs.xdghypr.packages.${pkgs.system}.xdg-desktop-portal-hyprland
-      ];
-    };*/
-
-    xdg.portal = {
-      enable = true;
-      xdgOpenUsePortal = true;
-      config = {
-        common.default = "*";
-        # hyprland.default = ["gtk" "hyprland"];
-      };
-
       extraPortals = [
         pkgs.xdg-desktop-portal-gtk
-        pkgs.xdg-desktop-portal-hyprland
+        pkgs.xdg-desktop-portal-gnome
+        # inputs.xdghypr.packages.${pkgs.system}.xdg-desktop-portal-hyprland
+        # pkgs.xdg-desktop-portal-hyprland
       ];
     };
   };

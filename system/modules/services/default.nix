@@ -9,6 +9,7 @@ with lib;
     ./cpu-autofreq
     ./greetd-tui
     ./syncthing
+    ./hyprland
     ./printing
     ./xserver
     ./polkit

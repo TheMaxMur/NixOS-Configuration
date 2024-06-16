@@ -16,7 +16,6 @@ in {
   config = mkIf cfg.enable {
     environment.variables = {
       # VDPAU_DRIVER = mkIf config.hardware.opengl.enable (mkDefault "va_gl");
-      MUFFIN_NO_SHADOWS = "1";
       QT_QPA_PLATFORM = "wayland";
       SDL_VIDEODRIVER = "wayland";
       CLUTTER_BACKEND = "wayland";
@@ -24,9 +23,6 @@ in {
       NIXPKGS_ALLOW_UNFREE = "1";
       MOZ_ENABLE_WAYLAND = "1";
       XDG_SESSION_TYPE = "wayland";
-      XDG_CURRENT_DESKTOP = "Hyprland";
-      XDG_SESSION_DESKTOP = "Hyprland";
-      # WLR_RENDERER = "vulkan";
     };
 
     environment.sessionVariables = {

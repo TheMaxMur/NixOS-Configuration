@@ -80,6 +80,7 @@ window#waybar {
   border-radius: 5px;
   margin: 0.7rem 0.35rem;
   padding: 0.4rem 0.45rem 0.4rem 0.7rem ;
+  font: 10pt "JetBrains Mono Nerd Font";
 }
 
 .modules-left #workspaces button {

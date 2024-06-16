@@ -9,11 +9,12 @@ with lib;
 let
   cfg = config.module.hyprland.binds;
 
-  audioControl = "${pkgs.pulseaudio}/bin/pactl";
+  audioControl      = "${pkgs.pulseaudio}/bin/pactl";
   brightnessControl = "${pkgs.brightnessctl}/bin/brightnessctl";
-  screenshotArea = "grimblast --notify --freeze copy area";
-  cliphist = "cliphist list | rofi -dmenu | cliphist decode | wl-copy";
-  appLauncher = "rofi -show";
+  screenshotArea    = "${pkgs.grimblast}/bin/grimblast --notify --freeze copy area";
+  # screenshotArea    = "${pkgs.grim}/bin/grim -g $(${pkgs.slurp}/bin/slurp) - | wl-copy";
+  cliphist          = "${pkgs.cliphist}/bin/cliphist list | rofi -dmenu | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy";
+  appLauncher       = "rofi -show";
 in {
   options = {
     module.hyprland.binds.enable = mkEnableOption "Enables binds in Hyprland";
@@ -111,7 +112,7 @@ in {
         "SUPER, N, exec, ${pkgs.swaynotificationcenter}/bin/swaync-client -t -sw"
 
         # Picker
-        "SUPER, P, exec, hyprpicker | wl-copy"
+        "SUPER, P, exec, ${screenshotArea}"
 
         # Screenshot
         ", Print, exec, ${screenshotArea}"

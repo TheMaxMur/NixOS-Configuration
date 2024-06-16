@@ -1,5 +1,6 @@
 { lib
 , config
+, pkgs
 , ...
 }:
 
@@ -14,10 +15,15 @@ in {
 
   config = mkIf cfg.enable {
     # Virtualization settings
+    environment.systemPackages = with pkgs; [
+      virt-manager
+    ];
+
     users.extraGroups.vboxusers.members = [ "maxmur" ];
 
     virtualisation = {
       docker.enable = true;
+      podman.enable = true;
       libvirtd.enable = true;
       # virtualbox.host.enable = true;
     };

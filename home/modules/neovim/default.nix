@@ -26,14 +26,18 @@ in {
       defaultEditor = true;
 
       extraPackages = with pkgs; [
+        ansible-language-server
         yaml-language-server
         marksman
         gopls
         dockerfile-language-server-nodejs
+        docker-compose-language-service
         cmake-language-server
-        nodePackages_latest.bash-language-server
         helm-ls
         nil
+        lua-language-server
+        stylua
+        pyright
       ];
     };
   };

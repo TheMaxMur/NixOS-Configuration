@@ -42,7 +42,9 @@ in {
     waybar.enable   = config.module.hyprland.enable;
     rofi.enable     = config.module.hyprland.enable;
 
+    eza.enable            = true;
     git.enable            = true;
+    fzf.enable            = true;
     htop.enable           = true;
     ripgrep.enable        = true;
     neofetch.enable       = true;
@@ -50,6 +52,8 @@ in {
     password-store.enable = true;
     zathura.enable        = true;
     zsh.enable            = true;
+    fish.enable           = true;
+    zoxide.enable         = true;
 
     nix-config = {
       enable                     = true;
@@ -67,8 +71,13 @@ in {
       pre-commit
       deadnix
       statix
+      # eza
       ffmpeg
       inputs.any-nix-shell
+
+      # Programming
+      go
+      python3
 
       # DevOps Utils
       docker-compose

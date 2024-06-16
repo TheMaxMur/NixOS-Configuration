@@ -23,7 +23,8 @@ in {
           isNormalUser = true;
           description = "${username}";
           home = "/home/${username}";
-          shell = pkgs.zsh;
+          # shell = pkgs.zsh;
+          shell = pkgs.fish;
 
           extraGroups = [
             "audio"

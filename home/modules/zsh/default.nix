@@ -71,7 +71,8 @@ in {
         "flake-update" = "nix flake update /home/maxmur/Code/nixos-configuration/";
         "darwin-update" = "darwin-rebuild switch --flake /Users/maxmur/Code/nixos-configuration/";
         "darwin-home-update" = "home-manager switch --flake /Users/maxmur/Code/nixos-configuration/.#maxmur@macbox";
-        "ll" = "ls -l";
+        "ls" = "eza";
+        "ll" = "eza -l";
         "h" = "history";
         "c" = "clear";
         "s" = "sudo su";

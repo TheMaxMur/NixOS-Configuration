@@ -33,9 +33,6 @@ in {
       hyprpicker
       waypaper
       cliphist
-      # dolphin
-      wofi
-      waybar
       imv
       gtk3
       dbus
@@ -53,7 +50,6 @@ in {
       enable = true;
       xwayland.enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-      # package = pkgs.hyprland;
 
       systemd = {
         enable = true;
@@ -64,10 +60,14 @@ in {
       };
 
       settings = {
+        env = [
+          "XDG_CURRENT_DESKTOP,Hyprland"
+          "XDG_SESSION_DESKTOP,Hyprland"
+        ];
+
         animations = {
           enabled = true;
-
-          bezier = ["md3_decel, 0.05, 0.7, 0.1, 1" "workspace,0.17, 1.17, 0.3,1"];
+          bezier = [ "md3_decel, 0.05, 0.7, 0.1, 1" "workspace,0.17, 1.17, 0.3,1" ];
 
           animation = [
             "border, 1, 2, default"
@@ -110,7 +110,6 @@ in {
           gaps_in = 3;
           gaps_out = 7;
           border_size = 3;
-          # col.inactive_border" = "rgba(181825ee)";
           "col.active_border" = mkForce "rgb(${config.lib.stylix.colors.base0D})";
           layout = "master";
         };
@@ -126,14 +125,10 @@ in {
           };
         };
 
-        /* cursor = {
-          no_warps = false;
-        }; */
-
         misc = {
           disable_autoreload = false;
           disable_hyprland_logo = true;
-          focus_on_activate = true;
+          focus_on_activate = false;
           force_default_wallpaper = 0;
         };
       };

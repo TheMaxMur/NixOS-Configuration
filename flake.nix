@@ -5,7 +5,7 @@
     # Official NixOS repo
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixpkgs-local.url = "git+file:///home/maxmur/Code/nix/nixpkgs";
 
     # NixOS community
@@ -29,13 +29,11 @@
 
     # Hyprland ecosystem
     hyprland = {
-      # url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=e419ef1873de01b0762f7f1a411994170a4d8cab";
-      url = "github:hyprwm/Hyprland/v0.39.1";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref=refs/tags/v0.41.1";
     };
 
     xdghypr = {
-      url = "github:hyprwm/xdg-desktop-portal-hyprland";
+      url = "github:hyprwm/xdg-desktop-portal-hyprland/v1.3.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -95,10 +93,16 @@
     linuxArch          = "x86_64-linux";
     linuxArmArch       = "aarch64-linux";
     darwinArch         = "aarch64-darwin";
-    stateVersion       = "24.05";
+    stateVersion       = "24.11";
     stateVersionDarwin = 4;
+    libx               = import ./lib { inherit inputs stateVersion stateVersionDarwin; };
 
-    libx = import ./lib { inherit inputs stateVersion stateVersionDarwin; };
+    hosts = {
+      pcbox  = { hostname = "pcbox";  username = "maxmur"; platform = linuxArch;    isWorkstation = true;  };
+      nbox   = { hostname = "nbox";   username = "maxmur"; platform = linuxArch;    isWorkstation = true;  };
+      rasp   = { hostname = "rasp";   username = "maxmur"; platform = linuxArmArch; isWorkstation = false; };
+      macbox = { hostname = "macbox"; username = "maxmur"; platform = darwinArch;   isWorkstation = true;  };
+    };
   in flake-parts.lib.mkFlake { inherit inputs; } {
     systems = [
       linuxArch
@@ -108,30 +112,30 @@
 
     flake = {
       nixosConfigurations = {
-        pcbox = libx.mkHost { hostname = "pcbox"; username = "maxmur"; isWorkstation = true ;  platform = linuxArch; };
-        nbox  = libx.mkHost { hostname = "nbox";  username = "maxmur"; isWorkstation = true ;  platform = linuxArch; };
-        rasp  = libx.mkHost { hostname = "rasp";  username = "maxmur"; isWorkstation = false ; platform = linuxArmArch; };
+        ${hosts.pcbox.hostname} = libx.mkHost hosts.pcbox;
+        ${hosts.nbox.hostname}  = libx.mkHost hosts.nbox;
+        ${hosts.rasp.hostname}  = libx.mkHost hosts.rasp;
       };
 
       darwinConfigurations = {
-        macbox = libx.mkHostDarwin { hostname = "macbox"; platform = darwinArch; };
+        ${hosts.macbox.hostname} = libx.mkHostDarwin hosts.macbox;
       };
 
       homeConfigurations = {
         # pcbox
-        "maxmur@pcbox"  = libx.mkHome { hostname = "pcbox";  username = "maxmur"; isWorkstation = true;  platform = linuxArch; };
-        "root@pcbox"    = libx.mkHome { hostname = "pcbox";  username = "root";   isWorkstation = true;  platform = linuxArch; };
+        "${hosts.pcbox.username}@${hosts.pcbox.hostname}"   = libx.mkHome hosts.pcbox;
+        "root@${hosts.pcbox.hostname}"                      = libx.mkHome hosts.pcbox;
 
         # Nbox
-        "maxmur@nbox"   = libx.mkHome { hostname = "nbox";   username = "maxmur"; isWorkstation = true;  platform = linuxArch; };
-        "root@nbox"     = libx.mkHome { hostname = "nbox";   username = "root";   isWorkstation = true;  platform = linuxArch; };
+        "${hosts.nbox.username}@${hosts.nbox.hostname}"     = libx.mkHome hosts.nbox;
+        "root@${hosts.nbox.hostname}"                       = libx.mkHome hosts.nbox;
 
         # Rasp
-        "maxmur@rasp"   = libx.mkHome { hostname = "rasp";   username = "maxmur"; isWorkstation = false; platform = linuxArmArch; };
-        "root@rasp"     = libx.mkHome { hostname = "rasp";   username = "root";   isWorkstation = false; platform = linuxArmArch; };
+        "${hosts.rasp.username}@${hosts.rasp.hostname}"     = libx.mkHome hosts.rasp;
+        "root@${hosts.rasp.hostname}"                       = libx.mkHome hosts.rasp;
 
         # Macbox
-        "maxmur@macbox" = libx.mkHome { hostname = "macbox"; username = "maxmur"; isWorkstation = true;  platform = darwinArch; };
+        "${hosts.macbox.username}@${hosts.macbox.hostname}" = libx.mkHome hosts.macbox;
       };
     };
   };

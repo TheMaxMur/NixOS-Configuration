@@ -1,6 +1,7 @@
 { lib
 , config
 , hostname
+, pkgs
 , ...
 }:
 
@@ -14,6 +15,9 @@ in {
   };
 
   config = mkIf cfg.enable {
+    services.netbird.enable = true;
+    environment.systemPackages = [ pkgs.netbird-ui ];
+
     systemd.services.NetworkManager-wait-online.enable = false;
 
     networking = {

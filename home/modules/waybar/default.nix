@@ -52,7 +52,7 @@ in {
           "custom/nixlogo" = {
             format = " ";
             tooltip = false;
-            on-click = "${pkgs.pkgs.rofi-wayland}/bin/rofi -show";
+            on-click = "rofi -show";
           };
 
           # Workspaces

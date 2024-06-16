@@ -1,5 +1,4 @@
-{ inputs
-, pkgs
+{ pkgs
 , config
 , hostname
 , ...
@@ -11,6 +10,7 @@ let
   cursorSize = if hostname == "nbox" then 24 else 14;
 in {
   stylix = {
+    enable = true;
     image = wallpaper;
     autoEnable = true;
     polarity = "dark";
@@ -32,22 +32,22 @@ in {
 
     fonts = {
       sizes = {
-        applications = 10;
-        terminal     = 10;
-        popups       = 10;
-        desktop      = 10;
+        applications = 11;
+        terminal     = 11;
+        popups       = 11;
+        desktop      = 11;
       };
 
       serif = {
-        package = (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; });
-        name    = "JetBrains Mono Nerd Font";
+        package = (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" ]; });
+        name    = "Iosevka Nerd Font Mono";
       };
 
       sansSerif = config.stylix.fonts.serif;
 
       monospace = {
-        package = (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; });
-        name    = "JetBrainsMono Nerd Font Mono";
+        package = config.stylix.fonts.serif.package;
+        name    = "Iosevka Term";
       };
 
       emoji     = config.stylix.fonts.serif;

@@ -33,7 +33,6 @@ in {
             "--remember"
             "--time"
             "--cmd ${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/Hyprland"
-            # "--cmd ${pkgs.hyprland}/bin/Hyprland"
           ];
         };
       };
