@@ -58,7 +58,7 @@
 
 <details><summary>Layer 1</summary>
 
-![layer-1.png](assets/keyboard/layer-x.png)
+![layer-1.png](assets/keyboard/layer-1.png)
 
 </details>
 
