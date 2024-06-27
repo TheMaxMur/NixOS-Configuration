@@ -54,6 +54,7 @@ in {
     zsh.enable            = true;
     fish.enable           = true;
     zoxide.enable         = true;
+    yazi.enable           = true;
 
     nix-config = {
       enable                     = true;

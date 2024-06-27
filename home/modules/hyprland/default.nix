@@ -110,7 +110,6 @@ in {
           gaps_in = 3;
           gaps_out = 7;
           border_size = 3;
-          "col.active_border" = mkForce "rgb(${config.lib.stylix.colors.base0D})";
           layout = "master";
         };
 

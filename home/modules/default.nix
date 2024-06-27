@@ -33,6 +33,7 @@
     ./xdg
     ./zathura
     ./zoxide
+    ./yazi
   ];
 }
 
