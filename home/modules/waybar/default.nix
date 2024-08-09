@@ -1,6 +1,7 @@
 { pkgs
 , config
 , lib
+, homeModules
 , ...
 }:
 
@@ -184,7 +185,8 @@ in {
         }
       ];
 
-      style = builtins.readFile (./. + "/style.css");
+      # style = builtins.readFile (./. + "/style.css");
+      style = builtins.readFile ("${homeModules}/waybar/style.css");
     };
   };
 }

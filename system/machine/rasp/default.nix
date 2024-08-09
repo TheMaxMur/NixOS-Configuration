@@ -1,11 +1,16 @@
-_:
+{ self
+, hostModules
 
-{
+, hostname
+, ...
+}:
+
+let
+  machineModules = "${self}/system/machine/${hostname}/modules";
+in {
   imports = [
-    ../../modules
-    ./modules/temp-control
-    ./modules/hardware
-    ./modules/nginx
+    "${hostModules}"
+    "${machineModules}"
   ];
 
   module = {

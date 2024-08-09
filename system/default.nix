@@ -1,5 +1,7 @@
 { pkgs
 , lib
+, self
+, generalModules
 
 , hostname
 , platform
@@ -10,12 +12,14 @@
 
 let
   inherit (pkgs.stdenv) isDarwin;
-  currentStateVersion = if isDarwin then stateVersionDarwin else stateVersion;
+  currentStateVersion           = if isDarwin then stateVersionDarwin else stateVersion;
+  machineConfigurationPath      = "${self}/system/machine/${hostname}";
+  machineConfigurationPathExist = builtins.pathExists machineConfigurationPath;
 in {
   imports = [
-    ../modules/nix
+    "${generalModules}"
   ]
-  ++ lib.optional (builtins.pathExists (./. + "/machine/${hostname}")) ./machine/${hostname};
+  ++ lib.optional machineConfigurationPathExist machineConfigurationPath;
 
   module.nix-config.enable = true;
 

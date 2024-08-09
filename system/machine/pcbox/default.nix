@@ -1,35 +1,43 @@
-{ pkgs, ... }:
+{ self
+, config
+, hostModules
 
-{
+, hostname
+, ...
+}:
+
+let
+  machineModules = "${self}/system/machine/${hostname}/modules";
+in {
   imports = [
-    ../../modules
-    ./modules/hardware
+    "${hostModules}"
+    "${machineModules}"
   ];
-
-  services.udev.packages = with pkgs; [
-    qmk-udev-rules
-  ];
-
-  hardware.keyboard.qmk.enable = true;
 
   module = {
-    locales.enable                 = true;
-    network.enable                 = true;
-    security.enable                = true;
-    timedate.enable                = true;
-    users.enable                   = true;
-    variables.enable               = true;
-    virtualisation.enable          = true;
+    locales.enable        = true;
+    network.enable        = true;
+    security.enable       = true;
+    timedate.enable       = true;
+    users.enable          = true;
+    variables.enable      = true;
+    virtualisation.enable = true;
 
     services = {
-      bolt.enable       = true;
-      fwupd.enable      = true;
-      polkit.enable     = true;
-      printing.enable   = true;
-      syncthing.enable  = true;
-      udev.enable       = true;
-      greetd-tui.enable = true;
-      hyprland.enable   = true;
+      bolt.enable              = true;
+      fwupd.enable             = true;
+      polkit.enable            = true;
+      printing.enable          = true;
+      syncthing.enable         = true;
+      udev.enable              = true;
+      greetd-tui.enable        = true;
+      hyprland.enable          = true;
+      qmk.enable               = true;
+
+      ollama = {
+        enable            = true;
+        gpuSupport.enable = config.services.ollama.enable;
+      };
     };
 
     programs = {

@@ -2,6 +2,7 @@
 , config
 , pkgs
 , inputs
+, homeModules
 , ...
 }:
 
@@ -15,7 +16,7 @@ in {
   };
 
   imports = [
-    ./starship
+    "${homeModules}/fish/starship"
   ];
 
   config = mkIf cfg.enable {
@@ -30,7 +31,6 @@ in {
         end
 
         ${inputs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
-
       '';
 
       shellAliases = {

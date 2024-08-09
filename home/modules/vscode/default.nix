@@ -1,5 +1,6 @@
 { lib
 , config
+, homeModules
 , ...
 }:
 
@@ -9,9 +10,9 @@ let
   cfg = config.module.vscode;
 in {
   imports = [
-    ./keybindings
-    ./extentions
-    ./settings
+    "${homeModules}/vscode/keybindings"
+    "${homeModules}/vscode/extentions"
+    "${homeModules}/vscode/settings"
   ];
 
   options = {

@@ -1,10 +1,14 @@
-{ pkgs
+{ self
+, hostname
+, pkgs
 , ...
 }:
 
-{
+let
+  machineHardwareModulesPath = "${self}/system/machine/${hostname}/modules/hardware";
+in {
   imports = [
-    ./network
+    "${machineHardwareModulesPath}/network"
   ];
 
   boot = {

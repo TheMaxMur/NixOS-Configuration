@@ -1,24 +1,26 @@
-{ pkgs
+{ self
+, pkgs
 , inputs
 , config
+, generalModules
+, homeModules
 , isWorkstation
 , ...
 }:
 
 let
   inherit (pkgs.stdenv) isLinux;
-  ufetch = pkgs.callPackage ../../../pkgs/ufetch {};
+  ufetch = pkgs.callPackage "${self}/pkgs/ufetch" {};
 in {
   imports = [
-    ../../../modules/nix
-    ../../modules/ssh
-    ../../modules
-    ../../modules/swaync
+    "${generalModules}"
+    "${homeModules}"
+    "${homeModules}/ssh"
   ];
 
   nixpkgs.overlays = [
-    (import ../../overlays/rofi-calc)
-    (import ../../overlays/rofi-emoji)
+    (import "${self}/home/overlays/rofi-calc")
+    # (import "${self}/home/overlays/rofi-emoji")
   ];
 
   stylix.targets = {
@@ -27,8 +29,10 @@ in {
   };
 
   module = {
-    alacritty.enable = isWorkstation;
-    vscode.enable    = isWorkstation;
+    alacritty.enable  = isWorkstation;
+    vscode.enable     = isWorkstation;
+    doom-emacs.enable = isWorkstation;
+    zathura.enable    = isWorkstation;
 
     chrome.enable   = isLinux && isWorkstation;
     firefox.enable  = isLinux && isWorkstation;
@@ -37,11 +41,13 @@ in {
     hyprland.enable = isLinux && isWorkstation;
     xdg.enable      = isLinux && isWorkstation;
 
-    hypridle.enable = config.module.hyprland.enable;
-    hyprlock.enable = config.module.hyprland.enable;
-    waybar.enable   = config.module.hyprland.enable;
-    rofi.enable     = config.module.hyprland.enable;
+    hypridle.enable  = config.module.hyprland.enable;
+    hyprlock.enable  = config.module.hyprland.enable;
+    waybar.enable    = config.module.hyprland.enable;
+    rofi.enable      = config.module.hyprland.enable;
+    swaync.enable    = config.module.hyprland.enable;
 
+    btop.enable           = true;
     eza.enable            = true;
     git.enable            = true;
     fzf.enable            = true;
@@ -49,8 +55,8 @@ in {
     ripgrep.enable        = true;
     neofetch.enable       = true;
     nvim.enable           = true;
+    helix.enable          = true;
     password-store.enable = true;
-    zathura.enable        = true;
     zsh.enable            = true;
     fish.enable           = true;
     zoxide.enable         = true;
@@ -99,9 +105,6 @@ in {
 
       # Text Editors
       obsidian
-
-      # Misc
-      youtube-dl
 
       # Security
       semgrep

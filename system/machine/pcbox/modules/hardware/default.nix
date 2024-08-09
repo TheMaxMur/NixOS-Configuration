@@ -1,14 +1,19 @@
-_:
+{ self
+, hostname
+, ...
+}:
 
-{
+let
+  machineHardwareModulesPath = "${self}/system/machine/${hostname}/modules/hardware";
+in {
   imports = [
-    ./extra-hardware
-    ./graphics-card
-    ./network
-    ./kernel
-    ./sound
-    ./disks
-    ./boot
+    "${machineHardwareModulesPath}/extra-hardware"
+    "${machineHardwareModulesPath}/graphics-card"
+    "${machineHardwareModulesPath}/network"
+    "${machineHardwareModulesPath}/kernel"
+    "${machineHardwareModulesPath}/sound"
+    "${machineHardwareModulesPath}/disks"
+    "${machineHardwareModulesPath}/boot"
   ];
 }
 

@@ -1,12 +1,19 @@
-{ inputs
+{ self
+, hostModules
+
+, hostname
 , ...
 }:
 
-{
+let
+  machineModules = "${self}/system/machine/${hostname}/modules";
+in {
   imports = [
-    ../../modules
-    ./modules/hardware
+    "${hostModules}"
+    "${machineModules}"
   ];
+
+  programs.command-not-found.enable = true;
 
   module = {
     locales.enable                 = true;
@@ -16,7 +23,6 @@
     users.enable                   = true;
     variables.enable               = true;
     virtualisation.enable          = true;
-    programs.systemPackages.enable = true;
 
     services = {
       bolt.enable         = true;
@@ -41,6 +47,7 @@
       xdg-portal.enable = true;
       zsh.enable        = true;
       fish.enable       = true;
+      systemPackages.enable = true;
     };
   };
 }

@@ -1,17 +1,21 @@
-_:
+{ hostModules
+, ...
+}:
 
-{
+let
+  hostProgramModulesPath = "${hostModules}/programs";
+in {
   imports = [
-    ./systemPackages
-    ./home-manager
-    ./nix-helper
-    ./kdeconnect
-    ./xdg-portal
-    ./gnupg
-    ./zsh
-    ./mtr
-    ./dconf
-    ./fish
+    "${hostProgramModulesPath}/systemPackages"
+    "${hostProgramModulesPath}/home-manager"
+    "${hostProgramModulesPath}/nix-helper"
+    "${hostProgramModulesPath}/kdeconnect"
+    "${hostProgramModulesPath}/xdg-portal"
+    "${hostProgramModulesPath}/gnupg"
+    "${hostProgramModulesPath}/zsh"
+    "${hostProgramModulesPath}/mtr"
+    "${hostProgramModulesPath}/dconf"
+    "${hostProgramModulesPath}/fish"
   ];
 }
 

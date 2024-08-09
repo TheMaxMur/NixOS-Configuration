@@ -1,4 +1,5 @@
-{ pkgs
+{ self
+, pkgs
 , lib
 
 , username
@@ -8,12 +9,14 @@
 
 let
   inherit (pkgs.stdenv) isDarwin;
-  isRoot = if (username == "root") then true else false;
-  homeDirectory = if isDarwin then "/Users/${username}" else if isRoot then "/root" else "/home/${username}";
+  isRoot                     = if (username == "root") then true else false;
+  homeDirectory              = if isDarwin then "/Users/${username}" else if isRoot then "/root" else "/home/${username}";
+  userConfigurationPath      = "${self}/home/users/${username}";
+  userConfigurationPathExist = builtins.pathExists userConfigurationPath;
 in {
   programs.home-manager.enable = true;
 
-  imports = lib.optional (builtins.pathExists (./. + "/users/${username}")) ./users/${username};
+  imports = lib.optional userConfigurationPathExist userConfigurationPath;
 
   home = {
     inherit username;

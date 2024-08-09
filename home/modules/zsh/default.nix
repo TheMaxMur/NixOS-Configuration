@@ -1,7 +1,7 @@
-{ pkgs
-, inputs
+{ inputs
 , lib
 , config
+, homeModules
 , ...
 }:
 
@@ -15,8 +15,8 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.file.".p10k.zsh".source = ./p10k.zsh;
-    home.file.".helmrc".source = ./helmrc;
+    home.file.".p10k.zsh".source = "${homeModules}/zsh/p10k.zsh";
+    home.file.".helmrc".source = "${homeModules}/zsh/helmrc";
 
     programs.zsh = {
       enable = true;

@@ -2,6 +2,7 @@
 , config
 , lib
 , pkgs
+, homeModules
 , ...
 }:
 
@@ -11,8 +12,8 @@ let
   cfg = config.module.hyprland;
 in {
   imports = [
-    ./binds
-    ./monitors
+    "${homeModules}/hyprland/binds"
+    "${homeModules}/hyprland/monitors"
   ];
 
   options = {
@@ -100,10 +101,6 @@ in {
             passes = 3;
             size = 16;
           };
-        };
-
-        master = {
-          new_is_master = false;
         };
 
         general = {
