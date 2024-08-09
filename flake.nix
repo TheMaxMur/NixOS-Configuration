@@ -6,7 +6,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
-    nixpkgs-local.url = "git+file:///home/maxmur/Code/nix/nixpkgs";
 
     # NixOS community
     home-manager = {
@@ -29,7 +28,7 @@
 
     # Hyprland ecosystem
     hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref=refs/tags/v0.41.1";
+      url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref=refs/tags/v0.42.0";
     };
 
     xdghypr = {
@@ -88,14 +87,14 @@
     };
   };
 
-  outputs = { flake-parts, ... } @ inputs:
+  outputs = { self, flake-parts, ... } @ inputs:
   let
     linuxArch          = "x86_64-linux";
     linuxArmArch       = "aarch64-linux";
     darwinArch         = "aarch64-darwin";
     stateVersion       = "24.11";
     stateVersionDarwin = 4;
-    libx               = import ./lib { inherit inputs stateVersion stateVersionDarwin; };
+    libx               = import ./lib { inherit self inputs stateVersion stateVersionDarwin; };
 
     hosts = {
       pcbox  = { hostname = "pcbox";  username = "maxmur"; platform = linuxArch;    isWorkstation = true;  };
