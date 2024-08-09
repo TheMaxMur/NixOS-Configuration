@@ -29,6 +29,7 @@ in {
       allowUnfree = true;
 
       permittedInsecurePackages = [
+        "electron-27.3.11"
         "electron-25.9.0"
         "electron-19.1.9"
       ];
