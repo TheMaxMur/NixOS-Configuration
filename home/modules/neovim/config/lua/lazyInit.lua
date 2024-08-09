@@ -15,11 +15,15 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup(
-  configs, 
+  configs,
 
   {
     defaults = {
       lazy = true,
+    },
+
+    rocks = {
+      enabled = false,
     },
 
     ui = {
