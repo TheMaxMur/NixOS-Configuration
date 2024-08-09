@@ -67,7 +67,6 @@ in {
       # Hardware
       microcodeIntel
       libGL
-      qmk
 
       # Hardware utils
       libva-utils
