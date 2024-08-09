@@ -13,13 +13,10 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # environment.memoryAllocator.provider = "scudo";
+    # environment.memoryAllocator.provider = "graphene-hardened";
 
     security = {
       sudo.enable = true;
-      # lockKernelModules = true;
-      # protectKernelImage = true;
-      # forcePageTableIsolation = true;
       pam.services.swaylock = {};
 
       doas = {
