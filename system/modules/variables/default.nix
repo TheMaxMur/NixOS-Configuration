@@ -21,6 +21,7 @@ in {
       CLUTTER_BACKEND = "wayland";
       GDK_BACKEND = "wayland";
       NIXPKGS_ALLOW_UNFREE = "1";
+      NIXPKGS_ALLOW_INSECURE = "1";
       MOZ_ENABLE_WAYLAND = "1";
       XDG_SESSION_TYPE = "wayland";
     };
