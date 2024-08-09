@@ -124,9 +124,6 @@ in {
         # Cliphist
         "SUPER, C, exec, ${cliphist}"
 
-        # Lock
-        "SUPER, L, exec, ${pkgs.hyprlock}/bin/hyprlock"
-
         # File manager
         "SUPER, E, exec, ${pkgs.cinnamon.nemo}/bin/nemo"
 
