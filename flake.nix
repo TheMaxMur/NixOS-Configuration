@@ -18,6 +18,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    impermanence.url = "github:/nix-community/impermanence";
     stylix.url = "github:danth/stylix";
 
     # MacOS configuration
@@ -118,23 +119,6 @@
 
       darwinConfigurations = {
         ${hosts.macbox.hostname} = libx.mkHostDarwin hosts.macbox;
-      };
-
-      homeConfigurations = {
-        # pcbox
-        "${hosts.pcbox.username}@${hosts.pcbox.hostname}"   = libx.mkHome hosts.pcbox;
-        "root@${hosts.pcbox.hostname}"                      = libx.mkHome hosts.pcbox;
-
-        # Nbox
-        "${hosts.nbox.username}@${hosts.nbox.hostname}"     = libx.mkHome hosts.nbox;
-        "root@${hosts.nbox.hostname}"                       = libx.mkHome hosts.nbox;
-
-        # Rasp
-        "${hosts.rasp.username}@${hosts.rasp.hostname}"     = libx.mkHome hosts.rasp;
-        "root@${hosts.rasp.hostname}"                       = libx.mkHome hosts.rasp;
-
-        # Macbox
-        "${hosts.macbox.username}@${hosts.macbox.hostname}" = libx.mkHome hosts.macbox;
       };
     };
   };

@@ -247,11 +247,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1722821805,
-        "narHash": "sha256-FGrUPUD+LMDwJsYyNSxNIzFMldtCm8wXiQuyL2PHSrM=",
+        "lastModified": 1723080788,
+        "narHash": "sha256-C5LbM5VMdcolt9zHeLQ0bYMRjUL+N+AL5pK7/tVTdes=",
         "owner": "nix-community",
         "repo": "disko",
-        "rev": "0257e44f4ad472b54f19a6dd1615aee7fa48ed49",
+        "rev": "ffc1f95f6c28e1c6d1e587b51a2147027a3e45ed",
         "type": "github"
       },
       "original": {
@@ -727,6 +727,21 @@
         "type": "github"
       }
     },
+    "impermanence": {
+      "locked": {
+        "lastModified": 1719091691,
+        "narHash": "sha256-AxaLX5cBEcGtE02PeGsfscSb/fWMnyS7zMWBXQWDKbE=",
+        "owner": "nix-community",
+        "repo": "impermanence",
+        "rev": "23c1f06316b67cb5dabdfe2973da3785cfe9c34a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "impermanence",
+        "type": "github"
+      }
+    },
     "lanzaboote": {
       "inputs": {
         "crane": "crane",
@@ -792,11 +807,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1723059851,
-        "narHash": "sha256-sRUc6kr3eCqo86Pqf5O5Io0H10Vmw2v94sUVMNsMIJE=",
+        "lastModified": 1723303769,
+        "narHash": "sha256-Yz9PUT2dBKPc82PTwL90zNkpziPxGgmUiD9BvkmsoVg=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "0ebcf660cc9db3c92138b7dbcd3fbc8d873dc700",
+        "rev": "615639f3697052a377f22dfce04630464121998b",
         "type": "github"
       },
       "original": {
@@ -824,11 +839,11 @@
     },
     "nixpkgs-stable_2": {
       "locked": {
-        "lastModified": 1722869614,
-        "narHash": "sha256-7ojM1KSk3mzutD7SkrdSflHXEujPvW1u7QuqWoTLXQU=",
+        "lastModified": 1722987190,
+        "narHash": "sha256-68hmex5efCiM2aZlAAEcQgmFI4ZwWt8a80vOeB/5w3A=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "883180e6550c1723395a3a342f830bfc5c371f6b",
+        "rev": "21cc704b5e918c5fbf4f9fff22b4ac2681706d90",
         "type": "github"
       },
       "original": {
@@ -888,11 +903,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1722813957,
-        "narHash": "sha256-IAoYyYnED7P8zrBFMnmp7ydaJfwTnwcnqxUElC1I26Y=",
+        "lastModified": 1723175592,
+        "narHash": "sha256-M0xJ3FbDUc4fRZ84dPGx5VvgFsOzds77KiBMW/mMTnI=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "cb9a96f23c491c081b38eab96d22fa958043c9fa",
+        "rev": "5e0ca22929f3342b19569b21b2f3462f053e497b",
         "type": "github"
       },
       "original": {
@@ -1061,6 +1076,7 @@
         "fzf-zsh-completions": "fzf-zsh-completions",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
+        "impermanence": "impermanence",
         "lanzaboote": "lanzaboote",
         "nixpkgs": "nixpkgs_4",
         "nixpkgs-master": "nixpkgs-master",
@@ -1307,11 +1323,11 @@
         "ymExe": "ymExe"
       },
       "locked": {
-        "lastModified": 1722991074,
-        "narHash": "sha256-dm0ONxDzkfsXwHiOw4K1D/c6IsfOJkksNyVf/uWh+OA=",
+        "lastModified": 1723250257,
+        "narHash": "sha256-+JkwyQd9EFSczQHcaLYdlacNmjfEzSqfFiEUI2IuLs0=",
         "owner": "cucumber-sp",
         "repo": "yandex-music-linux",
-        "rev": "6ab6b6eefff499ae4f6256b9a049efc2e1195ad3",
+        "rev": "b7ad3a1c637a17c6cc31f5bf0a5f06e6671d9720",
         "type": "github"
       },
       "original": {
@@ -1323,13 +1339,13 @@
     "ymExe": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-nMmUZov3j/vEs9+/5dbP1xSx80U9plrkqWkAtUTgeo8=",
+        "narHash": "sha256-2k/5pJa5VVJ+s/XF+2RTCE3n6YwA1d37mHO93wAWcOw=",
         "type": "file",
-        "url": "https://music-desktop-application.s3.yandex.net/stable/Yandex_Music_x64_5.9.4.exe"
+        "url": "https://music-desktop-application.s3.yandex.net/stable/Yandex_Music_x64_5.10.2.exe"
       },
       "original": {
         "type": "file",
-        "url": "https://music-desktop-application.s3.yandex.net/stable/Yandex_Music_x64_5.9.4.exe"
+        "url": "https://music-desktop-application.s3.yandex.net/stable/Yandex_Music_x64_5.10.2.exe"
       }
     },
     "zsh-auto-notify": {
