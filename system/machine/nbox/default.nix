@@ -35,6 +35,7 @@ in {
       zram.enable         = true;
       greetd-tui.enable   = true;
       hyprland.enable     = true;
+      ollama.enable       = true;
     };
 
     programs = {
