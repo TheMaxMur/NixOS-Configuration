@@ -7,9 +7,25 @@
     inputs.disko.nixosModules.disko
   ];
 
+  fileSystems = {
+    "/" = {
+      fsType = "tmpfs";
+      options = [ "mode=755" "size=10G" ];
+    };
+
+    "/nix" = {
+      options = [ "compress=zstd" "subvol=nix" ];
+    };
+
+    "/persist" = {
+      neededForBoot = true;
+      options = [ "compress=zstd" "subvol=persist" ];
+    };
+  };
+
   disko.devices = {
     disk = {
-      vdb = {
+      main = {
         type = "disk";
         device = "/dev/disk/by-id/nvme-Samsung_SSD_980_PRO_1TB_S5GXNX1T331237Z";
 
@@ -26,9 +42,7 @@
                 format = "vfat";
                 mountpoint = "/boot";
 
-                mountOptions = [
-                  "defaults"
-                ];
+                mountOptions = [ "defaults" "umask=0077" ];
               };
             };
 
@@ -44,19 +58,14 @@
                   extraArgs = [ "-f" ];
 
                   subvolumes = {
-                    "/root" = {
-                      mountpoint = "/";
-                      mountOptions = [ "compress=zstd" "noatime" ];
-                    };
-
-                    "/home" = {
-                      mountpoint = "/home";
-                      mountOptions = [ "compress=zstd" "noatime" ];
-                    };
-
                     "/nix" = {
                       mountpoint = "/nix";
                       mountOptions = [ "compress=zstd" "noatime" ];
+                    };
+
+                    "/persist" = {
+                      mountpoint = "/persist";
+                      mountOptions = [ "compress=zstd" ];
                     };
                   };
                 };
@@ -64,6 +73,13 @@
             };
           };
         };
+      };
+    };
+
+    nodev = {
+      "/" = {
+        fsType = "tmpfs";
+        mountOptions = [ "mode=755" "size=10G" ];
       };
     };
   };
