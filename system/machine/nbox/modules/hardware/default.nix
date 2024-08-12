@@ -9,6 +9,7 @@ in {
   imports = [
     "${machineHardwareModulesPath}/extra-hardware"
     "${machineHardwareModulesPath}/graphics-card"
+    "${machineHardwareModulesPath}/impermanence"
     "${machineHardwareModulesPath}/network"
     "${machineHardwareModulesPath}/kernel"
     "${machineHardwareModulesPath}/sound"
