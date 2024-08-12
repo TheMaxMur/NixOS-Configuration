@@ -127,9 +127,6 @@ in {
 
           # Battery
           battery = {
-            # format = "{capacity}% {icon} {power} W";
-            # format-charging = "{capacity}%  {power} W";
-            # format-icons = ["" "" "" "" "" "" "" "" "" "" ""];
             format = "{icon}  {capacity}%";
             format-charging = "{icon}  {capacity}%";
             format-icons = ["" "" "" "" ""];
@@ -170,8 +167,6 @@ in {
 
           # Network
           network = {
-            # format-wifi = "{bandwidthDownBytes}  {bandwidthUpBytes}";
-            # format-ethernet = "{bandwidthDownBytes}  {bandwidthUpBytes}";
             format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
             format-wifi = "{icon}";
             format-ethernet = "󰈀"; # 󰈁
@@ -185,8 +180,9 @@ in {
         }
       ];
 
-      # style = builtins.readFile (./. + "/style.css");
-      style = builtins.readFile ("${homeModules}/waybar/style.css");
+      style = mkAfter ''
+        ${builtins.readFile "${homeModules}/waybar/style.css"}
+      '';
     };
   };
 }
