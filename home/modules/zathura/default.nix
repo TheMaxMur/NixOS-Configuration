@@ -12,7 +12,7 @@ in {
     module.zathura.enable = mkEnableOption "Enables zathura";
   };
 
-  config = {
+  config = mkIf cfg.enable {
     programs.zathura = {
       enable = true;
     };
