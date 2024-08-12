@@ -78,7 +78,7 @@ in {
 
       # Custom style
       # style = builtins.readFile (./. + "/style.css");
-      style = builtins.readFile ("${homeModules}/swaync/style.css");
+      style = builtins.readFile "${homeModules}/swaync/style.css";
     };
   };
 }
