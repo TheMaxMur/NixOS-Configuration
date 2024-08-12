@@ -27,6 +27,7 @@ in {
       defaultEditor = true;
 
       extraPackages = with pkgs; [
+        gcc
         ansible-language-server
         yaml-language-server
         marksman
