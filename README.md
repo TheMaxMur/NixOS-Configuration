@@ -104,3 +104,7 @@
 
 [voronind-com](https://github.com/voronind-com)
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=TheMaxMur/NixOS-Configuration&type=Date)](https://star-history.com/#TheMaxMur/NixOS-Configuration&Date)
+
