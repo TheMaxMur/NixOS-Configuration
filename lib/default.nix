@@ -29,11 +29,13 @@ in {
   mkHost = { hostname ? "nixos", username ? "maxmur", isWorkstation ? false, platform ? "x86_64-linux" }:
     inputs.nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit inputs self hostModules generalModules hostname username platform stateVersion isWorkstation;
+        inherit inputs self homeModules hostModules generalModules hostname username platform stateVersion isWorkstation;
       };
 
       modules = [
+        inputs.home-manager.nixosModules.home-manager
         "${hostConfiguration}"
+        "${homeConfiguration}"
       ];
     };
 

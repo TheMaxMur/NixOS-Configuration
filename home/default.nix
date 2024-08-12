@@ -1,7 +1,12 @@
 { self
 , pkgs
 , lib
-
+, inputs
+, homeModules
+, generalModules
+, hostname
+, platform
+, isWorkstation
 , username
 , stateVersion
 , ...
@@ -14,14 +19,25 @@ let
   userConfigurationPath      = "${self}/home/users/${username}";
   userConfigurationPathExist = builtins.pathExists userConfigurationPath;
 in {
-  programs.home-manager.enable = true;
+  home-manager = {
+    useGlobalPkgs     = true;
+    useUserPackages   = true;
 
-  imports = lib.optional userConfigurationPathExist userConfigurationPath;
+    extraSpecialArgs  = {
+      inherit inputs self homeModules generalModules hostname username platform stateVersion isWorkstation;
+    };
 
-  home = {
-    inherit username;
-    inherit stateVersion;
-    inherit homeDirectory;
+    users.${username} = {
+      programs.home-manager.enable = true;
+
+      imports = lib.optional userConfigurationPathExist userConfigurationPath;
+
+      home = {
+        inherit username;
+        inherit stateVersion;
+        inherit homeDirectory;
+      };
+    };
   };
 }
 
