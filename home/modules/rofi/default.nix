@@ -27,9 +27,8 @@ in {
       ];
 
       extraConfig = {
-        modi = "drun,calc,window";
+        modi = "drun,window";
         display-drun = "APPS";
-        display-calc = "CALC";
         display-window = "WINDOW";
         drun-display-format = "{name}";
       };
