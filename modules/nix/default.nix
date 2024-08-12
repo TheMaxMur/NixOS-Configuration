@@ -1,7 +1,6 @@
 { inputs
 , lib
 , config
-, pkgs
 , ...
 }:
 
@@ -9,7 +8,6 @@ with lib;
 
 let
   cfg = config.module.nix-config;
-  inherit (pkgs.stdenv) isLinux;
 in {
   options = {
     module.nix-config = {
@@ -36,7 +34,7 @@ in {
     };
 
     # Nix package manager settings
-    nix = optionalAttrs cfg.useNixPackageManagerConfig ({
+    nix = {
       registry.s.flake = inputs.self;
 
       settings = {
@@ -50,10 +48,7 @@ in {
         automatic = true;
         options = "--delete-older-than 14d";
       };
-    } // optionalAttrs isLinux {
-      gc.dates = "daily";
-      optimise.automatic = true;
-    });
+    };
   };
 }
 
