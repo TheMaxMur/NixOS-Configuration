@@ -39,14 +39,14 @@ in {
       };
 
       serif = {
-        package = (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" ]; });
+        package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" ]; };
         name    = "Iosevka Nerd Font Mono";
       };
 
       sansSerif = config.stylix.fonts.serif;
 
       monospace = {
-        package = config.stylix.fonts.serif.package;
+        inherit (config.stylix.fonts.serif) package;
         name    = "Iosevka Term";
       };
 
