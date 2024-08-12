@@ -34,12 +34,13 @@ in {
     doom-emacs.enable = isWorkstation;
     zathura.enable    = isWorkstation;
 
-    chrome.enable   = isLinux && isWorkstation;
-    firefox.enable  = isLinux && isWorkstation;
-    foot.enable     = isLinux && isWorkstation;
-    ssh.enable      = isLinux && isWorkstation;
-    hyprland.enable = isLinux && isWorkstation;
-    xdg.enable      = isLinux && isWorkstation;
+    chrome.enable       = isLinux && isWorkstation;
+    firefox.enable      = isLinux && isWorkstation;
+    foot.enable         = isLinux && isWorkstation;
+    ssh.enable          = isLinux && isWorkstation;
+    hyprland.enable     = isLinux && isWorkstation;
+    impermanence.enable = isLinux && isWorkstation;
+    xdg.enable          = isLinux && isWorkstation;
 
     hypridle.enable  = config.module.hyprland.enable;
     hyprlock.enable  = config.module.hyprland.enable;
@@ -61,11 +62,6 @@ in {
     fish.enable           = true;
     zoxide.enable         = true;
     yazi.enable           = true;
-
-    nix-config = {
-      enable                     = true;
-      useNixPackageManagerConfig = false;
-    };
   };
 
   home = {
@@ -121,9 +117,6 @@ in {
 
       # Office
       onlyoffice-bin
-
-      # Menu
-      ulauncher
 
       # Misc
       obs-studio

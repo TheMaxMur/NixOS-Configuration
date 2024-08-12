@@ -1,11 +1,10 @@
-{ inputs
-, homeModules
+{ homeModules
 , ...
 }:
 
 {
   imports = [
-    inputs.stylix.homeManagerModules.stylix
+    # inputs.stylix.homeManagerModules.stylix
 
     "${homeModules}/alacritty"
     "${homeModules}/btop"
@@ -30,6 +29,7 @@
     "${homeModules}/hyprpaper"
     "${homeModules}/hyprlock"
     "${homeModules}/hypridle"
+    "${homeModules}/impermanence"
     "${homeModules}/rofi"
     "${homeModules}/waybar"
     "${homeModules}/dconf"
