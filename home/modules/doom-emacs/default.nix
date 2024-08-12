@@ -1,5 +1,4 @@
-{ inputs
-, config
+{ config
 , lib
 , pkgs
 , ...
@@ -24,7 +23,6 @@ in {
       emacsPackages.pdf-tools
 
       fd
-      nerdfonts
       nil
      ];
   };
