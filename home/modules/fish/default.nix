@@ -1,5 +1,6 @@
 { lib
 , config
+, username
 , pkgs
 , inputs
 , homeModules
@@ -34,9 +35,8 @@ in {
       '';
 
       shellAliases = {
-        "flake-update" = "nix flake update /home/maxmur/Code/nixos-configuration/";
-        "darwin-update" = "darwin-rebuild switch --flake /Users/maxmur/Code/nixos-configuration/";
-        "darwin-home-update" = "home-manager switch --flake /Users/maxmur/Code/nixos-configuration/.#maxmur@macbox";
+        "flake-update" = "nix flake update /home/${username}/Code/nixos-configuration/";
+        "darwin-update" = "darwin-rebuild switch --flake /Users/${username}/Code/nixos-configuration/";
         "tree" = "eza --tree -L 3";
         "ls" = "eza";
         # "ll" = "eza -l";
@@ -74,7 +74,6 @@ in {
         # Others
         "gopenssl" = "/opt/cryptopack3/bin/openssl";
         "fuck" = "_ !!";
-        "minecraft" = "java -jar /home/maxmur/Games/TLauncher-2.86.jar";
         "sudo" = "doas";
       };
 

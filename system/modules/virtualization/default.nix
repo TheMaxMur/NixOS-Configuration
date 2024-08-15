@@ -1,5 +1,6 @@
 { lib
 , config
+, username
 , pkgs
 , ...
 }:
@@ -21,7 +22,7 @@ in {
       virt-manager
     ];
 
-    users.extraGroups.vboxusers.members = [ "maxmur" ];
+    users.extraGroups.vboxusers.members = [ username ];
 
     virtualisation = {
       docker.enable = true;

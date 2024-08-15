@@ -1,4 +1,5 @@
-{ config
+{ self
+, config
 , lib
 , pkgs
 , ...
@@ -32,7 +33,7 @@ in {
         background = [
           {
             monitor = "";
-            path = "/home/maxmur/Pictures/wallpapers/grey_gradient.png";
+            path = "${self}/assets/grey_gradient.png";
             color = "rgba(25, 20, 20, 1.0)";
             blur_size = 8;
             blur_passes = 2;

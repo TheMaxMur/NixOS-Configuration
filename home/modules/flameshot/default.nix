@@ -1,5 +1,6 @@
 { lib
 , config
+, username
 , ...
 }:
 
@@ -23,7 +24,7 @@ in {
           drawColor = "#00ffff";
           saveAfterCopy = true;
           saveAsFileExtension = "png";
-          savePath = "/home/maxmur/Pictures/Screenshots";
+          savePath = "/home/${username}/Pictures/Screenshots";
           savePathFixed = true;
           showDesktopNotification = false;
           showHelp = false;

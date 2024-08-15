@@ -95,12 +95,12 @@ with lib.hm.gvariant;
 
     "org/cinnamon/desktop/background" = {
       picture-options = "zoom";
-      picture-uri = "file:///home/maxmur/Pictures/wallpapers/grey_gradient.png";
+      picture-uri = "file:///home/${username}/Pictures/wallpapers/grey_gradient.png";
     };
 
     "org/cinnamon/desktop/background/slideshow" = {
       delay = 15;
-      image-source = "directory:///home/maxmur/Pictures/wallpapers";
+      image-source = "directory:///home/${username}/Pictures/wallpapers";
     };
 
     "org/cinnamon/desktop/interface" = {

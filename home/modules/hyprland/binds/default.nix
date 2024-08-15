@@ -1,4 +1,5 @@
 { config
+, self
 , lib
 , pkgs
 , ...
@@ -26,7 +27,7 @@ in {
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
 
-        "${pkgs.swww}/bin/swww init & sleep 0.5 && exec ${pkgs.swww}/bin/swww img /home/maxmur/Pictures/wallpapers/grey_gradient.png --transition-type simple"
+        "${pkgs.swww}/bin/swww init & sleep 0.5 && exec ${pkgs.swww}/bin/swww img ${self}/assets/grey_gradient.png --transition-type simple"
 
         # Autostart
         "[workspace 1 silent] ${pkgs.firefox}/bin/firefox"
