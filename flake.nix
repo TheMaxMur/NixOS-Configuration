@@ -120,6 +120,8 @@
       darwinConfigurations = {
         ${hosts.macbox.hostname} = libx.mkHostDarwin hosts.macbox;
       };
+
+      templates = import "${self}/templates" { inherit self; };
     };
   };
 }
