@@ -4,8 +4,6 @@
 
 {
   imports = [
-    # inputs.stylix.homeManagerModules.stylix
-
     "${homeModules}/alacritty"
     "${homeModules}/btop"
     "${homeModules}/chrome"
