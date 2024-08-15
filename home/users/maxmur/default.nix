@@ -1,4 +1,5 @@
 { self
+, lib
 , pkgs
 , inputs
 , config
@@ -11,15 +12,16 @@
 let
   inherit (pkgs.stdenv) isLinux;
   ufetch = pkgs.callPackage "${self}/pkgs/ufetch" {};
+  sshModule = "${homeModules}/ssh";
+  sshModuleExist = builtins.pathExists sshModule;
 in {
   imports = [
     "${generalModules}"
     "${homeModules}"
-    "${homeModules}/ssh"
-  ];
+  ] ++ lib.optional sshModuleExist sshModule;
 
   nixpkgs.overlays = [
-    (import "${self}/home/overlays/rofi-calc")
+    # (import "${self}/home/overlays/rofi-calc")
     # (import "${self}/home/overlays/rofi-emoji")
   ];
 
