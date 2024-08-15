@@ -28,6 +28,7 @@ in {
 
       extraPackages = with pkgs; [
         gcc
+        nodejs_22
         ansible-language-server
         yaml-language-server
         marksman
