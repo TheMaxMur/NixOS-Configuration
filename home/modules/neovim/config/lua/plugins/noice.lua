@@ -1,6 +1,7 @@
 return {
   {
     "folke/noice.nvim",
+    version = "4.4.7",
     event = "VimEnter",
     enabled = not vim.g.started_by_firenvim,
 
