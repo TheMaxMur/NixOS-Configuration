@@ -33,6 +33,7 @@ in {
       zip
       unzip
       killall
+      jq
 
       # Hardware utils
       glxinfo
@@ -62,7 +63,6 @@ in {
       orchis-theme
       vimix-cursors
       tela-circle-icon-theme
-      nordic
 
       # Hardware
       microcodeIntel
@@ -75,7 +75,7 @@ in {
       fwupd-efi
 
       # Utils
-      gnome.dconf-editor
+      dconf-editor
       grim
     ];
   };
