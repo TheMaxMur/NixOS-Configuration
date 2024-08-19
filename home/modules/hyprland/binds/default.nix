@@ -126,7 +126,7 @@ in {
         "SUPER, C, exec, ${cliphist}"
 
         # File manager
-        "SUPER, E, exec, ${pkgs.cinnamon.nemo}/bin/nemo"
+        "SUPER, E, exec, ${pkgs.nemo}/bin/nemo"
 
         # Fullscreen
         "SUPER, Z, fullscreen"
