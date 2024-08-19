@@ -29,7 +29,7 @@
 
     # Hyprland ecosystem
     hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref=refs/tags/v0.42.0";
+      url = "git+https://github.com/hyprwm/Hyprland?submodules=1&rev=c5feee1e357f3c3c59ebe406630601c627807963";
     };
 
     xdghypr = {
@@ -98,10 +98,35 @@
     libx               = import ./lib { inherit self inputs stateVersion stateVersionDarwin; };
 
     hosts = {
-      pcbox  = { hostname = "pcbox";  username = "maxmur"; platform = linuxArch;    isWorkstation = true;  };
-      nbox   = { hostname = "nbox";   username = "maxmur"; platform = linuxArch;    isWorkstation = true;  };
-      rasp   = { hostname = "rasp";   username = "maxmur"; platform = linuxArmArch; isWorkstation = false; };
-      macbox = { hostname = "macbox"; username = "maxmur"; platform = darwinArch;   isWorkstation = true;  };
+      pcbox  = {
+        hostname = "pcbox";
+        username = "maxmur";
+        platform = linuxArch;
+        isWorkstation = true;
+        wm = "sway";
+      };
+
+      nbox = {
+        hostname = "nbox";
+        username = "maxmur";
+        platform = linuxArch;
+        isWorkstation = true;
+        wm = "sway";
+      };
+
+      rasp = {
+        hostname = "rasp";
+        username = "maxmur";
+        platform = linuxArmArch;
+        isWorkstation = false;
+      };
+
+      macbox = {
+        hostname = "macbox";
+        username = "maxmur";
+        platform = darwinArch;
+        isWorkstation = true;
+      };
     };
   in flake-parts.lib.mkFlake { inherit inputs; } {
     systems = [

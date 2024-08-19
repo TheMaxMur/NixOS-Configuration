@@ -2,6 +2,7 @@
 , config
 , lib
 , homeModules
+, wm
 , ...
 }:
 
@@ -35,11 +36,15 @@ in {
 
           modules-left = [
             "custom/nixlogo"
-            "hyprland/workspaces"
+            "${wm}/workspaces"
           ];
-          modules-center = [ "clock" ];
+
+          modules-center = [
+            "clock"
+          ];
+
           modules-right = [
-            "hyprland/language"
+            "${wm}/language"
             "tray"
             "pulseaudio"
             "cpu"
@@ -66,6 +71,10 @@ in {
             persistent-workspaces = {"*" = 6;};
           };
 
+          "sway/workspaces" = {
+            all-outputs = true;
+          };
+
           # Clock & Calendar
           clock = {
             format = "{:%a %b %d, %H:%M}";
@@ -85,6 +94,12 @@ in {
           };
 
           "hyprland/language" = {
+            format = "{}";
+            format-en = "US";
+            format-ru = "RU";
+          };
+
+          "sway/language" = {
             format = "{}";
             format-en = "US";
             format-ru = "RU";

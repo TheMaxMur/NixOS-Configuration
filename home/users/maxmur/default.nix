@@ -1,29 +1,31 @@
 { self
 , lib
 , pkgs
-, inputs
 , config
 , generalModules
 , homeModules
 , isWorkstation
+, wm
 , ...
 }:
 
 let
   inherit (pkgs.stdenv) isLinux;
-  ufetch = pkgs.callPackage "${self}/pkgs/ufetch" {};
+
   sshModule = "${homeModules}/ssh";
   sshModuleExist = builtins.pathExists sshModule;
+
+  swayEnable = if wm == "sway" then true else false;
+  hyprlandEnable = if wm == "hyprland" then true else false;
+  wmEnable = config.module.hyprland.enable || config.module.sway.enable;
 in {
   imports = [
     "${generalModules}"
     "${homeModules}"
+    "${self}/home/users/maxmur/modules"
   ] ++ lib.optional sshModuleExist sshModule;
 
-  nixpkgs.overlays = [
-    # (import "${self}/home/overlays/rofi-calc")
-    # (import "${self}/home/overlays/rofi-emoji")
-  ];
+  nixpkgs.overlays = [  ];
 
   stylix.targets = {
     vscode.enable = false;
@@ -40,15 +42,17 @@ in {
     firefox.enable      = isLinux && isWorkstation;
     foot.enable         = isLinux && isWorkstation;
     ssh.enable          = isLinux && isWorkstation;
-    hyprland.enable     = isLinux && isWorkstation;
     impermanence.enable = isLinux && isWorkstation;
     xdg.enable          = isLinux && isWorkstation;
 
-    hypridle.enable  = config.module.hyprland.enable;
-    hyprlock.enable  = config.module.hyprland.enable;
-    waybar.enable    = config.module.hyprland.enable;
-    rofi.enable      = config.module.hyprland.enable;
-    swaync.enable    = config.module.hyprland.enable;
+    hyprland.enable     = hyprlandEnable && isLinux && isWorkstation;
+    sway.enable         = swayEnable && isLinux && isWorkstation;
+
+    hypridle.enable  = wmEnable;
+    hyprlock.enable  = wmEnable;
+    waybar.enable    = wmEnable;
+    rofi.enable      = wmEnable;
+    swaync.enable    = wmEnable;
 
     btop.enable           = true;
     eza.enable            = true;
@@ -64,71 +68,11 @@ in {
     fish.enable           = true;
     zoxide.enable         = true;
     yazi.enable           = true;
-  };
 
-  home = {
-    # Software
-    packages = with pkgs; [
-      # Utils
-      bat
-      tokei
-      shellcheck
-      pre-commit
-      deadnix
-      statix
-      # eza
-      ffmpeg
-      inputs.any-nix-shell
-
-      # Programming
-      go
-      python3
-
-      # DevOps Utils
-      docker-compose
-      kubectl
-      kubernetes-helm
-      ansible
-      ansible-lint
-      terraform
-
-      # Security
-      age
-      sops
-      grype
-      syft
-    ] ++ lib.optionals isWorkstation [
-      # Chats
-      discord
-
-      # Text Editors
-      obsidian
-
-      # Security
-      semgrep
-    ] ++ lib.optionals (isLinux && isWorkstation) [
-      # Local
-      ufetch
-
-      # DevOps Utils
-      vagrant
-
-      # Chats
-      telegram-desktop
-      vesktop
-
-      # Office
-      onlyoffice-bin
-
-      # Misc
-      obs-studio
-      dconf2nix
-      via
-      gpick
-      gat
-      vlc
-      gnome.eog
-    ];
+    users.maxmur.packages = {
+      inherit wmEnable;
+      enable = true;
+    };
   };
 }
 

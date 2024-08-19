@@ -2,11 +2,13 @@
 , hostModules
 
 , hostname
+, wm
 , ...
 }:
 
 let
   machineModules = "${self}/system/machine/${hostname}/modules";
+  hyprlandEnable = if wm == "hyprland" then true else false;
 in {
   imports = [
     "${hostModules}"
@@ -34,8 +36,9 @@ in {
       udev.enable         = true;
       zram.enable         = true;
       greetd-tui.enable   = true;
-      hyprland.enable     = true;
       ollama.enable       = true;
+
+      hyprland.enable = hyprlandEnable;
     };
 
     programs = {

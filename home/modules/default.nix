@@ -36,6 +36,7 @@
     "${homeModules}/zoxide"
     "${homeModules}/yazi"
     "${homeModules}/swaync"
+    "${homeModules}/sway"
   ];
 }
 

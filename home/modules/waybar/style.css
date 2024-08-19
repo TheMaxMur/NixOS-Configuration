@@ -165,6 +165,11 @@ window#waybar {
   color: @black;
 }
 
+#workspaces button.current_output.focused {
+  background: @base0D;
+  color: @black;
+}
+
 /* Systray */
 #tray > .passive {
   -gtk-icon-effect: dim;

@@ -9,6 +9,7 @@
 , isWorkstation
 , username
 , stateVersion
+, wm
 , ...
 }:
 
@@ -24,7 +25,7 @@ in {
     useUserPackages   = true;
 
     extraSpecialArgs  = {
-      inherit inputs self homeModules generalModules hostname username platform stateVersion isWorkstation;
+      inherit inputs self wm homeModules generalModules hostname username platform stateVersion isWorkstation;
     };
 
     users.${username} = {

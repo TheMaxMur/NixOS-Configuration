@@ -13,11 +13,11 @@ let
   generalModules    = "${self}/modules";
 in {
   # Helper function for generating home-manager configs
-  mkHome = { username ? "maxmur", hostname ? "nixos", isWorkstation ? false, platform ? "x86_64-linux" }:
+  mkHome = { username ? "maxmur", wm ? null, hostname ? "nixos", isWorkstation ? false, platform ? "x86_64-linux" }:
     inputs.home-manager.lib.homeManagerConfiguration {
       pkgs = inputs.nixpkgs.legacyPackages.${platform};
       extraSpecialArgs = {
-        inherit inputs self homeModules generalModules platform username hostname stateVersion isWorkstation;
+        inherit inputs self wm homeModules generalModules platform username hostname stateVersion isWorkstation;
       };
 
       modules = [
@@ -26,10 +26,10 @@ in {
     };
 
   # Helper function for generating host configs
-  mkHost = { hostname ? "nixos", username ? "maxmur", isWorkstation ? false, platform ? "x86_64-linux" }:
+  mkHost = { hostname ? "nixos", wm ? null, username ? "maxmur", isWorkstation ? false, platform ? "x86_64-linux" }:
     inputs.nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit inputs self homeModules hostModules generalModules hostname username platform stateVersion isWorkstation;
+        inherit inputs self wm homeModules hostModules generalModules hostname username platform stateVersion isWorkstation;
       };
 
       modules = [

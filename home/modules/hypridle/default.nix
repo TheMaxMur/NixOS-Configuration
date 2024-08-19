@@ -10,8 +10,25 @@ with lib;
 
 let
   cfg = config.module.hypridle;
+
   hyprlockCmd = "${config.programs.hyprlock.package}/bin/hyprlock";
   suspendCmd = "${pkgs.systemd}/bin/systemctl suspend";
+  hyprctlCmd = "${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/hyprctl";
+
+  hyprlandOnScreen = "${hyprctlCmd} dispatch dpms on";
+  hyprlandOffScreen = "${hyprctlCmd} dispatch dpms off";
+  swayOnScreen = "${pkgs.swayfx}/bin/swaymsg 'output * power on'";
+  swayOffScreen = "${pkgs.swayfx}/bin/swaymsg 'output * power off'";
+  screenOn = if config.module.hyprland.enable 
+    then hyprlandOnScreen 
+    else if config.module.sway.enable 
+      then swayOnScreen 
+    else "";
+  screenOff = if config.module.hyprland.enable 
+    then hyprlandOffScreen 
+    else if config.module.sway.enable 
+      then swayOffScreen 
+    else "";
 in {
   options = {
     module.hypridle.enable = mkEnableOption "Enables Hypridle";
@@ -34,8 +51,8 @@ in {
         listener = [
           {
             timeout = 300;
-            on-timeout ="${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/hyprctl dispatch dpms off";
-            on-resume = "${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/hyprctl dispatch dpms on";
+            on-timeout = screenOff;
+            on-resume = screenOn;
           }
           {
             timeout = 600;
