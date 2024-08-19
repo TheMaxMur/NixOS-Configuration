@@ -15,6 +15,8 @@
 - [Features](#-features)
 - [File structure](#-file-structure)
 - [Desktop preview](#%EF%B8%8F-desktop-preview)
+    - [Hyprland](#-hyprland)
+    - [SwayFX](#-swayfx)
 - [Software](#-software)
 - [Hosts description](#%EF%B8%8F-hosts-description)
 - [Keyboard](#%EF%B8%8F-keyboard)
@@ -39,6 +41,7 @@
     - [🧩 modules](home/modules/) home manager modules 
     - [♻️ overlays](home/overlays) home manager overlays
     - [👤 users](home/users) users configurations for home manager
+        - [🧩 modules](home/users/maxmur/modules/) home manager user modules
 - [📃 lib](lib/default.nix) helper functions for creating configurations
 - [🧩 modules](modules/default.nix) common modules for nixos/nixDarwin/home-manager
 - [🖥️ system](system/default.nix) entry point for creating a machine
@@ -54,6 +57,8 @@
 
 The images below may not represent the final system. Some parts may differ.
 
+### ⚡ Hyprland
+
 ![desktop0.png](assets/github/desktop0.png)
 
 ![desktop1.png](assets/github/desktop1.png)
@@ -62,10 +67,18 @@ The images below may not represent the final system. Some parts may differ.
 
 ![desktop3.png](assets/github/desktop3.png)
 
+### 💪 SwayFX
+
+![swayfx0.png](assets/github/swayfx/image0.png)
+
+![swayfx1.png](assets/github/swayfx/image1.png)
+
+![swayfx2.png](assets/github/swayfx/image2.png)
+
 ## 📘 Software
 
  - OS - [**`NixOS`**](https://nixos.org/)
- - WM - [**`Hyprland`**](https://hyprland.org/)
+ - WM - [**`Hyprland`**](https://hyprland.org/) or [**`SwayFX`**](https://github.com/WillPower3309/swayfx)
  - Theme - [**`Nord`**](https://github.com/nordtheme/nord)
  - Wallpapers - [**`Grey wave`**](assets/grey_gradient.png)
  - Editor - [**`Neovim`**](https://neovim.io/)
