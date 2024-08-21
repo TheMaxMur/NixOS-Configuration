@@ -1,21 +1,14 @@
-{ hostModules
+{ systemModules
+, lib
 , ...
 }:
 
 let
-  hostProgramModulesPath = "${hostModules}/programs";
+  hostProgramModulesPath = "${systemModules}/programs";
 in {
-  imports = [
-    "${hostProgramModulesPath}/systemPackages"
-    "${hostProgramModulesPath}/home-manager"
-    "${hostProgramModulesPath}/nix-helper"
-    "${hostProgramModulesPath}/kdeconnect"
-    "${hostProgramModulesPath}/xdg-portal"
-    "${hostProgramModulesPath}/gnupg"
-    "${hostProgramModulesPath}/zsh"
-    "${hostProgramModulesPath}/mtr"
-    "${hostProgramModulesPath}/dconf"
-    "${hostProgramModulesPath}/fish"
-  ];
+  # Import all program modules
+  imports = builtins.filter (module: lib.pathIsDirectory module) (
+    map (module: "${hostProgramModulesPath}/${module}") (builtins.attrNames (builtins.readDir hostProgramModulesPath))
+  );
 }
 

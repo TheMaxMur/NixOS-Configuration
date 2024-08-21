@@ -3,6 +3,7 @@
 , pkgs
 , inputs
 , isWorkstation
+, wmEnable
 , ...
 }:
 
@@ -14,10 +15,11 @@ let
 in {
   options.module.users.maxmur.packages = {
     enable = mkEnableOption "Enable maxmur packages";
-    wmEnable = mkEnableOption "Enable packages for wm";
   };
 
   config = mkIf cfg.enable {
+    fonts.fontconfig.enable = true;
+
     home.packages = with pkgs; [
       # Utils
       bat
@@ -56,6 +58,10 @@ in {
 
       # Security
       semgrep
+
+      # Fonts
+      (nerdfonts.override { fonts = [ "JetBrainsMono" "UbuntuMono" "Iosevka" ]; })
+      corefonts
     ] ++ lib.optionals (isLinux && isWorkstation) [
      # DevOps Utils
       vagrant
@@ -75,7 +81,7 @@ in {
       gat
       vlc
       eog
-    ] ++ lib.optionals cfg.wmEnable [
+    ] ++ lib.optionals wmEnable [
       imagemagick
       grim
       slurp

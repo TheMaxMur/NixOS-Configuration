@@ -1,18 +1,6 @@
-{ self
-, hostModules
+_:
 
-, hostname
-, ...
-}:
-
-let
-  machineModules = "${self}/system/machine/${hostname}/modules";
-in {
-  imports = [
-    "${hostModules}"
-    "${machineModules}"
-  ];
-
+{
   module = {
     locales.enable  = true;
     network.enable  = true;

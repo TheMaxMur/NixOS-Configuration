@@ -1,25 +1,13 @@
-{ hostModules
+{ systemModules
+, lib
 , ...
 }:
 
 let
-  hostServicesModulesPath = "${hostModules}/services";
+  hostServicesModulesPath = "${systemModules}/services";
 in {
-  imports = [
-    "${hostServicesModulesPath}/cpu-autofreq"
-    "${hostServicesModulesPath}/greetd-tui"
-    "${hostServicesModulesPath}/syncthing"
-    "${hostServicesModulesPath}/hyprland"
-    "${hostServicesModulesPath}/printing"
-    "${hostServicesModulesPath}/xserver"
-    "${hostServicesModulesPath}/polkit"
-    "${hostServicesModulesPath}/ollama"
-    "${hostServicesModulesPath}/fwupd"
-    "${hostServicesModulesPath}/udev"
-    "${hostServicesModulesPath}/bolt"
-    "${hostServicesModulesPath}/zram"
-    "${hostServicesModulesPath}/tlp"
-    "${hostServicesModulesPath}/qmk"
-  ];
+  imports = builtins.filter (module: lib.pathIsDirectory module) (
+    map (module: "${hostServicesModulesPath}/${module}") (builtins.attrNames (builtins.readDir hostServicesModulesPath))
+  );
 }
 

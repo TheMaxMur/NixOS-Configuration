@@ -90,49 +90,52 @@
 
   outputs = { self, flake-parts, ... } @ inputs:
   let
-    linuxArch          = "x86_64-linux";
-    linuxArmArch       = "aarch64-linux";
-    darwinArch         = "aarch64-darwin";
-    stateVersion       = "24.11";
-    stateVersionDarwin = 4;
-    libx               = import ./lib { inherit self inputs stateVersion stateVersionDarwin; };
+    # Import helper funcfions
+    libx = import ./lib { inherit self inputs; };
 
+    # Description of hosts
     hosts = {
-      pcbox  = {
-        hostname = "pcbox";
-        username = "maxmur";
-        platform = linuxArch;
+      pcbox = {
+        hostname      = "pcbox";
+        username      = "maxmur";
+        platform      = "x86_64-linux";
+        stateVersion  = "24.11";
         isWorkstation = true;
-        wm = "sway";
+        wm            = "sway";
       };
 
       nbox = {
-        hostname = "nbox";
-        username = "maxmur";
-        platform = linuxArch;
+        hostname      = "nbox";
+        username      = "maxmur";
+        platform      = "x86_64-linux";
+        stateVersion  = "24.11";
         isWorkstation = true;
-        wm = "sway";
+        wm            = "sway";
       };
 
       rasp = {
-        hostname = "rasp";
-        username = "maxmur";
-        platform = linuxArmArch;
+        hostname      = "rasp";
+        username      = "maxmur";
+        platform      = "aarch64-linux";
+        stateVersion  = "24.11";
         isWorkstation = false;
       };
 
       macbox = {
-        hostname = "macbox";
-        username = "maxmur";
-        platform = darwinArch;
+        hostname      = "macbox";
+        username      = "maxmur";
+        platform      = "aarch64-darwin";
+        stateVersion  = 6;
         isWorkstation = true;
       };
     };
   in flake-parts.lib.mkFlake { inherit inputs; } {
     systems = [
-      linuxArch
-      linuxArmArch
-      darwinArch
+      "aarch64-linux"
+      "i686-linux"
+      "x86_64-linux"
+      "aarch64-darwin"
+      "x86_64-darwin"
     ];
 
     flake = {

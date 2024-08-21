@@ -2,36 +2,67 @@
 , pkgs
 , lib
 , inputs
-, homeModules
-, generalModules
 , hostname
-, platform
-, isWorkstation
 , username
+, platform
 , stateVersion
-, wm
+, homeModules
+, commonModules
+, isWorkstation ? false
+, wm ? ""
+, swayEnable ? false
+, hyprlandEnable ? false
+, wmEnable ? false
 , ...
 }:
 
 let
   inherit (pkgs.stdenv) isDarwin;
-  isRoot                     = if (username == "root") then true else false;
+  inherit (pkgs.stdenv) isLinux;
+
+  isRoot                     = username == "root";
   homeDirectory              = if isDarwin then "/Users/${username}" else if isRoot then "/root" else "/home/${username}";
   userConfigurationPath      = "${self}/home/users/${username}";
   userConfigurationPathExist = builtins.pathExists userConfigurationPath;
+  userModulesPath            = "${self}/home/users/${username}/modules";
+  userModulesPathExist       = builtins.pathExists userModulesPath;
+  sshModulePath              = "${homeModules}/ssh";
+  sshModuleExistPath         = builtins.pathExists sshModulePath;
 in {
   home-manager = {
     useGlobalPkgs     = true;
     useUserPackages   = true;
 
     extraSpecialArgs  = {
-      inherit inputs self wm homeModules generalModules hostname username platform stateVersion isWorkstation;
+      inherit 
+        inputs 
+        self 
+        hostname 
+        username 
+        platform 
+        stateVersion 
+        isLinux 
+        commonModules 
+        homeModules 
+        isWorkstation
+        wm 
+        swayEnable 
+        hyprlandEnable 
+        wmEnable;
     };
 
     users.${username} = {
-      programs.home-manager.enable = true;
+      imports = [
+        inputs.impermanence.nixosModules.home-manager.impermanence
+        inputs.sops-nix.homeManagerModules.sops
 
-      imports = lib.optional userConfigurationPathExist userConfigurationPath;
+        "${commonModules}"
+        "${homeModules}"
+      ] ++ lib.optional sshModuleExistPath         sshModulePath
+        ++ lib.optional userConfigurationPathExist userConfigurationPath
+        ++ lib.optional userModulesPathExist       userModulesPath;
+
+      programs.home-manager.enable = true;
 
       home = {
         inherit username;

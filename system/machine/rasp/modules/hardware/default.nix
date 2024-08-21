@@ -1,4 +1,5 @@
 { self
+, lib
 , hostname
 , pkgs
 , ...
@@ -7,9 +8,9 @@
 let
   machineHardwareModulesPath = "${self}/system/machine/${hostname}/modules/hardware";
 in {
-  imports = [
-    "${machineHardwareModulesPath}/network"
-  ];
+  imports = builtins.filter (module: lib.pathIsDirectory module) (
+    map (module: "${machineHardwareModulesPath}/${module}") (builtins.attrNames (builtins.readDir machineHardwareModulesPath))
+  );
 
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;

@@ -1,21 +1,9 @@
-{ self
+{ hyprlandEnable
 , config
-, hostModules
-
-, hostname
-, wm
 , ...
 }:
 
-let
-  machineModules = "${self}/system/machine/${hostname}/modules";
-  hyprlandEnable = if wm == "hyprland" then true else false;
-in {
-  imports = [
-    "${hostModules}"
-    "${machineModules}"
-  ];
-
+{
   module = {
     locales.enable        = true;
     network.enable        = true;

@@ -1,15 +1,11 @@
-{ self
-, hostname
+{ lib
+, machineModulesPath
 , ...
 }:
 
-let
-  machineModulesPath = "${self}/system/machine/${hostname}/modules";
-in {
-  imports = [
-    "${machineModulesPath}/temp-control"
-    "${machineModulesPath}/hardware"
-    "${machineModulesPath}/nginx"
-  ];
+{
+  imports = builtins.filter (module: lib.pathIsDirectory module) (
+    map (module: "${machineModulesPath}/${module}") (builtins.attrNames (builtins.readDir machineModulesPath))
+  );
 }
 

@@ -1,30 +1,13 @@
-{ self
-, lib
-, pkgs
-, config
-, generalModules
-, homeModules
-, isWorkstation
-, wm
+{ isWorkstation
+, username
+, isLinux
+, hyprlandEnable ? false
+, swayEnable ? false
+, wmEnable ? false
 , ...
 }:
 
-let
-  inherit (pkgs.stdenv) isLinux;
-
-  sshModule = "${homeModules}/ssh";
-  sshModuleExist = builtins.pathExists sshModule;
-
-  swayEnable = if wm == "sway" then true else false;
-  hyprlandEnable = if wm == "hyprland" then true else false;
-  wmEnable = config.module.hyprland.enable || config.module.sway.enable;
-in {
-  imports = [
-    "${generalModules}"
-    "${homeModules}"
-    "${self}/home/users/maxmur/modules"
-  ] ++ lib.optional sshModuleExist sshModule;
-
+{
   nixpkgs.overlays = [  ];
 
   stylix.targets = {
@@ -45,14 +28,14 @@ in {
     impermanence.enable = isLinux && isWorkstation;
     xdg.enable          = isLinux && isWorkstation;
 
-    hyprland.enable     = hyprlandEnable && isLinux && isWorkstation;
-    sway.enable         = swayEnable && isLinux && isWorkstation;
+    hyprland.enable = hyprlandEnable && isLinux && isWorkstation;
+    sway.enable     = swayEnable && isLinux && isWorkstation;
 
-    hypridle.enable  = wmEnable;
-    hyprlock.enable  = wmEnable;
-    waybar.enable    = wmEnable;
-    rofi.enable      = wmEnable;
-    swaync.enable    = wmEnable;
+    hypridle.enable = wmEnable && isLinux && isWorkstation;
+    hyprlock.enable = wmEnable && isLinux && isWorkstation;
+    waybar.enable   = wmEnable && isLinux && isWorkstation;
+    rofi.enable     = wmEnable && isLinux && isWorkstation;
+    swaync.enable   = wmEnable && isLinux && isWorkstation;
 
     btop.enable           = true;
     eza.enable            = true;
@@ -69,10 +52,7 @@ in {
     zoxide.enable         = true;
     yazi.enable           = true;
 
-    users.maxmur.packages = {
-      inherit wmEnable;
-      enable = true;
-    };
+    users.${username}.packages.enable = true;
   };
 }
 
