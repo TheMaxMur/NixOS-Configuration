@@ -25,6 +25,11 @@ in {
       outputs.enable     = cfg.enable;
     };
 
+    home.sessionVariables = {
+      XDG_CURRENT_DESKTOP    = "sway";
+      XDG_SESSION_DESKTOP    = "sway";
+    };
+
     wayland.windowManager.sway = {
       enable = true;
       package = pkgs.swayfx;
