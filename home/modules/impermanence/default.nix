@@ -1,5 +1,4 @@
-{ inputs
-, lib
+{ lib
 , config
 , username
 , ...
@@ -10,10 +9,6 @@ with lib;
 let
   cfg = config.module.impermanence;  
 in {
-  imports = [
-    inputs.impermanence.nixosModules.home-manager.impermanence
-  ];
-
   options = {
     module.impermanence.enable = mkEnableOption "Enables home impermanence";
   };
@@ -66,7 +61,6 @@ in {
           ".local/share/zoxide"
           ".local/share/fish"
           ".local/share/nix"
-          ".local/share/fonts"
           ".local/share/containers"
           ".local/share/Trash"
           ".local/share/TelegramDesktop"
@@ -77,7 +71,6 @@ in {
           ".pki"
           ".ssh"
           ".gnupg"
-          # ".wireguard_configs"
         ];
 
         files = [

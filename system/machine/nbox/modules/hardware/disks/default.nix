@@ -1,13 +1,8 @@
-{ inputs
-, lib
+{ lib
 , ...
 }:
 
 {
-  imports = [
-    inputs.disko.nixosModules.disko
-  ];
-
   # For impermanence
   boot.initrd.postDeviceCommands = lib.mkAfter ''
     mkdir /btrfs_tmp
