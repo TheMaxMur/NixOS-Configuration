@@ -1,6 +1,7 @@
 { inputs
 , lib
 , config
+, pkgs
 , ...
 }:
 
@@ -35,6 +36,7 @@ in {
 
     # Nix package manager settings
     nix = {
+      package = pkgs.nixVersions.latest;
       registry.s.flake = inputs.self;
 
       settings = {
