@@ -2,7 +2,6 @@
 , config
 , username
 , pkgs
-, inputs
 , homeModules
 , ...
 }:
@@ -30,8 +29,6 @@ in {
         function fish_user_key_bindings
           fish_vi_key_bindings
         end
-
-        ${inputs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
       '';
 
       shellAliases = {
@@ -66,6 +63,9 @@ in {
         "dps" = "docker ps -a";
         "drmi" = "docker rmi";
         "drm" = "docker rm";
+
+        # Kubernetes
+        "k" = "kubectl";
 
         # Pass
         "passc" = "pass -c";

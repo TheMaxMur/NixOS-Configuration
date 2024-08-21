@@ -68,7 +68,7 @@
         directory = {
           read_only = " ";
           truncation_length = 7;
-          truncation_symbol = "…/";
+          truncation_symbol = "… /";
         };
       };
     };
