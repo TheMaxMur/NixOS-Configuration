@@ -164,5 +164,11 @@ I use corne split with a modified [miryoku](https://github.com/manna-harbour/mir
 
 ## ⭐ Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=TheMaxMur/NixOS-Configuration&type=Date)](https://star-history.com/#TheMaxMur/NixOS-Configuration&Date)
+<a href="https://star-history.com/#TheMaxMur/NixOS-Configuration&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=TheMaxMur/NixOS-Configuration&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=TheMaxMur/NixOS-Configuration&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=TheMaxMur/NixOS-Configuration&type=Date" />
+ </picture>
+</a>
 
