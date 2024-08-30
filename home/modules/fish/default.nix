@@ -32,7 +32,7 @@ in {
       '';
 
       shellAliases = {
-        "flake-update" = "nix flake update /home/${username}/Code/nixos-configuration/";
+        "flake-update" = "nix flake update --flake /home/${username}/Code/nixos-configuration/";
         "darwin-update" = "darwin-rebuild switch --flake /Users/${username}/Code/nixos-configuration/";
         "tree" = "eza --tree -L 3";
         "ls" = "eza";
