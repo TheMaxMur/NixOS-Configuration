@@ -1,4 +1,5 @@
 { lib
+, inputs
 , commonModules
 , systemModules
 , machineConfigurationPath
@@ -12,6 +13,13 @@
 
 {
   imports = [
+    inputs.home-manager.nixosModules.home-manager
+    inputs.stylix.nixosModules.stylix
+    inputs.impermanence.nixosModules.impermanence
+    inputs.disko.nixosModules.disko
+    inputs.lanzaboote.nixosModules.lanzaboote
+    inputs.chaotic.nixosModules.default
+
     "${commonModules}"
     "${systemModules}"
   ]

@@ -67,12 +67,6 @@ in {
       };
 
       modules = [
-        inputs.home-manager.nixosModules.home-manager
-        inputs.stylix.nixosModules.stylix
-        inputs.impermanence.nixosModules.impermanence
-        inputs.disko.nixosModules.disko
-        inputs.lanzaboote.nixosModules.lanzaboote
-
         "${systemConfiguration}"
         "${homeConfiguration}"
       ];
