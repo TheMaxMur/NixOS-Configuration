@@ -3,9 +3,23 @@
 
   inputs = {
     # Official NixOS repo
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
+    master = {
+      url = "github:NixOS/nixpkgs/master";
+    };
+
+    unstable = {
+      url = "github:NixOS/nixpkgs/nixos-unstable";
+    };
+
+    # Latest stable
+    stable = {
+      url = "github:NixOS/nixpkgs/nixos-24.05";
+    };
+
+    # Current nixpkgs branch
+    nixpkgs = {
+      follows = "unstable";
+    };
 
     # NixOS community
     home-manager = {
@@ -18,8 +32,26 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    impermanence.url = "github:/nix-community/impermanence";
-    stylix.url = "github:danth/stylix";
+    impermanence = {
+      url = "github:/nix-community/impermanence";
+    };
+
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+
+    stylix = {
+      url = "github:danth/stylix";
+    };
+
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+    };
+
+    chaotic = {
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    };
 
     # MacOS configuration
     darwin = {
@@ -38,22 +70,26 @@
     };
 
     # Unoficial users flakes
-    yandex-music.url = "github:cucumber-sp/yandex-music-linux";
-    any-nix-shell.url = "github:TheMaxMur/any-nix-shell";
-    cryptopro.url = "github:SomeoneSerge/pkgs";
+    yandex-music = {
+      url = "github:cucumber-sp/yandex-music-linux";
+    };
+
+    any-nix-shell = {
+      url = "github:TheMaxMur/any-nix-shell";
+    };
+
+    cryptopro = {
+      url = "github:SomeoneSerge/pkgs";
+    };
 
     # Security
-    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+    };
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.3.0";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Just for pretty flake.nix
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
     # Zsh plugins
@@ -138,18 +174,58 @@
       "x86_64-darwin"
     ];
 
+    imports = [
+      inputs.treefmt-nix.flakeModule
+    ];
+
     flake = {
+      # NixOS Hosts configuration
       nixosConfigurations = {
         ${hosts.pcbox.hostname} = libx.mkHost hosts.pcbox;
         ${hosts.nbox.hostname}  = libx.mkHost hosts.nbox;
         ${hosts.rasp.hostname}  = libx.mkHost hosts.rasp;
       };
 
+      # MacOS Hosts configuration
       darwinConfigurations = {
         ${hosts.macbox.hostname} = libx.mkHostDarwin hosts.macbox;
       };
 
+      # Templates
       templates = import "${self}/templates" { inherit self; };
+    };
+
+    perSystem = { pkgs, config, ... }: {
+      # For nix fmt
+      treefmt.config = {
+        projectRootFile = "flake.nix";
+
+        programs.deadnix.enable = true;
+        programs.statix.enable = true;
+      };
+
+      # For nix develop
+      devShells.default = pkgs.mkShell {
+        name = "flake-template";
+        meta.description = "DevShell for Flake";
+
+        # Env
+        EDITOR = "${pkgs.helix}/bin/hx";
+
+        shellHook = ''
+          exec fish
+        '';
+
+        packages = with pkgs; [
+          yazi
+          git
+          curl
+          helix
+          fish
+          tmux
+          lynx
+        ];
+      };
     };
   };
 }
