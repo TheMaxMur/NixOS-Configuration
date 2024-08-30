@@ -20,6 +20,7 @@
     vscode.enable     = isWorkstation;
     doom-emacs.enable = isWorkstation;
     zathura.enable    = isWorkstation;
+    stylix.enable     = isWorkstation;
 
     chrome.enable       = isLinux && isWorkstation;
     firefox.enable      = isLinux && isWorkstation;
