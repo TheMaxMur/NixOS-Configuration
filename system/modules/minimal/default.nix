@@ -16,13 +16,16 @@ in {
 
   config = mkIf cfg.enable {
     # Disable dodocumentation
-    documentation.enable = mkDefault false;
-    documentation.doc.enable = mkDefault false;
-    documentation.info.enable = mkDefault false;
-    documentation.man.enable = mkDefault false;
-    documentation.nixos.enable = mkDefault false;
+    documentation = {
+      enable = mkDefault false;
+      doc.enable = mkDefault false;
+      info.enable = mkDefault false;
+      man.enable = mkDefault false;
+      nixos.enable = mkDefault false;
+    };
 
     services.logrotate.enable = mkDefault false;
+    programs.command-not-found.enable = mkDefault false;
   };
 }
 
