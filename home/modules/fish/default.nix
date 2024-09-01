@@ -34,11 +34,6 @@ in {
       shellAliases = {
         "flake-update" = "nix flake update --flake /home/${username}/Code/nixos-configuration/";
         "darwin-update" = "darwin-rebuild switch --flake /Users/${username}/Code/nixos-configuration/";
-        "tree" = "eza --tree -L 3";
-        "ls" = "eza";
-        # "ll" = "eza -l";
-        "l" = "eza --icons -F -H --group-directories-first --git";
-        "ll" = "eza --icons -F -H --group-directories-first --git -all";
         "h" = "history";
         "c" = "clear";
         "s" = "sudo su";
