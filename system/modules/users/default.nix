@@ -21,11 +21,13 @@ in {
 
       users = {
         ${username} = {
-          isNormalUser = true;
           description = "${username}";
           home = "/home/${username}";
           shell = pkgs.fish;
           hashedPasswordFile = "${self}/secrets/hashes/${username}.hash";
+          createHome = true;
+          group = "users";
+          isSystemUser = true;
 
           extraGroups = [
             "audio"

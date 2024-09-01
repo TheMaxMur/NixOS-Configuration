@@ -6,10 +6,10 @@
 with lib;
 
 let
-  cfg = config.module.xdg;
+  cfg = config.module.user.xdg;
 in {
   options = {
-    module.xdg.enable = mkEnableOption "Enables xdg";
+    module.user.xdg.enable = mkEnableOption "Enables xdg";
   };
 
   config = mkIf cfg.enable {

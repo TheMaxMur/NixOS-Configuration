@@ -2,18 +2,6 @@ _:
 
 {
   networking = {
-    networkmanager.wifi.backend = "iwd";
-
-    wireless.iwd = {
-      enable = true;
-
-      settings = {
-        Settings = {
-          AutoConnect = true;
-        };
-      };
-    };
-
     nameservers = [
       "8.8.8.8"
       "8.8.4.4"

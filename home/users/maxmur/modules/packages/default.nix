@@ -11,9 +11,9 @@ with lib;
 
 let
   inherit (pkgs.stdenv) isLinux;
-  cfg = config.module.users.maxmur.packages;
+  cfg = config.module.user.packages;
 in {
-  options.module.users.maxmur.packages = {
+  options.module.user.packages = {
     enable = mkEnableOption "Enable maxmur packages";
   };
 
@@ -28,10 +28,28 @@ in {
       pre-commit
       deadnix
       statix
-      # eza
       ffmpeg
       inputs.any-nix-shell
 
+      # Security
+      age
+      sops
+    ] ++ lib.optionals isWorkstation [
+      # Chats
+      discord
+
+      # Text Editors
+      obsidian
+
+      # Security
+      semgrep
+      grype
+      syft
+
+      # Fonts
+      (nerdfonts.override { fonts = [ "JetBrainsMono" "UbuntuMono" "Iosevka" ]; })
+      corefonts
+    ] ++ lib.optionals (isLinux && isWorkstation) [
       # Programming
       go
       python3
@@ -43,27 +61,6 @@ in {
       ansible
       ansible-lint
       terraform
-
-      # Security
-      age
-      sops
-      grype
-      syft
-    ] ++ lib.optionals isWorkstation [
-      # Chats
-      discord
-
-      # Text Editors
-      obsidian
-
-      # Security
-      semgrep
-
-      # Fonts
-      (nerdfonts.override { fonts = [ "JetBrainsMono" "UbuntuMono" "Iosevka" ]; })
-      corefonts
-    ] ++ lib.optionals (isLinux && isWorkstation) [
-     # DevOps Utils
       vagrant
 
       # Chats

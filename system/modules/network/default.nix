@@ -1,7 +1,6 @@
 { lib
 , config
 , hostname
-, pkgs
 , ...
 }:
 
@@ -15,14 +14,25 @@ in {
   };
 
   config = mkIf cfg.enable {
-    services.netbird.enable = true;
-    environment.systemPackages = [ pkgs.netbird-ui ];
-
     systemd.services.NetworkManager-wait-online.enable = false;
 
     networking = {
-      networkmanager.enable = true;
-      networkmanager.wifi.macAddress = "random";
+      networkmanager = {
+        enable = true;
+        wifi.macAddress = "random";
+        wifi.backend = "iwd";
+      };
+
+      wireless.iwd = {
+        enable = true;
+
+        settings = {
+          Settings = {
+            AutoConnect = true;
+          };
+        };
+      };
+
       useDHCP = mkDefault true;
       hostName = hostname;
     };
