@@ -11,9 +11,9 @@ with lib;
 
 let
   inherit (pkgs.stdenv) isLinux;
-  cfg = config.module.users.maxmur.packages;
+  cfg = config.module.user.packages;
 in {
-  options.module.users.maxmur.packages = {
+  options.module.user.packages = {
     enable = mkEnableOption "Enable maxmur packages";
   };
 
