@@ -13,6 +13,8 @@
     variables.enable      = true;
     virtualisation.enable = true;
     stylix.enable         = true;
+    minimal.enable        = true;
+    nixos-ng.enable       = true;
 
     chaotic = {
       enable = true;
@@ -36,6 +38,7 @@
       zram.enable         = true;
       greetd-tui.enable   = true;
       ollama.enable       = true;
+      netbird.enable      = true;
 
       hyprland.enable = hyprlandEnable;
     };
