@@ -3,6 +3,8 @@
 , pkgs
 , inputs
 , hostname
+, swayEnable
+, hyprlandEnable
 , ...
 }:
 
@@ -11,24 +13,32 @@ with lib;
 let
   cfg = config.module.hypridle;
 
-  hyprlockCmd = "${config.programs.hyprlock.package}/bin/hyprlock";
   suspendCmd = "${pkgs.systemd}/bin/systemctl suspend";
   hyprctlCmd = "${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/hyprctl";
+  swaymsg    = "${pkgs.swayfx}/bin/swaymsg";
+
+  hyprlockCmd = "${config.programs.hyprlock.package}/bin/hyprlock";
+  swaylockCmd = "${pkgs.swaylock}/bin/swaylock";
+  lockScreen  = if hyprlandEnable
+    then hyprlockCmd
+  else if swayEnable
+    then swaylockCmd
+  else "";
 
   hyprlandOnScreen = "${hyprctlCmd} dispatch dpms on";
   hyprlandOffScreen = "${hyprctlCmd} dispatch dpms off";
-  swayOnScreen = "${pkgs.swayfx}/bin/swaymsg 'output * power on'";
-  swayOffScreen = "${pkgs.swayfx}/bin/swaymsg 'output * power off'";
-  screenOn = if config.module.hyprland.enable 
+  swayOnScreen = "${swaymsg} 'output * power on'";
+  swayOffScreen = "${swaymsg} 'output * power off'";
+  screenOn = if hyprlandEnable 
     then hyprlandOnScreen 
-    else if config.module.sway.enable 
-      then swayOnScreen 
-    else "";
-  screenOff = if config.module.hyprland.enable 
+  else if swayEnable
+    then swayOnScreen 
+  else "";
+  screenOff = if hyprlandEnable
     then hyprlandOffScreen 
-    else if config.module.sway.enable 
-      then swayOffScreen 
-    else "";
+  else if swayEnable
+    then swayOffScreen 
+  else "";
 in {
   options = {
     module.hypridle.enable = mkEnableOption "Enables Hypridle";
@@ -41,9 +51,9 @@ in {
 
       settings = {
         general = {
-          lock_cmd = "${hyprlockCmd}";
+          lock_cmd = "${lockScreen}";
           unlock_cmd = "";
-          before_sleep_cmd = "${hyprlockCmd}";
+          before_sleep_cmd = "${lockScreen}";
           after_sleep_cmd = "";
           ignore_dbus_inhibit = false;
         };
@@ -56,7 +66,7 @@ in {
           }
           {
             timeout = 600;
-            on-timeout = hyprlockCmd;
+            on-timeout = lockScreen;
             on-resume = "";
           }
         ] ++ lib.optionals (hostname == "nbox") [
