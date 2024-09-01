@@ -126,106 +126,27 @@
 
   outputs = { self, flake-parts, ... } @ inputs:
   let
+    # Description of hosts
+    hosts = import ./hosts.nix; 
+
     # Import helper funcfions
     libx = import ./lib { inherit self inputs; };
-
-    # Description of hosts
-    hosts = {
-      pcbox = {
-        hostname      = "pcbox";
-        username      = "maxmur";
-        platform      = "x86_64-linux";
-        stateVersion  = "24.11";
-        isWorkstation = true;
-        wm            = "sway";
-      };
-
-      nbox = {
-        hostname      = "nbox";
-        username      = "maxmur";
-        platform      = "x86_64-linux";
-        stateVersion  = "24.11";
-        isWorkstation = true;
-        wm            = "sway";
-      };
-
-      rasp = {
-        hostname      = "rasp";
-        username      = "maxmur";
-        platform      = "aarch64-linux";
-        stateVersion  = "24.11";
-        isWorkstation = false;
-      };
-
-      macbox = {
-        hostname      = "macbox";
-        username      = "maxmur";
-        platform      = "aarch64-darwin";
-        stateVersion  = 6;
-        isWorkstation = true;
-      };
-    };
   in flake-parts.lib.mkFlake { inherit inputs; } {
-    systems = [
-      "aarch64-linux"
-      "i686-linux"
-      "x86_64-linux"
-      "aarch64-darwin"
-      "x86_64-darwin"
-    ];
+    systems = libx.forAllSystems;
 
     imports = [
-      inputs.treefmt-nix.flakeModule
+      ./parts
     ];
 
     flake = {
       # NixOS Hosts configuration
-      nixosConfigurations = {
-        ${hosts.pcbox.hostname} = libx.mkHost hosts.pcbox;
-        ${hosts.nbox.hostname}  = libx.mkHost hosts.nbox;
-        ${hosts.rasp.hostname}  = libx.mkHost hosts.rasp;
-      };
+      nixosConfigurations = libx.genNixos hosts.nixos;
 
       # MacOS Hosts configuration
-      darwinConfigurations = {
-        ${hosts.macbox.hostname} = libx.mkHostDarwin hosts.macbox;
-      };
+      darwinConfigurations = libx.genDarwin hosts.darwin;
 
       # Templates
       templates = import "${self}/templates" { inherit self; };
-    };
-
-    perSystem = { pkgs, config, ... }: {
-      # For nix fmt
-      treefmt.config = {
-        projectRootFile = "flake.nix";
-
-        programs.deadnix.enable = true;
-        programs.statix.enable = true;
-      };
-
-      # For nix develop
-      devShells.default = pkgs.mkShell {
-        name = "flake-template";
-        meta.description = "DevShell for Flake";
-
-        # Env
-        EDITOR = "${pkgs.helix}/bin/hx";
-
-        shellHook = ''
-          exec fish
-        '';
-
-        packages = with pkgs; [
-          yazi
-          git
-          curl
-          helix
-          fish
-          tmux
-          lynx
-        ];
-      };
     };
   };
 }

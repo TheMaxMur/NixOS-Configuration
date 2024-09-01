@@ -10,25 +10,11 @@ let
   homeModules         = "${homeConfiguration}/modules";
   systemModules       = "${systemConfiguration}/modules";
   commonModules       = "${self}/modules";
-in {
-  # DEPRECATED
-  # Helper function for generating home-manager configs
-  /* mkHome = { username ? "maxmur", wm ? null, hostname ? "nixos", isWorkstation ? false, platform ? "x86_64-linux" }:
-    inputs.home-manager.lib.homeManagerConfiguration {
-      pkgs = inputs.nixpkgs.legacyPackages.${platform};
-      extraSpecialArgs = {
-        inherit inputs self wm homeModules commonModules username hostname stateVersion isWorkstation;
-      };
-
-      modules = [
-        "${homeConfiguration}"
-      ];
-    }; */
 
   # Helper function for generating host configs
   mkHost = 
     { hostname ? "nixos"
-    , username ? "maxmur"
+    , username ? "user"
     , stateVersion ? "24.05"
     , platform ? "x86_64-linux" 
     , isWorkstation ? false
@@ -75,7 +61,7 @@ in {
   # Helper function for generating darwin host configs
   mkHostDarwin = 
     { hostname ? "mac"
-    , username ? "maxmur"
+    , username ? "user"
     , stateVersion ? 6
     , platform ? "aarch64-darwin" 
     }:
@@ -98,12 +84,11 @@ in {
       ];
     };
 
-  forAllSystems = inputs.nixpkgs.lib.genAttrs [
-    "aarch64-linux"
-    "i686-linux"
-    "x86_64-linux"
-    "aarch64-darwin"
-    "x86_64-darwin"
-  ];
+  genConfig = hosts: mkFunc: builtins.mapAttrs (_: mkFunc) hosts;
+in {
+  forAllSystems = inputs.nixpkgs.lib.systems.flakeExposed;
+
+  genNixos  = hosts: genConfig hosts mkHost;
+  genDarwin = hosts: genConfig hosts mkHostDarwin;
 }
 
