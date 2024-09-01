@@ -37,6 +37,7 @@
       udev.enable              = true;
       greetd-tui.enable        = true;
       qmk.enable               = true;
+      netbird.enable           = true;
 
       hyprland.enable = hyprlandEnable;
 
