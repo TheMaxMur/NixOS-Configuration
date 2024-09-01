@@ -12,9 +12,8 @@ let
   commonModules       = "${self}/modules";
 
   # Helper function for generating host configs
-  mkHost = 
-    { hostname ? "nixos"
-    , username ? "user"
+  mkHost = hostname:
+    { username ? "user"
     , stateVersion ? "24.05"
     , platform ? "x86_64-linux" 
     , isWorkstation ? false
@@ -59,9 +58,8 @@ let
     };
 
   # Helper function for generating darwin host configs
-  mkHostDarwin = 
-    { hostname ? "mac"
-    , username ? "user"
+  mkHostDarwin = hostname:
+    { username ? "user"
     , stateVersion ? 6
     , platform ? "aarch64-darwin" 
     }:
@@ -83,12 +81,10 @@ let
         "${homeConfiguration}"
       ];
     };
-
-  genConfig = hosts: mkFunc: builtins.mapAttrs (_: mkFunc) hosts;
 in {
   forAllSystems = inputs.nixpkgs.lib.systems.flakeExposed;
 
-  genNixos  = hosts: genConfig hosts mkHost;
-  genDarwin = hosts: genConfig hosts mkHostDarwin;
+  genNixos  = builtins.mapAttrs mkHost;
+  genDarwin = builtins.mapAttrs mkHostDarwin;
 }
 

@@ -1,7 +1,6 @@
 {
   nixos = {
     pcbox = {
-      hostname      = "pcbox";
       username      = "maxmur";
       platform      = "x86_64-linux";
       stateVersion  = "24.11";
@@ -10,7 +9,6 @@
     };
 
     nbox = {
-      hostname      = "nbox";
       username      = "maxmur";
       platform      = "x86_64-linux";
       stateVersion  = "24.11";
@@ -19,7 +17,6 @@
     };
 
     rasp = {
-      hostname      = "rasp";
       username      = "maxmur";
       platform      = "aarch64-linux";
       stateVersion  = "24.11";
@@ -29,7 +26,6 @@
 
   darwin = {
     macbox = {
-      hostname      = "macbox";
       username      = "maxmur";
       platform      = "aarch64-darwin";
       stateVersion  = 6;
