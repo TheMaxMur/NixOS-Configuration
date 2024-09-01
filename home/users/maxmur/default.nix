@@ -1,5 +1,4 @@
 { isWorkstation
-, username
 , isLinux
 , hyprlandEnable ? false
 , swayEnable ? false
@@ -22,18 +21,18 @@
     zathura.enable    = isWorkstation;
     stylix.enable     = isWorkstation;
 
-    chrome.enable       = isLinux && isWorkstation;
-    firefox.enable      = isLinux && isWorkstation;
-    foot.enable         = isLinux && isWorkstation;
-    ssh.enable          = isLinux && isWorkstation;
-    impermanence.enable = isLinux && isWorkstation;
-    xdg.enable          = isLinux && isWorkstation;
+    chrome.enable  = isLinux && isWorkstation;
+    firefox.enable = isLinux && isWorkstation;
+    foot.enable    = isLinux && isWorkstation;
+    ssh.enable     = isLinux && isWorkstation;
 
     hyprland.enable = hyprlandEnable && isLinux && isWorkstation;
+    hyprlock.enable = hyprlandEnable && isLinux && isWorkstation;
+
     sway.enable     = swayEnable && isLinux && isWorkstation;
+    swaylock.enable = swayEnable && isLinux && isWorkstation;
 
     hypridle.enable = wmEnable && isLinux && isWorkstation;
-    hyprlock.enable = wmEnable && isLinux && isWorkstation;
     waybar.enable   = wmEnable && isLinux && isWorkstation;
     rofi.enable     = wmEnable && isLinux && isWorkstation;
     swaync.enable   = wmEnable && isLinux && isWorkstation;
@@ -53,7 +52,12 @@
     zoxide.enable         = true;
     yazi.enable           = true;
 
-    users.${username}.packages.enable = true;
+    user = {
+      impermanence.enable = isLinux && isWorkstation;
+      xdg.enable          = isLinux && isWorkstation;
+
+      packages.enable = true;
+    };
   };
 }
 
