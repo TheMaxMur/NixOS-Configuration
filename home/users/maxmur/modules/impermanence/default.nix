@@ -7,10 +7,10 @@
 with lib;
 
 let
-  cfg = config.module.impermanence;  
+  cfg = config.module.user.impermanence;  
 in {
   options = {
-    module.impermanence.enable = mkEnableOption "Enables home impermanence";
+    module.user.impermanence.enable = mkEnableOption "Enables home impermanence";
   };
 
   config = mkIf cfg.enable {
