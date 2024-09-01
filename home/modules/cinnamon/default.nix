@@ -9,7 +9,7 @@ let
   cfg = config.module.cinnamon;
 in {
   imports = [
-    ./dconf2nix.nix
+    #    ./dconf2nix.nix
   ];
 
   options = {
