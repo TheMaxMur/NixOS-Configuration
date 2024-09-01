@@ -17,7 +17,11 @@ in {
     systemd.services.NetworkManager-wait-online.enable = false;
 
     networking = {
-      networkmanager.wifi.backend = "iwd";
+      networkmanager = {
+        enable = true;
+        wifi.macAddress = "random";
+        wifi.backend = "iwd";
+      };
 
       wireless.iwd = {
         enable = true;
@@ -29,8 +33,6 @@ in {
         };
       };
 
-      networkmanager.enable = true;
-      networkmanager.wifi.macAddress = "random";
       useDHCP = mkDefault true;
       hostName = hostname;
     };
