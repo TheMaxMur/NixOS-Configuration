@@ -18,6 +18,7 @@
     - [Hyprland](#-hyprland)
     - [SwayFX](#-swayfx)
 - [Software](#-software)
+- [Network topology](#-network-topology)
 - [Hosts description](#%EF%B8%8F-hosts-description)
 - [Keyboard](#%EF%B8%8F-keyboard)
 - [Special thanks](#%EF%B8%8F-special-thanks)
@@ -44,6 +45,9 @@
         - [🧩 modules](home/users/maxmur/modules/) home manager user modules
 - [📃 lib](lib/default.nix) helper functions for creating configurations
 - [🧩 modules](modules/default.nix) common modules for nixos/nixDarwin/home-manager
+- [♻️ overlays](overlays/) common overlays
+- [❄️parts](parts/) flake parts modules
+- [💀pkgs](pkgs/) self-sealed packages
 - [🖥️ system](system/default.nix) entry point for creating a machine
     - [🏎️ machine](system/machine) machines configurations
         - [🚀 hostname](system/machine/pcbox/) starting the configuration of a specific machine
@@ -87,6 +91,14 @@ The images below may not represent the final system. Some parts may differ.
  - Shell - [**`Fish`**](https://fishshell.com/)
  - Promt - [**`Starship`**](https://starship.rs/)
  - Filemanager - [**`Yazi`**](https://github.com/sxyazi/yazi)
+
+## 👀 Network topology
+
+These diagrams show the network topology of my home network.
+
+![main.svg](assets/network/main.svg)
+
+![network.svg](assets/network/network.svg)
 
 ## 🖥️ Hosts description
 
