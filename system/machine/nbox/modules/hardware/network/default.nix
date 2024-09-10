@@ -1,6 +1,15 @@
 _:
 
 {
+  systemd.network = {
+    enable = true;
+
+    networks.wlp3s0 = {
+      matchConfig.Name = "wlp3s0";
+      address = [ "192.168.1.111/24" ];
+    };
+  };
+
   networking = {
     nameservers = [
       "8.8.8.8"
