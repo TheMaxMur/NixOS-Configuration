@@ -22,7 +22,20 @@ _:
     
     services = {
       unbound.enable = true;
-      adguard-home.enable = true;
+
+      adguard-home = {
+        enable = true;
+        httpAddress = "192.168.1.8";
+
+        bindHosts = [
+          "192.168.1.8"
+          "127.0.0.1"
+        ];
+
+        dnsRewrites = [
+          { domain = "gitlab.maxmur.info"; anwser = "192.168.1.8"; }
+        ];
+      };
     };
   };
 }

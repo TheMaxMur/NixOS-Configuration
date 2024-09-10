@@ -12,17 +12,18 @@ let
   commonModules       = "${self}/modules";
 
   # Helper function for generating host configs
-  mkHost = hostname:
+  mkHost = machineDir:
     { username ? "user"
     , stateVersion ? "24.05"
     , platform ? "x86_64-linux" 
+    , hostname ? machineDir
     , isWorkstation ? false
     , wm ? null
     }:
     let
-      machineConfigurationPath      = "${self}/system/machine/${hostname}";
+      machineConfigurationPath      = "${self}/system/machine/${machineDir}";
       machineConfigurationPathExist = builtins.pathExists machineConfigurationPath;
-      machineModulesPath            = "${self}/system/machine/${hostname}/modules";
+      machineModulesPath            = "${self}/system/machine/${machineDir}/modules";
       machineModulesPathExist       = builtins.pathExists machineModulesPath;
 
       swayEnable     = wm == "sway";
@@ -37,6 +38,7 @@ let
           username
           stateVersion
           platform
+          machineDir
           isWorkstation
           wm
           homeModules
@@ -84,6 +86,9 @@ let
 in {
   forAllSystems = inputs.nixpkgs.lib.systems.flakeExposed;
 
+  # This function just add mkHost or mkHostDarwin before hosts attrset
+  # ex: pcbox = { username = "test"; stateVersion = "24.11"; }; ->
+  # pcbox = mkHost { username = "test"; stateVersion = "24.11"; };
   genNixos  = builtins.mapAttrs mkHost;
   genDarwin = builtins.mapAttrs mkHostDarwin;
 }

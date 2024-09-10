@@ -53,6 +53,10 @@
       url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     };
 
+    nix-topology = {
+      url = "github:oddlama/nix-topology";
+    };
+
     # MacOS configuration
     darwin = {
       url = "github:LnL7/nix-darwin/master";

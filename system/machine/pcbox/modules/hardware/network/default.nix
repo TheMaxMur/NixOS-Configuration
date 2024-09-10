@@ -1,12 +1,17 @@
 _:
 
 {
-  networking = {
-    nameservers = [
-      "8.8.8.8"
-      "8.8.4.4"
-    ];
+  systemd.network = {
+    enable = true;
 
+    networks.eth0 = {
+      matchConfig.Name = "eth0";
+      address = [ "192.168.1.50/24" ];
+      dns = [ "192.168.1.8" ];
+    };
+  };
+
+  networking = {
     firewall = {
       enable = true;
 

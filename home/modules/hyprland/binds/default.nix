@@ -14,8 +14,8 @@ let
   brightnessControl = "${pkgs.brightnessctl}/bin/brightnessctl";
   screenshotArea    = "${pkgs.grimblast}/bin/grimblast --notify --freeze copy area";
   screenshotScreen  = "${pkgs.grimblast}/bin/grimblast --notify --freeze copy output";
-  cliphist          = "${pkgs.cliphist}/bin/cliphist list | rofi -dmenu | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy";
-  appLauncher       = "rofi -show";
+  appLauncher       = "${pkgs.fuzzel}/bin/fuzzel -T ${terminal}";
+  cliphist          = "${pkgs.cliphist}/bin/cliphist list | ${appLauncher} -d | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy";
 in {
   options = {
     module.hyprland.binds.enable = mkEnableOption "Enables binds in Hyprland";

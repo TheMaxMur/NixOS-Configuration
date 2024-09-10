@@ -45,7 +45,7 @@ in {
         sizes = {
           applications = 11;
           terminal     = 11;
-          popups       = 11;
+          popups       = 12;
           desktop      = 11;
         };
 

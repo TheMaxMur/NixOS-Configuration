@@ -1,5 +1,6 @@
 { lib
 , inputs
+, self
 , commonModules
 , systemModules
 , machineConfigurationPath
@@ -19,9 +20,11 @@
     inputs.disko.nixosModules.disko
     inputs.lanzaboote.nixosModules.lanzaboote
     inputs.chaotic.nixosModules.default
+    inputs.nix-topology.nixosModules.default
 
     "${commonModules}"
     "${systemModules}"
+    "${self}/overlays/nixpkgs"
   ]
   ++ lib.optional machineConfigurationPathExist machineConfigurationPath
   ++ lib.optional machineModulesPathExist machineModulesPath;
@@ -31,6 +34,12 @@
   # System version
   system = { inherit stateVersion; };
   # HostPlatform
-  nixpkgs.hostPlatform = platform;
+  nixpkgs = {
+    overlays = [
+      inputs.nix-topology.overlays.default
+    ];
+
+    hostPlatform = platform;
+  };
 }
 
