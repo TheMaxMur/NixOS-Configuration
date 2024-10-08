@@ -37,6 +37,7 @@
     hypridle.enable = wmEnable && isLinux && isWorkstation;
     waybar.enable   = wmEnable && isLinux && isWorkstation;
     fuzzel.enable   = wmEnable && isLinux && isWorkstation;
+    wofi.enable     = wmEnable && isLinux && isWorkstation;
     swaync.enable   = wmEnable && isLinux && isWorkstation;
 
     btop.enable           = true;
