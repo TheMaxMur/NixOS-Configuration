@@ -39,6 +39,7 @@ in {
           ".kube"
           ".m2"
           ".mozilla"
+          ".librewolf"
           ".thunderbird"
           ".obsidian"
           ".openvpn"
