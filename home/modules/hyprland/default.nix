@@ -43,6 +43,7 @@ in {
         env = [
           "XDG_CURRENT_DESKTOP,Hyprland"
           "XDG_SESSION_DESKTOP,Hyprland"
+          "GTK_CSD,0"
         ];
 
         animations = {
