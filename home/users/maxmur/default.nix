@@ -46,6 +46,7 @@
     fzf.enable            = true;
     htop.enable           = true;
     ripgrep.enable        = true;
+    lazygit.enable        = true;
     neofetch.enable       = true;
     nvim.enable           = true;
     helix.enable          = true;
