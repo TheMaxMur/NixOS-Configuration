@@ -22,7 +22,7 @@ in {
           term = "xterm-256color";
           workers = 32;
           initial-window-size-chars = "115x24";
-          pad = "0x4";
+          pad = "4x4 center";
         };
 
         mouse = {
