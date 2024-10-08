@@ -26,7 +26,7 @@ let
   terminal          = "${pkgs.foot}/bin/foot";
   screenshotArea    = "${pkgs.slurp}/bin/slurp | ${pkgs.grim}/bin/grim -g - - | ${pkgs.wl-clipboard}/bin/wl-copy ";
   screenshotScreen  = "${pkgs.grim}/bin/grim -o $(swaymsg -t get_outputs | ${pkgs.jq}/bin/jq -r '.[] | select(.focused) | .name') - | ${pkgs.wl-clipboard}/bin/wl-copy";
-  appLauncher       = "${pkgs.fuzzel}/bin/fuzzel -T ${terminal}";
+  appLauncher       = "${pkgs.wofi}/bin/wofi --show drun";
   audioControl      = "${pkgs.pulseaudio}/bin/pactl";
   brightnessControl = "${pkgs.brightnessctl}/bin/brightnessctl";
   clipHist          = "${pkgs.cliphist}/bin/cliphist list | ${appLauncher} -d | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy";
