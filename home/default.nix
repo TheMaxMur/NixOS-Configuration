@@ -30,8 +30,8 @@ let
   sshModuleExistPath         = builtins.pathExists sshModulePath;
 in {
   home-manager = {
-    useGlobalPkgs     = true;
-    useUserPackages   = true;
+    useGlobalPkgs   = true;
+    useUserPackages = true;
 
     extraSpecialArgs  = {
       inherit 
