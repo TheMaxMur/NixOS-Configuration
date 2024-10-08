@@ -34,7 +34,9 @@ in {
     libraspberrypi
   ];
 
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+  };
 
   hardware.enableRedistributableFirmware = true;
 }
