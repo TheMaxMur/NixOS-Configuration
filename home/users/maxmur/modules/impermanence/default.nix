@@ -59,6 +59,7 @@ in {
           ".config/nvim"
           ".config/syncthing"
           ".config/pulse"
+          ".local/share/chat.fluffy.fluffychat"
           ".local/share/zoxide"
           ".local/share/fish"
           ".local/share/nix"
