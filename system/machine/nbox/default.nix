@@ -14,6 +14,7 @@ _:
     stylix.enable         = true;
     minimal.enable        = true;
     nixos-ng.enable       = true;
+    plymouth.enable       = true;
 
     chaotic = {
       enable = true;
