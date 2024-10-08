@@ -15,7 +15,7 @@ let
 
   suspendCmd = "${pkgs.systemd}/bin/systemctl suspend";
   hyprctlCmd = "${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/hyprctl";
-  swaymsg    = "${pkgs.swayfx}/bin/swaymsg";
+  swaymsg    = "${pkgs.sway}/bin/swaymsg";
 
   hyprlockCmd = "${config.programs.hyprlock.package}/bin/hyprlock";
   swaylockCmd = "${pkgs.swaylock}/bin/swaylock";
