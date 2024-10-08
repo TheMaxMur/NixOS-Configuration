@@ -19,7 +19,9 @@ require("lazy").setup(
 
   {
     defaults = {
-      lazy = true,
+      lazy     = true,
+      autocmds = true,
+      keymaps  = true,
     },
 
     rocks = {

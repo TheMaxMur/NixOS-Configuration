@@ -38,6 +38,7 @@ in {
         cmake-language-server
         helm-ls
         nil
+        nixd
         lua-language-server
         stylua
         pyright

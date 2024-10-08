@@ -7,7 +7,7 @@ end
 
 local servers = {
     "gopls"
-  , "nil_ls"
+  -- , "nil_ls"
   , "lua_ls"
   , "jsonls"
   , "pyright"
@@ -16,6 +16,7 @@ local servers = {
   , "helm_ls"
   , "dockerls"
   , "docker_compose_language_service"
+  , "nixd"
   -- , "gitlab-ci-ls"
 }
 
