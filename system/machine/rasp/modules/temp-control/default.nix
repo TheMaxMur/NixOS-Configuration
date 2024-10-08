@@ -57,8 +57,8 @@
 
         def main() -> int:
             try:
-                tempOn = 60
-                controlPin = 14
+                tempOn = 75
+                controlPin = 512 + 14
                 pinState = False
                 try:
                     subprocess.run(f"echo {controlPin} > /sys/class/gpio/export", shell=True, check=True)
