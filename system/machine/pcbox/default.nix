@@ -36,7 +36,7 @@
       printing.enable   = true;
       syncthing.enable  = true;
       udev.enable       = true;
-      greetd.enable = true;
+      greetd.enable     = true;
       qmk.enable        = true;
       netbird.enable    = true;
 

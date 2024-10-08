@@ -36,7 +36,7 @@ _:
       syncthing.enable    = true;
       udev.enable         = true;
       zram.enable         = true;
-      greetd.enable   = true;
+      greetd.enable       = true;
       ollama.enable       = true;
       netbird.enable      = true;
     };

@@ -1,5 +1,4 @@
-{ self
-, lib
+{ lib
 , config
 , ...
 }:
