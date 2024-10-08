@@ -21,10 +21,12 @@
     zathura.enable   = isWorkstation;
     stylix.enable    = isWorkstation;
 
-    chrome.enable  = isLinux && isWorkstation;
-    firefox.enable = isLinux && isWorkstation;
-    foot.enable    = isLinux && isWorkstation;
-    ssh.enable     = isLinux && isWorkstation;
+    chrome.enable      = isLinux && isWorkstation;
+    firefox.enable     = isLinux && isWorkstation;
+    librewolf.enable   = isLinux && isWorkstation;
+    thunderbird.enable = isLinux && isWorkstation;
+    foot.enable        = isLinux && isWorkstation;
+    ssh.enable         = isLinux && isWorkstation;
 
     hyprland.enable = hyprlandEnable && isLinux && isWorkstation;
     hyprlock.enable = hyprlandEnable && isLinux && isWorkstation;
