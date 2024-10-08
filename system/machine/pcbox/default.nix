@@ -1,5 +1,4 @@
-{ hyprlandEnable
-, config
+{ config
 , ...
 }:
 
@@ -38,8 +37,6 @@
       greetd-tui.enable        = true;
       qmk.enable               = true;
       netbird.enable           = true;
-
-      hyprland.enable = hyprlandEnable;
 
       ollama = {
         enable            = true;
