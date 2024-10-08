@@ -6,6 +6,7 @@
   module = {
     sound.enable          = true;
     boot.enable           = true;
+    bluetooth.enable      = true;
     locales.enable        = true;
     network.enable        = true;
     timedate.enable       = true;
