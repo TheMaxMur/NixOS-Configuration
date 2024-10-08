@@ -129,6 +129,9 @@ in {
         # Fullscreen mode
         "--to-code ${super}+f" = "fullscreen";
 
+        # Float mode
+        "--to-code ${super}+Space" = "floating toggle";
+
         # Resize mode
         "--to-code ${super}+r" = "mode resize";
 
