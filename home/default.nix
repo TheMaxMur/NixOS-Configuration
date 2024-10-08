@@ -56,6 +56,7 @@ in {
       imports = [
         inputs.impermanence.nixosModules.home-manager.impermanence
         inputs.sops-nix.homeManagerModules.sops
+        inputs.nur.nixosModules.nur
 
         "${commonModules}"
         "${homeModules}"
