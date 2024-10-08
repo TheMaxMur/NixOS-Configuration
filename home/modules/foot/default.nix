@@ -25,6 +25,11 @@ in {
           pad = "4x4 center";
         };
 
+        cursor = {
+          style = "beam";
+          beam-thickness = 1;
+        };
+
         mouse = {
           hide-when-typing = "no";
         };
