@@ -14,7 +14,7 @@ let
   brightnessControl = "${pkgs.brightnessctl}/bin/brightnessctl";
   screenshotArea    = "${pkgs.grimblast}/bin/grimblast --notify --freeze copy area";
   screenshotScreen  = "${pkgs.grimblast}/bin/grimblast --notify --freeze copy output";
-  appLauncher       = "${pkgs.fuzzel}/bin/fuzzel -T ${terminal}";
+  appLauncher       = "${pkgs.wofi}/bin/wofi --show drun";
   cliphist          = "${pkgs.cliphist}/bin/cliphist list | ${appLauncher} -d | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy";
 in {
   options = {

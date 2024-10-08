@@ -1,11 +1,10 @@
-{ hyprlandEnable
-, ...
-}:
+_:
 
 {
   module = {
     sound.enable          = true;
     lanzaboote.enable     = true;
+    bluetooth.enable      = true;
     locales.enable        = true;
     network.enable        = true;
     timedate.enable       = true;
@@ -15,6 +14,7 @@
     stylix.enable         = true;
     minimal.enable        = true;
     nixos-ng.enable       = true;
+    plymouth.enable       = true;
 
     chaotic = {
       enable = true;
@@ -36,11 +36,9 @@
       syncthing.enable    = true;
       udev.enable         = true;
       zram.enable         = true;
-      greetd-tui.enable   = true;
+      greetd.enable       = true;
       ollama.enable       = true;
       netbird.enable      = true;
-
-      hyprland.enable = hyprlandEnable;
     };
 
     programs = {

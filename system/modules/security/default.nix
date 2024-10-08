@@ -18,19 +18,18 @@ in {
 
   config = mkIf cfg.enable {
     security = {
-      sudo.enable = true;
-      pam.services.swaylock = {};
+      sudo.enable = false;
 
-      doas = {
+      pam.services = {
+        gtklock  = {};
+        swaylock = {};
+        hyprlock = {};
+      };
+  
+      sudo-rs = {
         enable = true;
-        extraRules = [
-          {
-            groups = [ "wheel" ];
-            noPass = false;
-            keepEnv = true;
-            persist = true;
-          }
-        ];
+        execWheelOnly = true;
+        wheelNeedsPassword = true;
       };
     };
 
@@ -106,7 +105,7 @@ in {
         # Ignore outgoing ICMP redirects (this is ipv4 only)
         "net.ipv4.conf.all.send_redirects" = false;
         "net.ipv4.conf.default.send_redirects" = false;
-      } // optionals cfg.disableIPV6 {
+      } // optionalAttrs cfg.disableIPV6 {
         # Disable ipv6 
         "net.ipv6.conf.all.disable_ipv6" = true;
         "net.ipv6.conf.default.disable_ipv6" = true;

@@ -30,8 +30,9 @@ let
   sshModuleExistPath         = builtins.pathExists sshModulePath;
 in {
   home-manager = {
-    useGlobalPkgs     = true;
-    useUserPackages   = true;
+    useGlobalPkgs   = true;
+    useUserPackages = true;
+    backupFileExtension = "backup-" + pkgs.lib.readFile "${pkgs.runCommand "timestamp" {} "echo -n `date '+%Y%m%d%H%M%S'` > $out"}";
 
     extraSpecialArgs  = {
       inherit 
@@ -55,14 +56,13 @@ in {
       imports = [
         inputs.impermanence.nixosModules.home-manager.impermanence
         inputs.sops-nix.homeManagerModules.sops
+        inputs.nur.nixosModules.nur
 
         "${commonModules}"
         "${homeModules}"
       ] ++ lib.optional sshModuleExistPath         sshModulePath
         ++ lib.optional userConfigurationPathExist userConfigurationPath
         ++ lib.optional userModulesPathExist       userModulesPath;
-
-      programs.home-manager.enable = true;
 
       home = {
         inherit username;

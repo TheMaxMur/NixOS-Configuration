@@ -1,19 +1,5 @@
-@define-color background-alt rgba(137, 180, 250, 0.05);
-@define-color background-focus rgba(255, 255, 255, 0.1);
-@define-color border rgba(205, 214, 244, 0.2);
-@define-color red rgb( 243, 139, 168);
-@define-color orange rgb( 250, 179, 135);
-@define-color yellow rgb( 249, 226, 175 );
-@define-color green rgb( 166, 227, 161 );
-@define-color blue rgb( 137, 180, 250 );
-@define-color gray rgb( 108, 112, 134 );
-@define-color black rgb( 49, 50, 68 );
-@define-color white rgb( 205, 214, 244 );
-
 * {
   all: unset;
-  /* font:
-    10pt "JetBrains Mono Nerd Font"*/
 }
 
 /* Button */
@@ -47,12 +33,12 @@ window#waybar {
 
 /* Left Modules */
 .modules-left {
-  padding-left: 0.5rem;
+  padding-left: 0.2rem;
 }
 
 /* Right Modules */
 .modules-right {
-  padding-right: 0.5rem;
+  padding-right: 0.2rem;
 }
 
 /* Modules */
@@ -64,23 +50,16 @@ window#waybar {
 #network,
 #battery,
 #custom-notification,
+#workspaces button,
+#custom-nixlogo, 
+#image,
 #clock {
   color: @base05;
   background: @base01;
   border: 1px solid @base03;
   border-radius: 5px;
-  margin: 0.7rem 0.35rem;
-  padding: 0.4rem 0.8rem 0.4rem 0.8rem;
-}
-
-#custom-nixlogo {
-  color: @base05;
-  background: @base01;
-  border: 1px solid @base03;
-  border-radius: 5px;
-  margin: 0.7rem 0.35rem;
-  padding: 0.4rem 0.45rem 0.4rem 0.7rem ;
-  font: 10pt "JetBrains Mono Nerd Font";
+  margin: 0.35rem 0.25rem;
+  padding: 0.2rem 0.6rem 0.2rem 0.6rem;
 }
 
 .modules-left #workspaces button {
@@ -106,13 +85,7 @@ window#waybar {
 }
 
 #workspaces button {
-  background: @base01;
-  color: @base05;
-  border: 1px solid @base03;
   border-radius: 3px;
-  padding: 0.4rem 0.8rem 0.4rem 0.8rem;
-  margin-right: 0.8rem;
-  margin: 0.7rem 0.35rem;
   transition: 200ms linear;
 }
 
@@ -122,7 +95,7 @@ window#waybar {
 
 #workspaces button:hover {
   background: lighter(@base05);
-  color: @black;
+  color: @base00;
 }
 
 #workspaces button.empty {
@@ -157,17 +130,17 @@ window#waybar {
 
 #workspaces button.active {
   background: @base0D;
-  color: @black;
+  color: @base00;
 }
 
 #workspaces button.active:hover {
   background: lighter(@base0D);
-  color: @black;
+  color: @base00;
 }
 
 #workspaces button.current_output.focused {
   background: @base0D;
-  color: @black;
+  color: @base00;
 }
 
 /* Systray */
@@ -227,9 +200,5 @@ menu menuitem:only-child {
   to {
     color: @base05;
   }
-}
-
-#network {
-  padding: 0.4rem 1.0rem 0.4rem 0.8rem;
 }
 

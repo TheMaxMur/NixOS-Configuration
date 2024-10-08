@@ -16,7 +16,7 @@
 - [File structure](#-file-structure)
 - [Desktop preview](#%EF%B8%8F-desktop-preview)
     - [Hyprland](#-hyprland)
-    - [SwayFX](#-swayfx)
+    - [Sway](#-sway)
 - [Software](#-software)
 - [Network topology](#-network-topology)
 - [Hosts description](#%EF%B8%8F-hosts-description)
@@ -71,18 +71,18 @@ The images below may not represent the final system. Some parts may differ.
 
 ![desktop3.png](assets/github/desktop3.png)
 
-### 💪 SwayFX
+### 💪 Sway
 
-![swayfx0.png](assets/github/swayfx/image0.png)
+![sway0.png](assets/github/sway/image0.png)
 
-![swayfx1.png](assets/github/swayfx/image1.png)
+![sway1.png](assets/github/sway/image1.png)
 
-![swayfx2.png](assets/github/swayfx/image2.png)
+![sway2.png](assets/github/sway/image2.png)
 
 ## 📘 Software
 
  - OS - [**`NixOS`**](https://nixos.org/)
- - WM - [**`Hyprland`**](https://hyprland.org/) or [**`SwayFX`**](https://github.com/WillPower3309/swayfx)
+ - WM - [**`Hyprland`**](https://hyprland.org/) or [**`Sway`**](https://github.com/swaywm/sway)
  - Theme - [**`Nord`**](https://github.com/nordtheme/nord)
  - Wallpapers - [**`Grey wave`**](assets/grey_gradient.png)
  - Editor - [**`Neovim`**](https://neovim.io/)

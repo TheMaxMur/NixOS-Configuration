@@ -57,6 +57,10 @@
       url = "github:oddlama/nix-topology";
     };
 
+    nur = {
+      url = "github:nix-community/NUR";
+    };
+
     # MacOS configuration
     darwin = {
       url = "github:LnL7/nix-darwin/master";
@@ -140,6 +144,7 @@
 
     imports = [
       ./parts
+      # ./docs
     ];
 
     flake = {

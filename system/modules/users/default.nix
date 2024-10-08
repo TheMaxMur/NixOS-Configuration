@@ -19,15 +19,22 @@ in {
     users = {
       mutableUsers = false;
 
+      groups = { 
+        ${username} = {
+          gid = 1000;
+        };
+      };
+
       users = {
         ${username} = {
-          description = "${username}";
-          home = "/home/${username}";
-          shell = pkgs.fish;
+          uid                = 1000;
+          home               = "/home/${username}";
+          shell              = pkgs.fish;
+          group              = "${username}";
+          createHome         = true;
+          description        = "${username}";
+          isSystemUser       = true;
           hashedPasswordFile = "${self}/secrets/hashes/${username}.hash";
-          createHome = true;
-          group = "users";
-          isSystemUser = true;
 
           extraGroups = [
             "audio"

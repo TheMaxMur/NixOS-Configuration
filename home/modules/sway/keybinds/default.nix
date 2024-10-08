@@ -26,11 +26,33 @@ let
   terminal          = "${pkgs.foot}/bin/foot";
   screenshotArea    = "${pkgs.slurp}/bin/slurp | ${pkgs.grim}/bin/grim -g - - | ${pkgs.wl-clipboard}/bin/wl-copy ";
   screenshotScreen  = "${pkgs.grim}/bin/grim -o $(swaymsg -t get_outputs | ${pkgs.jq}/bin/jq -r '.[] | select(.focused) | .name') - | ${pkgs.wl-clipboard}/bin/wl-copy";
-  appLauncher       = "${pkgs.fuzzel}/bin/fuzzel -T ${terminal}";
+  appLauncher       = "${pkgs.wofi}/bin/wofi --show drun";
   audioControl      = "${pkgs.pulseaudio}/bin/pactl";
   brightnessControl = "${pkgs.brightnessctl}/bin/brightnessctl";
   clipHist          = "${pkgs.cliphist}/bin/cliphist list | ${appLauncher} -d | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy";
   notificationsApp  = "${pkgs.swaynotificationcenter}/bin/swaync-client -t -sw";
+
+  powerMenu = pkgs.writeShellScriptBin "powerMenu.sh" ''
+    #!/usr/bin/env bash
+
+    op=$(echo -e " Poweroff\n Reboot\n Suspend\n Lock\n Logout" | ${pkgs.wofi}/bin/wofi -i --dmenu | ${pkgs.gawk}/bin/awk '{print tolower($2)}')
+
+    case $op in 
+      poweroff)
+        ;&
+      reboot)
+        ;&
+      suspend)
+        systemctl $op
+        ;;
+      lock)
+        swaylock
+        ;;
+      logout)
+        swaymsg exit
+        ;;
+    esac
+  '';
 in {
   options.module.sway.keybindings = {
     enable = mkEnableOption "Enable sway keybindings";
@@ -53,6 +75,9 @@ in {
 
         # Kill active window
         "--to-code ${super}+q" = "kill";
+
+        # PowerMenu
+        "--to-code ${super}+p" = "exec ${powerMenu}/bin/powerMenu.sh";
 
         # Change focus
         # Vim like
@@ -103,6 +128,9 @@ in {
 
         # Fullscreen mode
         "--to-code ${super}+f" = "fullscreen";
+
+        # Float mode
+        "--to-code ${super}+Space" = "floating toggle";
 
         # Resize mode
         "--to-code ${super}+r" = "mode resize";

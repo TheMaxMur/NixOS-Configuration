@@ -15,16 +15,18 @@
   };
 
   module = {
-    alacritty.enable  = isWorkstation;
-    vscode.enable     = isWorkstation;
-    doom-emacs.enable = isWorkstation;
-    zathura.enable    = isWorkstation;
-    stylix.enable     = isWorkstation;
+    alacritty.enable = isWorkstation;
+    vscode.enable    = isWorkstation;
+    emacs.enable     = isWorkstation;
+    zathura.enable   = isWorkstation;
+    stylix.enable    = isWorkstation;
 
-    chrome.enable  = isLinux && isWorkstation;
-    firefox.enable = isLinux && isWorkstation;
-    foot.enable    = isLinux && isWorkstation;
-    ssh.enable     = isLinux && isWorkstation;
+    chrome.enable      = isLinux && isWorkstation;
+    firefox.enable     = isLinux && isWorkstation;
+    librewolf.enable   = isLinux && isWorkstation;
+    thunderbird.enable = isLinux && isWorkstation;
+    foot.enable        = isLinux && isWorkstation;
+    ssh.enable         = isLinux && isWorkstation;
 
     hyprland.enable = hyprlandEnable && isLinux && isWorkstation;
     hyprlock.enable = hyprlandEnable && isLinux && isWorkstation;
@@ -35,6 +37,7 @@
     hypridle.enable = wmEnable && isLinux && isWorkstation;
     waybar.enable   = wmEnable && isLinux && isWorkstation;
     fuzzel.enable   = wmEnable && isLinux && isWorkstation;
+    wofi.enable     = wmEnable && isLinux && isWorkstation;
     swaync.enable   = wmEnable && isLinux && isWorkstation;
 
     btop.enable           = true;
@@ -43,7 +46,9 @@
     fzf.enable            = true;
     htop.enable           = true;
     ripgrep.enable        = true;
+    lazygit.enable        = true;
     neofetch.enable       = true;
+    fastfetch.enable      = true;
     nvim.enable           = true;
     helix.enable          = true;
     password-store.enable = true;

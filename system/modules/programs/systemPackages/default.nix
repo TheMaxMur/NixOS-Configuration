@@ -23,7 +23,6 @@ in {
     environment.systemPackages = with pkgs; [
       # Utils
       git
-      home-manager
       nvd
       nix-output-monitor
       curl
@@ -60,8 +59,6 @@ in {
       cacert
     ] ++ optionals isWorkstation [
       # Themes
-      orchis-theme
-      vimix-cursors
       tela-circle-icon-theme
 
       # Hardware
@@ -76,7 +73,6 @@ in {
 
       # Utils
       dconf-editor
-      grim
     ];
   };
 }

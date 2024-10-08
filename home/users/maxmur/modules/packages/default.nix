@@ -41,11 +41,6 @@ in {
       # Text Editors
       obsidian
 
-      # Security
-      semgrep
-      grype
-      syft
-
       # Fonts
       (nerdfonts.override { fonts = [ "JetBrainsMono" "UbuntuMono" "Iosevka" ]; })
       corefonts
@@ -60,11 +55,10 @@ in {
       kubernetes-helm
       ansible
       ansible-lint
-      terraform
-      vagrant
 
       # Chats
       telegram-desktop
+      fluffychat
       vesktop
 
       # Office

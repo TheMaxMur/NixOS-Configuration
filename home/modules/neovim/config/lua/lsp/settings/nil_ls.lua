@@ -1,4 +1,4 @@
-return {
+--[[ return {
 	settings = {
 		["nil"] = {
 			nix = {
@@ -10,4 +10,4 @@ return {
 		},
 	},
 }
-
+]]--

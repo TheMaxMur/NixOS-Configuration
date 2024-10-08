@@ -1,6 +1,37 @@
-local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
+local builtin = require('telescope.builtin')
 
+local function escape(str)
+  local escape_chars = [[;,."|\]]
+  return vim.fn.escape(str, escape_chars)
+end
+
+-- Russian layout
+local en_shift = [[~QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>]]
+local ru_shift = [[ËЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ]]
+local en = [[`qwertyuiop[]asdfghjkl;'zxcvbnm]]
+local ru = [[ёйцукенгшщзхъфывапролджэячсмить]]
+
+vim.opt.langmap = vim.fn.join({
+  escape(ru_shift) .. ';' .. escape(en_shift),
+  escape(ru) .. ';' .. escape(en),
+}, ',')
+
+-- Base
+-- nnoremap ,<space> :nohlsearch<CR>
+map('n', ',<space>', '<Cmd>nohlsearch<CR>') --, opts)
+map({ "n", "x" }, "H", "^", { desc = "Go to start line" })
+map({ "n", "x" }, "L", "g_", { desc = "Go to end line" })
+map("n", "<C-a>", "gg<S-v>G", { desc = "Select All" })
+
+map("n", "<C-j>", ":wincmd h<CR>", { silent = true, desc = "Focus Right" })
+map("n", "<C-k>", ":wincmd l<CR>", { silent = true, desc = "Focus Left" })
+map("n", "<C-l>", ":wincmd j<CR>", { silent = true, desc = "Focus Bottom" })
+map("n", "<C-;>", ":wincmd k<CR>", { silent = true, desc = "Focus Top" })
+map("n", "<leader>gn", ":Neogit<CR>", { silent = true })
+
+-- BarBar
 -- Move to previous/next
 map('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
 map('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
@@ -42,4 +73,16 @@ map('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', opts)
 -- Other:
 -- :BarbarEnable - enables barbar (enabled by default)
 -- :BarbarDisable - very bad command, should never be used
+
+-- NeoGit
+map("n", "<leader>gn", ":Neogit<CR>", { silent = true })
+
+-- Nvim Tree
+map("n", "<C-n>", ":NvimTreeToggle<CR>", { silent = true })
+
+-- Telescope
+map('n', '<leader>ff', builtin.find_files, {})
+map('n', '<leader>fg', builtin.live_grep, {})
+map('n', '<leader>fb', builtin.buffers, {})
+map('n', '<leader>fh', builtin.help_tags, {})
 

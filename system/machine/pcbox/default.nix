@@ -1,5 +1,4 @@
-{ hyprlandEnable
-, config
+{ config
 , ...
 }:
 
@@ -7,6 +6,7 @@
   module = {
     sound.enable          = true;
     boot.enable           = true;
+    bluetooth.enable      = true;
     locales.enable        = true;
     network.enable        = true;
     timedate.enable       = true;
@@ -16,6 +16,7 @@
     stylix.enable         = true;
     minimal.enable        = true;
     nixos-ng.enable       = true;
+    plymouth.enable       = true;
 
     chaotic = {
       enable = true;
@@ -29,17 +30,15 @@
     };
 
     services = {
-      bolt.enable              = true;
-      fwupd.enable             = true;
-      polkit.enable            = true;
-      printing.enable          = true;
-      syncthing.enable         = true;
-      udev.enable              = true;
-      greetd-tui.enable        = true;
-      qmk.enable               = true;
-      netbird.enable           = true;
-
-      hyprland.enable = hyprlandEnable;
+      bolt.enable       = true;
+      fwupd.enable      = true;
+      polkit.enable     = true;
+      printing.enable   = true;
+      syncthing.enable  = true;
+      udev.enable       = true;
+      greetd.enable     = true;
+      qmk.enable        = true;
+      netbird.enable    = true;
 
       ollama = {
         enable            = true;

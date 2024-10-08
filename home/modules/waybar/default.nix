@@ -1,4 +1,5 @@
-{ pkgs
+{ self
+, pkgs
 , config
 , lib
 , homeModules
@@ -35,7 +36,7 @@ in {
           margin-right = 7;
 
           modules-left = [
-            "custom/nixlogo"
+            "image#nixlogo"
             "${wm}/workspaces"
           ];
 
@@ -56,9 +57,15 @@ in {
 
           # Logo
           "custom/nixlogo" = {
-            format = " ";
+            format = "";
             tooltip = false;
-            on-click = "rofi -show";
+            on-click = "${pkgs.wofi}/bin/wofi --show drun";
+          };
+
+          "image#nixlogo" = {
+            path = "${self}/assets/Nix_Logo.svg";
+            tooltip = false;
+            on-click = "${pkgs.wofi}/bin/wofi --show drun";
           };
 
           # Workspaces
@@ -73,6 +80,7 @@ in {
 
           "sway/workspaces" = {
             all-outputs = true;
+            disable-scroll = true;
           };
 
           # Clock & Calendar
@@ -88,7 +96,7 @@ in {
 
           # Tray
           tray = {
-            icon-size = 18;
+            icon-size = 15;
             show-passive-items = true;
             spacing = 8;
           };
@@ -142,7 +150,7 @@ in {
 
           # Battery
           battery = {
-            format = "{icon}  {capacity}%";
+            format = "{icon} {capacity}%";
             format-charging = "{icon}  {capacity}%";
             format-icons = ["" "" "" "" ""];
             format-plugged = " {power} W";
