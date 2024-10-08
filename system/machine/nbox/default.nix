@@ -1,6 +1,4 @@
-{ hyprlandEnable
-, ...
-}:
+_:
 
 {
   module = {
@@ -40,7 +38,6 @@
       ollama.enable       = true;
       netbird.enable      = true;
 
-      hyprland.enable = hyprlandEnable;
     };
 
     programs = {
