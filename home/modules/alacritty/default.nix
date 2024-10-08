@@ -20,33 +20,12 @@ in {
       settings = {
         env.TERM = "xterm-256color";
 
-        /* font = {
-          size = 10;
-
-          normal = {
-            family = "JetBrainsMono Nerd Font Mono";
-            style = "Regular";
-          };
-
-          bold = {
-            family = "JetBrainsMono Nerd Font Mono";
-            style = "Bold";
-          };
-
-          italic = {
-            family = "JetBrainsMono Nerd Font Mono";
-            style = "Italic";
-          };
-
-          bold_italic = {
-            family = "JetBrainsMono Nerd Font Mono";
-            style = "Bold Italic";
-          };
-        }; */
+        cursor.style = {
+          shape = "Beam";
+          blinking = "off";
+        };
 
         window = {
-          # opacity = 0.95;
-
           dimensions = {
             lines = 27;
             columns = 115;
@@ -57,37 +36,6 @@ in {
             y = 4;
           };
         };
-
-        /*colors = {
-          draw_bold_text_with_bright_colors = true;
-
-          primary = {
-            background = "0x282a33";
-            foreground = "0xe1e2e6";
-          };
-
-          normal = {
-            black = "0x29414f";
-            blue = "0x6699cc";
-            cyan = "0x5fb3b3";
-            green = "0x99c794";
-            magenta = "0xc594c5";
-            red = "0xec5f67";
-            white = "0x65737e";
-            yellow = "0xfac863";
-          };
-
-          bright = {
-            black = "0x405860";
-            blue = "0x6699cc";
-            cyan = "0x5fb3b3";
-            green = "0x99c794";
-            magenta = "0xc594c5";
-            red = "0xec5f67";
-            white = "0xadb5c0";
-            yellow = "0xfac863";
-          };
-        };*/
 
         keyboard.bindings = [
           {
