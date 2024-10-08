@@ -58,7 +58,7 @@ in {
 
         monospace = {
           inherit (config.stylix.fonts.serif) package;
-          name    = "Iosevka Term";
+          name    = "Iosevka Nerd Font Mono";
         };
 
         emoji = config.stylix.fonts.serif;
