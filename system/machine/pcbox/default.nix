@@ -30,15 +30,15 @@
     };
 
     services = {
-      bolt.enable              = true;
-      fwupd.enable             = true;
-      polkit.enable            = true;
-      printing.enable          = true;
-      syncthing.enable         = true;
-      udev.enable              = true;
-      greetd-tui.enable        = true;
-      qmk.enable               = true;
-      netbird.enable           = true;
+      bolt.enable       = true;
+      fwupd.enable      = true;
+      polkit.enable     = true;
+      printing.enable   = true;
+      syncthing.enable  = true;
+      udev.enable       = true;
+      greetd.enable = true;
+      qmk.enable        = true;
+      netbird.enable    = true;
 
       ollama = {
         enable            = true;
