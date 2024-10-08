@@ -48,6 +48,7 @@
     ripgrep.enable        = true;
     lazygit.enable        = true;
     neofetch.enable       = true;
+    fastfetch.enable      = true;
     nvim.enable           = true;
     helix.enable          = true;
     password-store.enable = true;
