@@ -64,8 +64,6 @@ in {
         ++ lib.optional userConfigurationPathExist userConfigurationPath
         ++ lib.optional userModulesPathExist       userModulesPath;
 
-      programs.home-manager.enable = true;
-
       home = {
         inherit username;
         inherit stateVersion;
