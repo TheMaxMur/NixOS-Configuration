@@ -26,19 +26,26 @@ in {
     };
 
     home.sessionVariables = {
-      XDG_CURRENT_DESKTOP    = "sway";
-      XDG_SESSION_DESKTOP    = "sway";
+      XDG_CURRENT_DESKTOP = "sway";
+      XDG_SESSION_DESKTOP = "sway";
+      GTK_CSD             = 0;
+    };
+
+    gtk = {
+      gtk3.extraConfig = {
+        gtk-decoration-layout = ":";
+      };
     };
 
     wayland.windowManager.sway = {
       enable = true;
-      package = pkgs.swayfx;
+      package = pkgs.sway;
       checkConfig = false;
 
       # Swayfx settings
-      extraConfig = ''
+      /* extraConfig = ''
         corner_radius 3
-      '';
+      ''; */
 
       config = {
         focus.mouseWarping = "container";
@@ -74,16 +81,17 @@ in {
         };
 
         startup = [
+          { command = "${pkgs.blueman}/bin/blueman-applet"; }
           { command = "${pkgs.wl-clipboard}/bin/wl-paste --type text --watch cliphist store"; }
           { command = "${pkgs.wl-clipboard}/bin/wl-paste --type image --watch cliphist store"; }
-          { command = "${pkgs.swayfx}/bin/swaymsg 'workspace 1; exec ${pkgs.firefox}/bin/firefox'"; }
-          { command = "${pkgs.swayfx}/bin/swaymsg 'workspace 2; exec ${pkgs.telegram-desktop}/bin/telegram-desktop'"; }
-          { command = "${pkgs.swayfx}/bin/swaymsg 'workspace 4; exec ${pkgs.obsidian}/bin/obsidian'"; }
-          { command = "${pkgs.swayfx}/bin/swaymsg 'workspace 5; exec ${pkgs.foot}/bin/foot'"; }
-          { command = "${pkgs.swayfx}/bin/swaymsg 'workspace 5; exec ${pkgs.foot}/bin/foot'"; }
-          { command = "${pkgs.swayfx}/bin/swaymsg 'workspace 5; exec ${pkgs.foot}/bin/foot'"; }
-          { command = "${pkgs.swayfx}/bin/swaymsg 'workspace 6; exec ${pkgs.firefox}/bin/firefox -P work'"; }
-          { command = "${pkgs.swayfx}/bin/swaymsg 'workspace 8; exec ${pkgs.vesktop}/bin/vesktop'"; }
+          { command = "${pkgs.sway}/bin/swaymsg 'workspace 1; exec ${pkgs.librewolf}/bin/librewolf'"; }
+          { command = "${pkgs.sway}/bin/swaymsg 'workspace 2; exec ${pkgs.telegram-desktop}/bin/telegram-desktop'"; }
+          { command = "${pkgs.sway}/bin/swaymsg 'workspace 4; exec ${pkgs.obsidian}/bin/obsidian'"; }
+          { command = "${pkgs.sway}/bin/swaymsg 'workspace 5; exec ${pkgs.foot}/bin/foot'"; }
+          { command = "${pkgs.sway}/bin/swaymsg 'workspace 5; exec ${pkgs.foot}/bin/foot'"; }
+          { command = "${pkgs.sway}/bin/swaymsg 'workspace 5; exec ${pkgs.foot}/bin/foot'"; }
+          { command = "${pkgs.sway}/bin/swaymsg 'workspace 6; exec ${pkgs.librewolf}/bin/librewolf -P work'"; }
+          { command = "${pkgs.sway}/bin/swaymsg 'workspace 8; exec ${pkgs.vesktop}/bin/vesktop'"; }
         ];
       };
     };
