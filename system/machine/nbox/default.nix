@@ -4,6 +4,7 @@ _:
   module = {
     sound.enable          = true;
     lanzaboote.enable     = true;
+    bluetooth.enable      = true;
     locales.enable        = true;
     network.enable        = true;
     timedate.enable       = true;
