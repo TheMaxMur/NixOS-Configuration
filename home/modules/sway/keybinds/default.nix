@@ -31,6 +31,28 @@ let
   brightnessControl = "${pkgs.brightnessctl}/bin/brightnessctl";
   clipHist          = "${pkgs.cliphist}/bin/cliphist list | ${appLauncher} -d | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy";
   notificationsApp  = "${pkgs.swaynotificationcenter}/bin/swaync-client -t -sw";
+
+  powerMenu = pkgs.writeShellScriptBin "powerMenu.sh" ''
+    #!/usr/bin/env bash
+
+    op=$(echo -e " Poweroff\n Reboot\n Suspend\n Lock\n Logout" | ${pkgs.wofi}/bin/wofi -i --dmenu | ${pkgs.gawk}/bin/awk '{print tolower($2)}')
+
+    case $op in 
+      poweroff)
+        ;&
+      reboot)
+        ;&
+      suspend)
+        systemctl $op
+        ;;
+      lock)
+        swaylock
+        ;;
+      logout)
+        swaymsg exit
+        ;;
+    esac
+  '';
 in {
   options.module.sway.keybindings = {
     enable = mkEnableOption "Enable sway keybindings";
@@ -53,6 +75,9 @@ in {
 
         # Kill active window
         "--to-code ${super}+q" = "kill";
+
+        # PowerMenu
+        "--to-code ${super}+p" = "exec ${powerMenu}/bin/powerMenu.sh";
 
         # Change focus
         # Vim like
