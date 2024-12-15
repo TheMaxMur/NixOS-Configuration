@@ -10,17 +10,20 @@ with lib;
 
 let
   cfg = config.module.stylix;
+  inherit (pkgs.stdenv) isLinux;
 
   theme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
   wallpaper = "${self}/assets/grey_gradient.png";
   cursorSize = if hostname == "nbox" then 24 else 14;
 in {
   options = {
-    module.stylix.enable = mkEnableOption "Enables stylix";
+    module.stylix = {
+      enable = mkEnableOption "Enables stylix";
+    };
   };
 
   config = mkIf cfg.enable {
-    stylix = {
+    stylix = ({
       enable = true;
       image = wallpaper;
       autoEnable = true;
@@ -35,12 +38,6 @@ in {
         desktop      = 1.0;
       };
 
-      cursor = {
-        name    = "Vimix-cursors";
-        package = pkgs.vimix-cursors;
-        size    = cursorSize;
-      };
-
       fonts = {
         sizes = {
           applications = 11;
@@ -50,7 +47,7 @@ in {
         };
 
         serif = {
-          package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" ]; };
+          package = pkgs.nerd-fonts.iosevka;
           name    = "Iosevka Nerd Font Mono";
         };
 
@@ -63,7 +60,13 @@ in {
 
         emoji = config.stylix.fonts.serif;
       };
-    };
+    } // optionalAttrs isLinux {
+      cursor = {
+        name    = "Vimix-cursors";
+        package = pkgs.vimix-cursors;
+        size    = cursorSize;
+      };
+    });
   };
 }
 
