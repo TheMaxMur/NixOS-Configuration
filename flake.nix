@@ -99,6 +99,10 @@
       };
     };
     
+    proxmox-nixos = {
+      url = "github:SaumonNet/proxmox-nixos";
+    };
+
     # Security
     sops-nix = {
       url = "github:Mic92/sops-nix";
