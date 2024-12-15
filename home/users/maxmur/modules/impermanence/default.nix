@@ -58,6 +58,7 @@ in {
           ".config/htop"
           ".config/nvim"
           ".config/syncthing"
+          ".config/obs-studio"
           ".config/pulse"
           ".local/share/chat.fluffy.fluffychat"
           ".local/share/zoxide"
