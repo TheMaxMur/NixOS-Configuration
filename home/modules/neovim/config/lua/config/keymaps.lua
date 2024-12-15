@@ -29,7 +29,6 @@ map("n", "<C-j>", ":wincmd h<CR>", { silent = true, desc = "Focus Right" })
 map("n", "<C-k>", ":wincmd l<CR>", { silent = true, desc = "Focus Left" })
 map("n", "<C-l>", ":wincmd j<CR>", { silent = true, desc = "Focus Bottom" })
 map("n", "<C-;>", ":wincmd k<CR>", { silent = true, desc = "Focus Top" })
-map("n", "<leader>gn", ":Neogit<CR>", { silent = true })
 
 -- BarBar
 -- Move to previous/next
@@ -74,8 +73,8 @@ map('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', opts)
 -- :BarbarEnable - enables barbar (enabled by default)
 -- :BarbarDisable - very bad command, should never be used
 
--- NeoGit
-map("n", "<leader>gn", ":Neogit<CR>", { silent = true })
+-- Git
+map("n", "<leader>gn", ":LazyGit<CR>", { silent = true })
 
 -- Nvim Tree
 map("n", "<C-n>", ":NvimTreeToggle<CR>", { silent = true })
