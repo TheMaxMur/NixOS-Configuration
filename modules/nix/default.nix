@@ -43,7 +43,6 @@ in {
 
       settings = {
         experimental-features = [ "nix-command" "flakes" ];
-        auto-optimise-store = true;
 
         substituters = [
           "https://hyprland.cachix.org"
@@ -58,11 +57,6 @@ in {
           "ghostty.cachix.org-1:QB389yTa6gTyneehvqG58y0WnHjQOqgnA+wBnpWWxns="
           "proxmox-nixos:nveXDuVVhFDRFx8Dn19f1WDEaNRJjPrF2CPD2D+m1ys="
         ];
-      };
-
-      gc = {
-        automatic = true;
-        options = "--delete-older-than 14d";
       };
     };
   };
