@@ -1,8 +1,8 @@
 { inputs
+, self
 , lib
 , username
 , config
-, homeModules
 , ...
 }:
 
@@ -16,8 +16,8 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.file.".p10k.zsh".source = "${homeModules}/zsh/p10k.zsh";
-    home.file.".helmrc".source = "${homeModules}/zsh/helmrc";
+    home.file.".p10k.zsh".source = "${self}/home/modules/zsh/p10k.zsh";
+    home.file.".helmrc".source = "${self}/home/modules/zsh/helmrc";
 
     programs.zsh = {
       enable = true;
@@ -50,7 +50,7 @@ in {
         }
       ];
 
-      oh-my-zsh = {
+      /* oh-my-zsh = {
         enable = true;
 
         plugins = [
@@ -65,7 +65,7 @@ in {
         extraConfig = ''
           zstyle ':omz:update' mode disabled
         '';
-      };
+      }; */
 
       shellAliases = {
         # System
