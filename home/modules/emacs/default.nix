@@ -20,8 +20,8 @@ in {
     };
 
     services.emacs = {
-      enable                  = true;
-      package                 = pkgs.emacs30-pgtk;
+      inherit (config.programs.emacs) package enable;
+
       client.enable           = true;
       socketActivation.enable = true;
     };
