@@ -79,7 +79,7 @@ in {
         "${super}+q" = "kill";
 
         # PowerMenu
-        "--to-code ${super}+p" = "exec ${powerMenu}/bin/powerMenu.sh";
+        "${super}+p" = "exec ${powerMenu}/bin/powerMenu.sh";
 
         # Change focus
         # Vim like
