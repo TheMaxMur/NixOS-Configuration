@@ -85,7 +85,6 @@ in {
           { command = "${pkgs.sway}/bin/swaymsg 'workspace 5; exec ${pkgs.foot}/bin/foot'"; }
           { command = "${pkgs.sway}/bin/swaymsg 'workspace 5; exec ${pkgs.foot}/bin/foot'"; }
           { command = "${pkgs.sway}/bin/swaymsg 'workspace 6; exec ${pkgs.librewolf}/bin/librewolf -P work'"; }
-          { command = "${pkgs.sway}/bin/swaymsg 'workspace 8; exec ${pkgs.vesktop}/bin/vesktop'"; }
         ];
       };
     };
