@@ -5,9 +5,7 @@
 , hostname
 , username
 , platform
-, stateVersion
-, homeModules
-, commonModules
+, hmStateVersion
 , isWorkstation ? false
 , wm ? ""
 , swayEnable ? false
@@ -20,18 +18,19 @@ let
   inherit (pkgs.stdenv) isDarwin;
   inherit (pkgs.stdenv) isLinux;
 
+  stateVersion               = hmStateVersion;
   isRoot                     = username == "root";
   homeDirectory              = if isDarwin then "/Users/${username}" else if isRoot then "/root" else "/home/${username}";
   userConfigurationPath      = "${self}/home/users/${username}";
   userConfigurationPathExist = builtins.pathExists userConfigurationPath;
   userModulesPath            = "${self}/home/users/${username}/modules";
   userModulesPathExist       = builtins.pathExists userModulesPath;
-  sshModulePath              = "${homeModules}/ssh";
+  sshModulePath              = "${self}/home/modules/ssh";
   sshModuleExistPath         = builtins.pathExists sshModulePath;
 in {
   home-manager = {
-    useGlobalPkgs   = true;
-    useUserPackages = true;
+    useGlobalPkgs       = true;
+    useUserPackages     = true;
     backupFileExtension = "backup-" + pkgs.lib.readFile "${pkgs.runCommand "timestamp" {} "echo -n `date '+%Y%m%d%H%M%S'` > $out"}";
 
     extraSpecialArgs  = {
@@ -43,8 +42,6 @@ in {
         platform 
         stateVersion 
         isLinux 
-        commonModules 
-        homeModules 
         isWorkstation
         wm 
         swayEnable 
@@ -52,14 +49,17 @@ in {
         wmEnable;
     };
 
+    sharedModules = [
+      inputs.sops-nix.homeManagerModules.sops
+    ];
+
     users.${username} = {
       imports = [
         inputs.impermanence.nixosModules.home-manager.impermanence
-        inputs.sops-nix.homeManagerModules.sops
-        inputs.nur.nixosModules.nur
+        inputs.nur.modules.homeManager.default
 
-        "${commonModules}"
-        "${homeModules}"
+        "${self}/modules"
+        "${self}/home/modules"
       ] ++ lib.optional sshModuleExistPath         sshModulePath
         ++ lib.optional userConfigurationPathExist userConfigurationPath
         ++ lib.optional userModulesPathExist       userModulesPath;
