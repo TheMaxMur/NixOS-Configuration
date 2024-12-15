@@ -1,7 +1,7 @@
-{ pkgs
+{ self
+, pkgs
 , lib
 , config
-, homeModules
 , ...
 }:
 
@@ -16,7 +16,7 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = [ pkgs.neofetch ];
-    xdg.configFile."neofetch/config.conf".source = "${homeModules}/neofetch/neofetch.conf";
+    xdg.configFile."neofetch/config.conf".source = "${self}/home/modules/neofetch/neofetch.conf";
   };
 }
 
