@@ -10,12 +10,15 @@ with lib;
 let
   cfg = config.module.hyprland.binds;
 
-  audioControl      = "${pkgs.pulseaudio}/bin/pactl";
-  brightnessControl = "${pkgs.brightnessctl}/bin/brightnessctl";
+  terminal          = config.module.defaults.terminalCmd;
+  appLauncher       = config.module.defaults.appLauncherCmd;
+  audioControl      = config.module.defaults.audioControlCmd;
+  brightnessControl = config.module.defaults.brightnessControlCmd;
+  clipHist          = config.module.defaults.clipHistCmd;
+  notificationsApp  = config.module.defaults.notificationsAppCmd;
+
   screenshotArea    = "${pkgs.grimblast}/bin/grimblast --notify --freeze copy area";
   screenshotScreen  = "${pkgs.grimblast}/bin/grimblast --notify --freeze copy output";
-  appLauncher       = "${pkgs.wofi}/bin/wofi --show drun";
-  cliphist          = "${pkgs.cliphist}/bin/cliphist list | ${appLauncher} -d | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy";
 in {
   options = {
     module.hyprland.binds.enable = mkEnableOption "Enables binds in Hyprland";
@@ -36,11 +39,9 @@ in {
 
         "[workspace 4 silent] ${pkgs.obsidian}/bin/obsidian"
 
-        "[workspace 5 silent] ${pkgs.foot}/bin/foot"
-        "[workspace 5 silent] ${pkgs.foot}/bin/foot"
-        "[workspace 5 silent] ${pkgs.foot}/bin/foot"
-
-        # "$[workspace 5 silent] {pkgs.vscode}/bin/code"
+        "[workspace 5 silent] ${terminal}"
+        "[workspace 5 silent] ${terminal}"
+        "[workspace 5 silent] ${terminal}"
 
         "[workspace 6 silent] ${pkgs.firefox}/bin/firefox -P work"
 
@@ -106,11 +107,10 @@ in {
         ", xf86audiomute,        exec, ${audioControl} set-sink-mute @DEFAULT_SINK@ toggle"
 
         # Terminal
-        # "SUPER, Return, exec, ${pkgs.alacritty}/bin/alacritty"
-        "SUPER, Return, exec, ${pkgs.foot}/bin/foot"
+        "SUPER, Return, exec, ${terminal}"
 
         # Notifications
-        "SUPER, N, exec, ${pkgs.swaynotificationcenter}/bin/swaync-client -t -sw"
+        "SUPER, N, exec, ${notificationsApp}"
 
         # Picker
         "SUPER, P, exec, ${screenshotArea}"
@@ -120,10 +120,10 @@ in {
         "SHIFT, Print, exec, ${screenshotScreen}"
 
         # Launchers
-        "CTRL, Space, exec, ${appLauncher}"
+        "SUPER, d, exec, ${appLauncher}"
 
         # Cliphist
-        "SUPER, C, exec, ${cliphist}"
+        "SUPER, C, exec, ${clipHist}"
 
         # File manager
         "SUPER, E, exec, ${pkgs.nemo}/bin/nemo"
