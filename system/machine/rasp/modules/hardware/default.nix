@@ -1,12 +1,12 @@
 { self
 , lib
-, hostname
+, machineDir
 , pkgs
 , ...
 }:
 
 let
-  machineHardwareModulesPath = "${self}/system/machine/${hostname}/modules/hardware";
+  machineHardwareModulesPath = "${self}/system/machine/${machineDir}/modules/hardware";
 in {
   imports = builtins.filter (module: lib.pathIsDirectory module) (
     map (module: "${machineHardwareModulesPath}/${module}") (builtins.attrNames (builtins.readDir machineHardwareModulesPath))
