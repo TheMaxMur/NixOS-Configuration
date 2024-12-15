@@ -42,6 +42,7 @@ in {
             "wheel"
             "docker"
             "libvirtd"
+            "yggdrasil"
           ];
         };
 

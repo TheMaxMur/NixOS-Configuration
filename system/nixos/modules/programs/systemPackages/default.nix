@@ -16,7 +16,9 @@ in {
 
   config = mkIf cfg.enable {
     fonts.packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "JetBrainsMono" "UbuntuMono" ]; })
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.ubuntu-mono
+      nerd-fonts.iosevka
       corefonts
     ];
 
