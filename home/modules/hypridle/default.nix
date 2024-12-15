@@ -75,6 +75,12 @@ in {
             on-timeout = suspendCmd;
             on-resume = "";
           }
+        ] ++ lib.optionals (hostname == "pcbox") [
+          {
+            timeout = 7200;
+            on-timeout = suspendCmd;
+            on-resume = "";
+          }
         ];
       };
     };
