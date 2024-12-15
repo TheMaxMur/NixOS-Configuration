@@ -1,7 +1,7 @@
-{ lib
+{ self
+, lib
 , config
 , pkgs
-, homeModules
 , ...
 }:
 
@@ -16,7 +16,7 @@ in {
 
   config = mkIf cfg.enable {
     xdg.configFile."nvim" = {
-      source = "${homeModules}/neovim/config";
+      source = "${self}/home/modules/neovim/config";
       recursive = true;
     };
 
