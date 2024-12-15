@@ -1,14 +1,28 @@
-{ self
-, lib
+{ inputs
 , ...
 }:
 
 let
-  overlaysPath = "${self}/overlays/nixpkgs";
+  baseSettings = {
+    config = {
+      allowBroken = true;
+    };
+  };
+
+  permittedInsecurePackages = [];
+  unfreeSettings = baseSettings // { config = baseSettings.config // { inherit permittedInsecurePackages; allowUnfree = true; }; };
 in {
-  # Read all directories from systemModules
-  imports = builtins.filter (module: lib.pathIsDirectory module) (
-    map (module: "${overlaysPath}/${module}") (builtins.attrNames (builtins.readDir overlaysPath))
-  );
+  nixpkgs.overlays = [
+    (final: _prev: {
+      stable        = import inputs.stable { inherit (final) system; } // baseSettings;
+      stable-unfree = import inputs.stable { inherit (final) system; } // unfreeSettings;
+
+      unstable        = import inputs.unstable { inherit (final) system; } // baseSettings;
+      unstable-unfree = import inputs.unstable { inherit (final) system; } // unfreeSettings;
+
+      master        = import inputs.master { inherit (final) system; } // baseSettings;
+      master-unfree = import inputs.master { inherit (final) system; } // unfreeSettings;
+    })
+  ];
 }
 
