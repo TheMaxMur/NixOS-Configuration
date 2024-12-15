@@ -6,9 +6,9 @@
 with lib;
 
 let
-  cfg = config.module;
+  cfg = config.module."<name>";
 in {
-  options.module = {
+  options.module."<name>" = {
     enable = mkEnableOption "Enable module";
   };
 
