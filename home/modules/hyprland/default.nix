@@ -1,8 +1,8 @@
 { inputs
+, self
 , config
 , lib
 , pkgs
-, homeModules
 , ...
 }:
 
@@ -12,8 +12,8 @@ let
   cfg = config.module.hyprland;
 in {
   imports = [
-    "${homeModules}/hyprland/binds"
-    "${homeModules}/hyprland/monitors"
+    "${self}/home/modules/hyprland/binds"
+    "${self}/home/modules/hyprland/monitors"
   ];
 
   options = {
