@@ -126,7 +126,7 @@ in {
         "SUPER, C, exec, ${clipHist}"
 
         # File manager
-        "SUPER, E, exec, ${pkgs.nemo}/bin/nemo"
+        "SUPER, E, exec, ${pkgs.xfce.thunar}/bin/thunar"
 
         # Fullscreen
         "SUPER, Z, fullscreen"
