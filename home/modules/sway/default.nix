@@ -1,7 +1,7 @@
-{ config
+{ self
+, config
 , lib
 , pkgs
-, homeModules
 , ...
 }:
 
@@ -11,8 +11,8 @@ let
   cfg = config.module.sway;
 in {
   imports = [
-    "${homeModules}/sway/keybinds"
-    "${homeModules}/sway/outputs"
+    "${self}/home/modules/sway/keybinds"
+    "${self}/home/modules/sway/outputs"
   ];
 
   options.module.sway = {
