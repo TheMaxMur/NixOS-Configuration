@@ -38,7 +38,7 @@ in {
 
     # Nix package manager settings
     nix = {
-      package = pkgs.nixVersions.latest;
+      package = pkgs.lix;
       registry.s.flake = inputs.self;
 
       settings = {
