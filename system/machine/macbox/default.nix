@@ -1,16 +1,29 @@
 { inputs
 , pkgs
+, username
 , ...
 }: 
 
 {
+  module = {
+    stylix.enable = true;
+  };
+
   environment.systemPackages = with pkgs; [ 
     vim
     neovim
     home-manager
-    nerdfonts
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.ubuntu-mono
+    nerd-fonts.iosevka
     alacritty
   ];
+
+  users.users.${username} = {
+    name = username;
+    home = "/Users/${username}";
+    description = username;
+  };
 
   services.nix-daemon.enable = true;
   # nix.package = pkgs.nix;
