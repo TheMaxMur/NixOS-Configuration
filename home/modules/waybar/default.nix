@@ -2,7 +2,6 @@
 , pkgs
 , config
 , lib
-, homeModules
 , wm
 , ...
 }:
@@ -48,6 +47,7 @@ in {
             "${wm}/language"
             "tray"
             "pulseaudio"
+            "privacy"
             "cpu"
             "memory"
             "network"
@@ -200,11 +200,16 @@ in {
             on-click = "${pkgs.networkmanagerapplet}/bin/nm-connection-editor";
             interval = 5;
           };
+
+          # Privacy
+          privacy = {
+            icon-size = 15;
+          };
         }
       ];
 
       style = mkAfter ''
-        ${builtins.readFile "${homeModules}/waybar/style.css"}
+        ${builtins.readFile "${self}/home/modules/waybar/style.css"}
       '';
     };
   };

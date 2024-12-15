@@ -53,6 +53,7 @@ window#waybar {
 #workspaces button,
 #custom-nixlogo, 
 #image,
+#privacy,
 #clock {
   color: @base05;
   background: @base01;
