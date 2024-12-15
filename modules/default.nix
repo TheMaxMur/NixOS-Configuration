@@ -1,11 +1,11 @@
-{ lib
-, commonModules
+{ self
+, lib
 , ...
 }:
 
 {
   imports = builtins.filter (module: lib.pathIsDirectory module) (
-    map (module: "${commonModules}/${module}") (builtins.attrNames (builtins.readDir commonModules))
+    map (module: "${self}/modules/${module}") (builtins.attrNames (builtins.readDir "${self}/modules"))
   );
 }
 
