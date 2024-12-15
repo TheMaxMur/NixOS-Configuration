@@ -167,18 +167,12 @@ in {
         "size 900 500, class:^(xdg-desktop-portal-gtk)$"
         "dimaround, class:^(xdg-desktop-portal-gtk)$"
 
-        # Firefox
-        # "workspace 1, class:^(firefox)$"
-
         # Telegram
         "workspace 2, class:^(org.telegram.desktop)$"
         "float,size 900 500,title:^(Choose Files)"
 
         # Obsidian
         "workspace 4, class:^(obsidian)$"
-
-        # VSCode
-        # "workspace 5, class:^(code-url-handler)$"
 
         # Vesktop
         "workspace 8, class:^(vesktop)$"
