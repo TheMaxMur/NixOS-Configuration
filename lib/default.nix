@@ -4,28 +4,19 @@
 }:
 
 let
-  homeConfiguration   = "${self}/home";
-  systemConfiguration = "${self}/system";
-
-  homeModules         = "${homeConfiguration}/modules";
-  systemModules       = "${systemConfiguration}/modules";
-  commonModules       = "${self}/modules";
+  defaultStateVersion = "24.11";
 
   # Helper function for generating host configs
   mkHost = machineDir:
     { username ? "user"
-    , stateVersion ? "24.05"
+    , stateVersion ? defaultStateVersion
+    , hmStateVersion ? stateVersion
     , platform ? "x86_64-linux" 
     , hostname ? machineDir
     , isWorkstation ? false
     , wm ? null
     }:
     let
-      machineConfigurationPath      = "${self}/system/machine/${machineDir}";
-      machineConfigurationPathExist = builtins.pathExists machineConfigurationPath;
-      machineModulesPath            = "${self}/system/machine/${machineDir}/modules";
-      machineModulesPathExist       = builtins.pathExists machineModulesPath;
-
       swayEnable     = wm == "sway";
       hyprlandEnable = wm == "hyprland";
       wmEnable       = hyprlandEnable || swayEnable;
@@ -37,35 +28,49 @@ let
           hostname
           username
           stateVersion
+          hmStateVersion
           platform
           machineDir
           isWorkstation
           wm
-          homeModules
-          commonModules
-          systemModules
-          machineConfigurationPath
-          machineConfigurationPathExist
-          machineModulesPath
-          machineModulesPathExist
           hyprlandEnable
           swayEnable
           wmEnable;
       };
 
       modules = [
-        "${systemConfiguration}"
-        "${homeConfiguration}"
+        inputs.home-manager.nixosModules.home-manager
+        inputs.stylix.nixosModules.stylix
+        inputs.impermanence.nixosModules.impermanence
+        inputs.disko.nixosModules.disko
+        inputs.lanzaboote.nixosModules.lanzaboote
+        inputs.chaotic.nixosModules.default
+        inputs.nix-topology.nixosModules.default
+        inputs.nur.modules.nixos.default
+        inputs.proxmox-nixos.nixosModules.proxmox-ve
+        inputs.sops-nix.nixosModules.sops
+
+        "${self}/system/nixos/modules"
+        "${self}/system"
+        "${self}/home"
       ];
     };
 
   # Helper function for generating darwin host configs
-  mkHostDarwin = hostname:
+  mkHostDarwin = machineDir:
     { username ? "user"
     , stateVersion ? 6
+    , hmStateVersion ? defaultStateVersion
+    , hostname ? machineDir
     , platform ? "aarch64-darwin" 
+    , isWorkstation ? false
+    , wm ? null
     }:
-    inputs.darwin.lib.darwinSystem {
+    let
+      swayEnable     = wm == "sway";
+      hyprlandEnable = wm == "hyprland";
+      wmEnable       = hyprlandEnable || swayEnable;
+    in inputs.darwin.lib.darwinSystem {
       specialArgs = {
         inherit 
           inputs
@@ -73,14 +78,23 @@ let
           hostname
           username
           platform
+          isWorkstation
+          machineDir
           stateVersion
-          systemModules
-          commonModules;
+          hmStateVersion
+          wm
+          hyprlandEnable
+          swayEnable
+          wmEnable;
       };
 
       modules = [
-        "${systemConfiguration}"
-        "${homeConfiguration}"
+        inputs.home-manager.darwinModules.home-manager
+        inputs.stylix.darwinModules.stylix
+
+        "${self}/system/darwin/modules"
+        "${self}/system"
+        "${self}/home"
       ];
     };
 in {
