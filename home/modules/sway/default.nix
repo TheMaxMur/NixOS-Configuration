@@ -40,12 +40,6 @@ in {
     wayland.windowManager.sway = {
       enable = true;
       package = pkgs.sway;
-      checkConfig = false;
-
-      # Swayfx settings
-      /* extraConfig = ''
-        corner_radius 3
-      ''; */
 
       config = {
         focus.mouseWarping = "container";
