@@ -23,14 +23,15 @@ let
   workspace11 = "workspace number 11";
   workspace12 = "workspace number 12";
 
-  terminal          = "${pkgs.foot}/bin/foot";
-  screenshotArea    = "${pkgs.slurp}/bin/slurp | ${pkgs.grim}/bin/grim -g - - | ${pkgs.wl-clipboard}/bin/wl-copy ";
+  terminal          = config.module.defaults.terminalCmd;
+  appLauncher       = config.module.defaults.appLauncherCmd;
+  audioControl      = config.module.defaults.audioControlCmd;
+  brightnessControl = config.module.defaults.brightnessControlCmd;
+  clipHist          = config.module.defaults.clipHistCmd;
+  notificationsApp  = config.module.defaults.notificationsAppCmd;
+
+  screenshotArea    = "${pkgs.slurp}/bin/slurp | ${pkgs.grim}/bin/grim -g - - | ${pkgs.wl-clipboard}/bin/wl-copy";
   screenshotScreen  = "${pkgs.grim}/bin/grim -o $(swaymsg -t get_outputs | ${pkgs.jq}/bin/jq -r '.[] | select(.focused) | .name') - | ${pkgs.wl-clipboard}/bin/wl-copy";
-  appLauncher       = "${pkgs.wofi}/bin/wofi --show drun";
-  audioControl      = "${pkgs.pulseaudio}/bin/pactl";
-  brightnessControl = "${pkgs.brightnessctl}/bin/brightnessctl";
-  clipHist          = "${pkgs.cliphist}/bin/cliphist list | ${appLauncher} -d | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy";
-  notificationsApp  = "${pkgs.swaynotificationcenter}/bin/swaync-client -t -sw";
 
   powerMenu = pkgs.writeShellScriptBin "powerMenu.sh" ''
     #!/usr/bin/env bash
@@ -71,7 +72,7 @@ in {
 
       keybindings = {
         # Terminal
-        "--to-code ${super}+Return" = "exec ${terminal}";
+        "${super}+Return" = "exec ${terminal}";
 
         # Kill active window
         "--to-code ${super}+q" = "kill";
@@ -106,22 +107,22 @@ in {
         "--to-code ${super}+Shift+Right" = "move right";
 
         # Application launcher
-        "--to-code Ctrl+Space" = "exec ${appLauncher}";
-        "--to-code ${super}+c" = "exec ${clipHist}";
+        "${super}+d" = "exec ${appLauncher}";
+        "${super}+c" = "exec ${clipHist}";
 
         # Multimedia keys
-        "--to-code xf86audioraisevolume"  = "exec ${audioControl} set-sink-volume @DEFAULT_SINK@ +5%";
-        "--to-code xf86audiolowervolume"  = "exec ${audioControl} set-sink-volume @DEFAULT_SINK@ -5%";
-        "--to-code xf86audiomute"         = "exec ${audioControl} set-sink-mute @DEFAULT_SINK@ toggle";
-        "--to-code XF86MonBrightnessDown" = "exec ${brightnessControl} set 5%-";
-        "--to-code XF86MonBrightnessUp"   = "exec ${brightnessControl} set +5%";
+        "xf86audioraisevolume"  = "exec ${audioControl} set-sink-volume @DEFAULT_SINK@ +5%";
+        "xf86audiolowervolume"  = "exec ${audioControl} set-sink-volume @DEFAULT_SINK@ -5%";
+        "xf86audiomute"         = "exec ${audioControl} set-sink-mute @DEFAULT_SINK@ toggle";
+        "XF86MonBrightnessDown" = "exec ${brightnessControl} set 5%-";
+        "XF86MonBrightnessUp"   = "exec ${brightnessControl} set +5%";
 
         # Notifications
-        "--to-code ${super}+n" = "exec ${notificationsApp}";
+        "${super}+n" = "exec ${notificationsApp}";
 
         # Screenshot
-        "--to-code Print"       = "exec ${screenshotArea}";
-        "--to-code Shift+Print" = "exec ${screenshotScreen}";
+        "Print"       = "exec ${screenshotArea}";
+        "Shift+Print" = "exec ${screenshotScreen}";
 
         # Reload the configuration file
         "--to-code ${super}+Shift+r" = "reload";
