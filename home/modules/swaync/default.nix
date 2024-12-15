@@ -1,6 +1,6 @@
-{ lib
+{ self
+, lib
 , config
-, homeModules
 , ...
 }:
 
@@ -77,8 +77,7 @@ in {
       };
 
       # Custom style
-      # style = builtins.readFile (./. + "/style.css");
-      style = builtins.readFile "${homeModules}/swaync/style.css";
+      style = builtins.readFile "${self}/home/modules/swaync/style.css";
     };
   };
 }
