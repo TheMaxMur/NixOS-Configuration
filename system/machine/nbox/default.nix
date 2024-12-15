@@ -15,16 +15,11 @@ _:
     minimal.enable        = true;
     nixos-ng.enable       = true;
     plymouth.enable       = true;
-
-    chaotic = {
-      enable = true;
-      schedulerType = "scx_bpfland";
-    };
+    binfmt.enable         = true;
 
     security = {
       enable            = true;
       enableBootOptions = true;
-      disableIPV6       = true;
     };
 
     services = {
@@ -39,6 +34,11 @@ _:
       greetd.enable       = true;
       ollama.enable       = true;
       netbird.enable      = true;
+
+      scx = {
+        enable = true;
+        schedulerType = "scx_bpfland";
+      };
     };
 
     programs = {
