@@ -35,16 +35,16 @@ in {
       age
       sops
     ] ++ lib.optionals isWorkstation [
-      # Chats
-      discord
-
       # Text Editors
       obsidian
 
       # Fonts
-      (nerdfonts.override { fonts = [ "JetBrainsMono" "UbuntuMono" "Iosevka" ]; })
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.ubuntu-mono
+      nerd-fonts.iosevka
       corefonts
     ] ++ lib.optionals (isLinux && isWorkstation) [
+      inputs.ghostty.packages.x86_64-linux.default
       # Programming
       go
       python3
@@ -88,7 +88,7 @@ in {
       swww
       xdg-utils
       pavucontrol
-      nemo
+      xfce.thunar
       eww
       networkmanagerapplet
       brightnessctl
