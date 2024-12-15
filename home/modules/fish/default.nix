@@ -1,8 +1,8 @@
-{ lib
+{ self
+, lib
 , config
 , username
 , pkgs
-, homeModules
 , ...
 }:
 
@@ -16,7 +16,7 @@ in {
   };
 
   imports = [
-    "${homeModules}/fish/starship"
+    "${self}/home/modules/fish/starship"
   ];
 
   config = mkIf cfg.enable {
