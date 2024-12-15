@@ -90,6 +90,15 @@
       url = "github:SomeoneSerge/pkgs";
     };
 
+    ghostty = {
+      url = "git+ssh://git@github.com/ghostty-org/ghostty";
+
+      inputs = {
+        nixpkgs-stable.follows = "nixpkgs";
+        nixpkgs-unstable.follows = "nixpkgs";
+      };
+    };
+    
     # Security
     sops-nix = {
       url = "github:Mic92/sops-nix";
