@@ -49,15 +49,33 @@ in
       default = "${pkgs.${cfg.terminal}}/bin/${cfg.terminal}";
     };
 
-    browserCmd = mkOption {
-      type = types.str;
-      default = "${pkgs.${cfg.browser}}/bin/${cfg.browser}";
-    };
+    browserCmd =
 
-    appLauncherCmd = mkOption {
-      type = types.str;
-      default = "${pkgs.${cfg.appLauncher}}/bin/${cfg.appLauncher} --show drun";
-    };
+      let
+        browserExecs = {
+          librewolf = "${pkgs.librewolf}/bin/librewolf";
+          firefox = "${pkgs.firefox}/bin/firefox";
+          chromium = "${pkgs.ungoogled-chromium}/bin/chromium";
+        };
+      in
+      mkOption {
+        type = types.str;
+        default = browserExecs.${cfg.browser};
+      };
+
+    appLauncherCmd =
+      let
+        appLauncherExecs = {
+          rofi = "${pkgs.rofi}/bin/rofi -show drun";
+          rofi-wayland = "${pkgs.rofi-wayland}/bin/rofi -show drun";
+          wofi = "${pkgs.wofi}/wofi --show drun";
+          fuzzel = "${pkgs.fuzzel}/fuzzel --show drun";
+        };
+      in
+      mkOption {
+        type = types.str;
+        default = appLauncherExecs.${cfg.appLauncher};
+      };
 
     audioControlCmd = mkOption {
       type = types.str;
@@ -114,4 +132,3 @@ in
     };
   };
 }
-
