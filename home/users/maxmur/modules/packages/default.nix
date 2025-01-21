@@ -70,7 +70,6 @@ in
         # Office
         onlyoffice-bin
 
-      gpick
         # Misc
         obs-studio
         dconf2nix
