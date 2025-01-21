@@ -1,13 +1,15 @@
-{ lib
-, config
-, ...
+{
+  lib,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.services.tlp;
-in {
+in
+{
   options = {
     module.services.tlp.enable = mkEnableOption "Enable tlp";
   };
@@ -15,13 +17,13 @@ in {
   config = mkIf cfg.enable {
     services.tlp = {
       enable = true;
-      
+
       settings = {
         PLATFORM_PROFILE_ON_AC = "performance";
         PLATFORM_PROFILE_ON_BAT = "balanced";
 
         CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-        CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_performance";
+        CPU_ENERGY_PERF_POLICY_ON_BAT = "balanced";
 
         CPU_BOOST_ON_AC = 1;
         CPU_BOOST_ON_BAT = 0;
@@ -37,4 +39,3 @@ in {
     };
   };
 }
-
