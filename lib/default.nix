@@ -1,10 +1,16 @@
-{ self
-, inputs
-, ...
+{
+  self,
+  inputs,
+  ...
 }:
 
 let
   defaultStateVersion = "24.11";
+
+  constructors = [
+    "${self}/home"
+    "${self}/system"
+  ];
 
   allDirs =
     dirName:
@@ -13,22 +19,26 @@ let
     ) (map (module: "${dirName}/${module}") (builtins.attrNames (builtins.readDir dirName)));
 
   # Helper function for generating host configs
-  mkHost = machineDir:
-    { username ? "user"
-    , stateVersion ? defaultStateVersion
-    , hmStateVersion ? stateVersion
-    , platform ? "x86_64-linux" 
-    , hostname ? machineDir
-    , isWorkstation ? false
-    , wm ? null
+  mkHost =
+    machineDir:
+    {
+      username ? "user",
+      stateVersion ? defaultStateVersion,
+      hmStateVersion ? stateVersion,
+      platform ? "x86_64-linux",
+      hostname ? machineDir,
+      isWorkstation ? false,
+      wm ? null,
+      hostType ? "nixos",
     }:
     let
-      swayEnable     = wm == "sway";
+      swayEnable = wm == "sway";
       hyprlandEnable = wm == "hyprland";
-      wmEnable       = hyprlandEnable || swayEnable;
-    in inputs.nixpkgs.lib.nixosSystem {
+      wmEnable = hyprlandEnable || swayEnable;
+    in
+    inputs.nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit 
+        inherit
           inputs
           self
           allDirs
@@ -42,44 +52,50 @@ let
           wm
           hyprlandEnable
           swayEnable
-          wmEnable;
+          wmEnable
+          hostType
+          ;
       };
 
-      modules = [
-        inputs.home-manager.nixosModules.home-manager
-        inputs.stylix.nixosModules.stylix
-        inputs.impermanence.nixosModules.impermanence
-        inputs.disko.nixosModules.disko
-        inputs.lanzaboote.nixosModules.lanzaboote
-        inputs.chaotic.nixosModules.default
-        inputs.nix-topology.nixosModules.default
-        inputs.nur.modules.nixos.default
-        inputs.proxmox-nixos.nixosModules.proxmox-ve
-        inputs.sops-nix.nixosModules.sops
-
-        "${self}/system/nixos/modules"
-        "${self}/system"
-        "${self}/home"
-      ];
+      modules =
+        with inputs;
+        [
+          home-manager.nixosModules.home-manager
+          stylix.nixosModules.stylix
+          impermanence.nixosModules.impermanence
+          disko.nixosModules.disko
+          lanzaboote.nixosModules.lanzaboote
+          chaotic.nixosModules.default
+          nix-topology.nixosModules.default
+          nur.modules.nixos.default
+          proxmox-nixos.nixosModules.proxmox-ve
+          sops-nix.nixosModules.sops
+          nur.modules.nixos.default
+        ]
+        ++ constructors;
     };
 
   # Helper function for generating darwin host configs
-  mkHostDarwin = machineDir:
-    { username ? "user"
-    , stateVersion ? 6
-    , hmStateVersion ? defaultStateVersion
-    , hostname ? machineDir
-    , platform ? "aarch64-darwin" 
-    , isWorkstation ? false
-    , wm ? null
+  mkHostDarwin =
+    machineDir:
+    {
+      username ? "user",
+      stateVersion ? 6,
+      hmStateVersion ? defaultStateVersion,
+      hostname ? machineDir,
+      platform ? "aarch64-darwin",
+      isWorkstation ? false,
+      wm ? null,
+      hostType ? "darwin",
     }:
     let
-      swayEnable     = wm == "sway";
+      swayEnable = wm == "sway";
       hyprlandEnable = wm == "hyprland";
-      wmEnable       = hyprlandEnable || swayEnable;
-    in inputs.darwin.lib.darwinSystem {
+      wmEnable = hyprlandEnable || swayEnable;
+    in
+    inputs.darwin.lib.darwinSystem {
       specialArgs = {
-        inherit 
+        inherit
           inputs
           self
           allDirs
@@ -93,25 +109,26 @@ let
           wm
           hyprlandEnable
           swayEnable
-          wmEnable;
+          wmEnable
+          hostType
+          ;
       };
 
-      modules = [
-        inputs.home-manager.darwinModules.home-manager
-        inputs.stylix.darwinModules.stylix
-
-        "${self}/system/darwin/modules"
-        "${self}/system"
-        "${self}/home"
-      ];
+      modules =
+        with inputs;
+        [
+          home-manager.darwinModules.home-manager
+          stylix.darwinModules.stylix
+        ]
+        ++ constructors;
     };
-in {
+in
+{
   forAllSystems = inputs.nixpkgs.lib.systems.flakeExposed;
 
   # This function just add mkHost or mkHostDarwin before hosts attrset
   # ex: pcbox = { username = "test"; stateVersion = "24.11"; }; ->
   # pcbox = mkHost { username = "test"; stateVersion = "24.11"; };
-  genNixos  = builtins.mapAttrs mkHost;
+  genNixos = builtins.mapAttrs mkHost;
   genDarwin = builtins.mapAttrs mkHostDarwin;
 }
-
