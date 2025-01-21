@@ -6,4 +6,3 @@ _:
     nvidia.open = true;
   };
 }
-

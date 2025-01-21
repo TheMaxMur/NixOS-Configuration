@@ -1,13 +1,16 @@
-{ pkgs
-, ...
+{
+  pkgs,
+  ...
 }:
 
 {
-  environment.systemPackages = (with pkgs; [
-    python312
-  ]) ++ (with pkgs.python312Packages; [
-    rpi-gpio
-  ]);
+  environment.systemPackages =
+    (with pkgs; [
+      python312
+    ])
+    ++ (with pkgs.python312Packages; [
+      rpi-gpio
+    ]);
 
   systemd.services.temp-control = {
     enable = true;
@@ -103,4 +106,3 @@
     };
   };
 }
-

@@ -1,15 +1,19 @@
-{ inputs
-, pkgs
-, username
-, ...
-}: 
+{
+  inputs,
+  pkgs,
+  username,
+  ...
+}:
 
 {
   module = {
-    stylix.enable = true;
+    stylix = {
+      enable = true;
+      useCursor = false;
+    };
   };
 
-  environment.systemPackages = with pkgs; [ 
+  environment.systemPackages = with pkgs; [
     vim
     neovim
     home-manager
@@ -33,4 +37,3 @@
 
   system.configurationRevision = inputs.rev or inputs.dirtyRev or null;
 }
-

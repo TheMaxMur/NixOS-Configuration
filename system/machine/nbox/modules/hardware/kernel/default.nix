@@ -1,5 +1,6 @@
-{ pkgs
-, ...
+{
+  pkgs,
+  ...
 }:
 
 {
@@ -17,13 +18,13 @@
       "i915"
     ];
 
-    kernelParams = [ 
+    kernelParams = [
       # Video driver settings
       "i915.enable_guc=1"
       "pci=assign-busses,hpbussize=0x33,realloc"
     ];
 
-    initrd.availableKernelModules = [ 
+    initrd.availableKernelModules = [
       "xhci_pci"
       "thunderbolt"
       "vmd"
@@ -33,4 +34,3 @@
     ];
   };
 }
-

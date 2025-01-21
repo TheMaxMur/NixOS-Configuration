@@ -1,6 +1,7 @@
-{ config
-, username
-, ...
+{
+  config,
+  username,
+  ...
 }:
 
 {
@@ -41,4 +42,3 @@
     };
   };
 }
-

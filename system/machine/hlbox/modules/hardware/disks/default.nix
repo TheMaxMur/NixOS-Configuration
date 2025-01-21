@@ -17,7 +17,10 @@ _:
     "/boot" = {
       device = "/dev/disk/by-uuid/2D7C-60DB";
       fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" ];
+      options = [
+        "fmask=0022"
+        "dmask=0022"
+      ];
     };
 
     "/home" = {
@@ -33,4 +36,3 @@ _:
     };
   };
 }
-

@@ -1,29 +1,30 @@
-{ config
-, ...
+{
+  config,
+  ...
 }:
 
 {
   module = {
-    boot.enable      = true;
-    timedate.enable  = true;
-    locales.enable   = true;
-    users.enable     = true;
-    network.enable   = true;
+    boot.enable = true;
+    timedate.enable = true;
+    locales.enable = true;
+    users.enable = true;
+    network.enable = true;
     variables.enable = true;
-    stylix.enable    = true;
-    nixos-ng.enable  = true;
-    plymouth.enable  = true;
-    minimal.enable   = true;
+    stylix.enable = true;
+    nixos-ng.enable = true;
+    plymouth.enable = true;
+    minimal.enable = true;
 
     programs = {
-      gnupg.enable          = true;
-      fish.enable           = true;
-      zsh.enable            = true;
+      gnupg.enable = true;
+      fish.enable = true;
+      zsh.enable = true;
       systemPackages.enable = true;
     };
 
     security = {
-      enable            = true;
+      enable = true;
       enableBootOptions = true;
     };
 
@@ -47,12 +48,17 @@
       ssh = {
         enable = true;
         listenAddresses = [
-          { addr = config.module.defaults.network.ip; port = 45631; }
+          {
+            addr = config.module.defaults.network.ip;
+            port = 45631;
+          }
         ];
       };
-    }; 
+    };
   };
 
-  nix.settings.trusted-users = [ "maxmur" "root" ];
+  nix.settings.trusted-users = [
+    "maxmur"
+    "root"
+  ];
 }
-
