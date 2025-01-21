@@ -31,6 +31,13 @@ let
         position = "0 0";
       };
     };
+
+    p8box = {
+      DSI-1 = {
+        resolution = "800x1280@60Hz";
+        position = "0 0";
+      };
+    };
   };
 
   workspaces = {
@@ -88,6 +95,33 @@ let
     ];
 
     nbox = [
+      {
+        workspace = "1";
+        output = "eDP-1";
+      }
+      {
+        workspace = "2";
+        output = "eDP-1";
+      }
+      {
+        workspace = "3";
+        output = "eDP-1";
+      }
+      {
+        workspace = "4";
+        output = "eDP-1";
+      }
+      {
+        workspace = "5";
+        output = "eDP-1";
+      }
+      {
+        workspace = "6";
+        output = "eDP-1";
+      }
+    ];
+
+    p8box = [
       {
         workspace = "1";
         output = "eDP-1";
