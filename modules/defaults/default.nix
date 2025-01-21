@@ -1,14 +1,16 @@
-{ lib
-, config
-, pkgs
-, ...
+{
+  lib,
+  config,
+  pkgs,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.defaults;
-in {
+in
+{
   options.module.defaults = {
     # Defaults
     terminal = mkOption {
@@ -78,7 +80,7 @@ in {
     ssh = {
       pubKeys = mkOption {
         type = types.listOf types.str;
-        default = [];
+        default = [ ];
       };
     };
 
