@@ -1,68 +1,80 @@
-{ self
-, pkgs
-, lib
-, inputs
-, hostname
-, username
-, platform
-, hmStateVersion
-, isWorkstation ? false
-, wm ? ""
-, swayEnable ? false
-, hyprlandEnable ? false
-, wmEnable ? false
-, ...
+{
+  self,
+  pkgs,
+  lib,
+  inputs,
+  hostname,
+  username,
+  platform,
+  hmStateVersion,
+  isWorkstation ? false,
+  wm ? "",
+  swayEnable ? false,
+  hyprlandEnable ? false,
+  wmEnable ? false,
+  ...
 }:
 
 let
   inherit (pkgs.stdenv) isDarwin;
   inherit (pkgs.stdenv) isLinux;
 
-  stateVersion               = hmStateVersion;
-  isRoot                     = username == "root";
-  homeDirectory              = if isDarwin then "/Users/${username}" else if isRoot then "/root" else "/home/${username}";
-  userConfigurationPath      = "${self}/home/users/${username}";
+  stateVersion = hmStateVersion;
+  isRoot = username == "root";
+  homeDirectory =
+    if isDarwin then
+      "/Users/${username}"
+    else if isRoot then
+      "/root"
+    else
+      "/home/${username}";
+  userConfigurationPath = "${self}/home/users/${username}";
   userConfigurationPathExist = builtins.pathExists userConfigurationPath;
-  userModulesPath            = "${self}/home/users/${username}/modules";
-  userModulesPathExist       = builtins.pathExists userModulesPath;
-  sshModulePath              = "${self}/home/modules/ssh";
-  sshModuleExistPath         = builtins.pathExists sshModulePath;
-in {
+  userModulesPath = "${self}/home/users/${username}/modules";
+  userModulesPathExist = builtins.pathExists userModulesPath;
+  sshModulePath = "${self}/home/modules/ssh";
+  sshModuleExistPath = builtins.pathExists sshModulePath;
+in
+{
   home-manager = {
-    useGlobalPkgs       = true;
-    useUserPackages     = true;
-    backupFileExtension = "backup-" + pkgs.lib.readFile "${pkgs.runCommand "timestamp" {} "echo -n `date '+%Y%m%d%H%M%S'` > $out"}";
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    backupFileExtension =
+      "backup-"
+      + pkgs.lib.readFile "${pkgs.runCommand "timestamp" { } "echo -n `date '+%Y%m%d%H%M%S'` > $out"}";
 
-    extraSpecialArgs  = {
-      inherit 
-        inputs 
-        self 
-        hostname 
-        username 
-        platform 
-        stateVersion 
-        isLinux 
+    extraSpecialArgs = {
+      inherit
+        inputs
+        self
+        hostname
+        username
+        platform
+        stateVersion
+        isLinux
         isWorkstation
-        wm 
-        swayEnable 
-        hyprlandEnable 
-        wmEnable;
+        wm
+        swayEnable
+        hyprlandEnable
+        wmEnable
+        ;
     };
 
-    sharedModules = [
-      inputs.sops-nix.homeManagerModules.sops
-    ];
-
     users.${username} = {
-      imports = [
-        inputs.impermanence.nixosModules.home-manager.impermanence
-        inputs.nur.modules.homeManager.default
+      imports =
+        [
+          inputs.impermanence.nixosModules.home-manager.impermanence
+          inputs.sops-nix.homeManagerModules.sops
+          inputs.nur.modules.homeManager.default
 
-        "${self}/modules"
-        "${self}/home/modules"
-      ] ++ lib.optional sshModuleExistPath         sshModulePath
+          "${self}/modules"
+          "${self}/home/modules"
+        ]
+        ++ lib.optional sshModuleExistPath sshModulePath
         ++ lib.optional userConfigurationPathExist userConfigurationPath
-        ++ lib.optional userModulesPathExist       userModulesPath;
+        ++ lib.optional userModulesPathExist userModulesPath;
+
+      nixpkgs.overlays = [ inputs.nur.overlay ];
 
       home = {
         inherit username;
@@ -72,4 +84,3 @@ in {
     };
   };
 }
-
