@@ -1,8 +1,9 @@
-{ config
-, self
-, lib
-, pkgs
-, ...
+{
+  config,
+  self,
+  lib,
+  pkgs,
+  ...
 }:
 
 with lib;
@@ -10,13 +11,17 @@ with lib;
 let
   cfg = config.module.hyprland.binds;
 
-  audioControl      = "${pkgs.pulseaudio}/bin/pactl";
-  brightnessControl = "${pkgs.brightnessctl}/bin/brightnessctl";
-  screenshotArea    = "${pkgs.grimblast}/bin/grimblast --notify --freeze copy area";
-  screenshotScreen  = "${pkgs.grimblast}/bin/grimblast --notify --freeze copy output";
-  appLauncher       = "${pkgs.wofi}/bin/wofi --show drun";
-  cliphist          = "${pkgs.cliphist}/bin/cliphist list | ${appLauncher} -d | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy";
-in {
+  terminal = config.module.defaults.terminalCmd;
+  appLauncher = config.module.defaults.appLauncherCmd;
+  audioControl = config.module.defaults.audioControlCmd;
+  brightnessControl = config.module.defaults.brightnessControlCmd;
+  clipHist = config.module.defaults.clipHistCmd;
+  notificationsApp = config.module.defaults.notificationsAppCmd;
+
+  screenshotArea = "${pkgs.grimblast}/bin/grimblast --notify --freeze copy area";
+  screenshotScreen = "${pkgs.grimblast}/bin/grimblast --notify --freeze copy output";
+in
+{
   options = {
     module.hyprland.binds.enable = mkEnableOption "Enables binds in Hyprland";
   };
@@ -36,11 +41,9 @@ in {
 
         "[workspace 4 silent] ${pkgs.obsidian}/bin/obsidian"
 
-        "[workspace 5 silent] ${pkgs.foot}/bin/foot"
-        "[workspace 5 silent] ${pkgs.foot}/bin/foot"
-        "[workspace 5 silent] ${pkgs.foot}/bin/foot"
-
-        # "$[workspace 5 silent] {pkgs.vscode}/bin/code"
+        "[workspace 5 silent] ${terminal}"
+        "[workspace 5 silent] ${terminal}"
+        "[workspace 5 silent] ${terminal}"
 
         "[workspace 6 silent] ${pkgs.firefox}/bin/firefox -P work"
 
@@ -106,11 +109,10 @@ in {
         ", xf86audiomute,        exec, ${audioControl} set-sink-mute @DEFAULT_SINK@ toggle"
 
         # Terminal
-        # "SUPER, Return, exec, ${pkgs.alacritty}/bin/alacritty"
-        "SUPER, Return, exec, ${pkgs.foot}/bin/foot"
+        "SUPER, Return, exec, ${terminal}"
 
         # Notifications
-        "SUPER, N, exec, ${pkgs.swaynotificationcenter}/bin/swaync-client -t -sw"
+        "SUPER, N, exec, ${notificationsApp}"
 
         # Picker
         "SUPER, P, exec, ${screenshotArea}"
@@ -120,13 +122,13 @@ in {
         "SHIFT, Print, exec, ${screenshotScreen}"
 
         # Launchers
-        "CTRL, Space, exec, ${appLauncher}"
+        "SUPER, d, exec, ${appLauncher}"
 
         # Cliphist
-        "SUPER, C, exec, ${cliphist}"
+        "SUPER, C, exec, ${clipHist}"
 
         # File manager
-        "SUPER, E, exec, ${pkgs.nemo}/bin/nemo"
+        "SUPER, E, exec, ${pkgs.xfce.thunar}/bin/thunar"
 
         # Fullscreen
         "SUPER, Z, fullscreen"
@@ -144,21 +146,32 @@ in {
       ];
 
       # Mouse bindings
-      bindm = ["SUPER, mouse:272, movewindow" "SUPER, mouse:273, resizewindow"];
+      bindm = [
+        "SUPER, mouse:272, movewindow"
+        "SUPER, mouse:273, resizewindow"
+      ];
 
       # layer rules
-      layerrule = let
-        toRegex = list: let
-          elements = lib.concatStringsSep "|" list;
-        in "^(${elements})$";
+      layerrule =
+        let
+          toRegex =
+            list:
+            let
+              elements = lib.concatStringsSep "|" list;
+            in
+            "^(${elements})$";
 
-        layers = [
-          "gtk-layer-shell"
-          "swaync-control-center"
-          "swaync-notification-window"
-          "waybar"
+          layers = [
+            "gtk-layer-shell"
+            "swaync-control-center"
+            "swaync-notification-window"
+            "waybar"
+          ];
+        in
+        [
+          "blur, ${toRegex layers}"
+          "ignorealpha 0.5, ${toRegex layers}"
         ];
-      in ["blur, ${toRegex layers}" "ignorealpha 0.5, ${toRegex layers}"];
 
       # Window rules
       windowrulev2 = [
@@ -167,18 +180,12 @@ in {
         "size 900 500, class:^(xdg-desktop-portal-gtk)$"
         "dimaround, class:^(xdg-desktop-portal-gtk)$"
 
-        # Firefox
-        # "workspace 1, class:^(firefox)$"
-
         # Telegram
         "workspace 2, class:^(org.telegram.desktop)$"
         "float,size 900 500,title:^(Choose Files)"
 
         # Obsidian
         "workspace 4, class:^(obsidian)$"
-
-        # VSCode
-        # "workspace 5, class:^(code-url-handler)$"
 
         # Vesktop
         "workspace 8, class:^(vesktop)$"
@@ -190,4 +197,3 @@ in {
     };
   };
 }
-

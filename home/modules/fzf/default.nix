@@ -1,13 +1,15 @@
-{ lib
-, config
-, ...
+{
+  lib,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.fzf;
-in {
+in
+{
   options = {
     module.fzf.enable = mkEnableOption "Enables fzf";
   };
@@ -16,8 +18,11 @@ in {
     programs.fzf = {
       enable = true;
       enableFishIntegration = true;
-      defaultOptions = ["--border" "--preview 'bat --color=always {}'" "--prompt 'Files> '"];
+      defaultOptions = [
+        "--border"
+        "--preview 'bat --color=always {}'"
+        "--prompt 'Files> '"
+      ];
     };
   };
 }
-

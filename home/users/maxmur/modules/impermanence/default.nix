@@ -1,14 +1,16 @@
-{ lib
-, config
-, username
-, ...
+{
+  lib,
+  config,
+  username,
+  ...
 }:
 
 with lib;
 
 let
-  cfg = config.module.user.impermanence;  
-in {
+  cfg = config.module.user.impermanence;
+in
+{
   options = {
     module.user.impermanence.enable = mkEnableOption "Enables home impermanence";
   };
@@ -58,6 +60,7 @@ in {
           ".config/htop"
           ".config/nvim"
           ".config/syncthing"
+          ".config/obs-studio"
           ".config/pulse"
           ".local/share/chat.fluffy.fluffychat"
           ".local/share/zoxide"
@@ -88,4 +91,3 @@ in {
     };
   };
 }
-

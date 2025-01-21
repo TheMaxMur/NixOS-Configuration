@@ -1,6 +1,7 @@
-{ inputs
-, pkgs
-, ...
+{
+  inputs,
+  pkgs,
+  ...
 }:
 
 {
@@ -31,4 +32,3 @@
     ../../../modules/git
   ];
 }
-

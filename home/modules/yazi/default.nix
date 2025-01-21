@@ -1,13 +1,15 @@
-{ lib
-, config
-, ...
+{
+  lib,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.yazi;
-in {
+in
+{
   options = {
     module.yazi.enable = mkEnableOption "Enables yazi";
   };
@@ -19,4 +21,3 @@ in {
     };
   };
 }
-

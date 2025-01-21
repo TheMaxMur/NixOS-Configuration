@@ -1,13 +1,15 @@
-{ lib
-, config
-, ...
+{
+  lib,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.eza;
-in {
+in
+{
   options = {
     module.eza.enable = mkEnableOption "Enables eza";
   };
@@ -18,4 +20,3 @@ in {
     };
   };
 }
-

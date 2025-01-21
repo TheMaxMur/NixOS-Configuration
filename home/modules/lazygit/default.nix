@@ -1,13 +1,15 @@
-{ lib
-, config
-, ...
+{
+  lib,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.lazygit;
-in {
+in
+{
   options = {
     module.lazygit.enable = mkEnableOption "Enables lazygit";
   };
@@ -18,4 +20,3 @@ in {
     };
   };
 }
-

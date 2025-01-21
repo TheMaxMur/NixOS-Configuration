@@ -14,12 +14,12 @@
         fill.symbol = " ";
 
         character = {
-          error_symbol              = "[](bold red)";
-          success_symbol            = "[](bold green)";
-          vimcmd_symbol             = "[N](bold blue)";
-          vimcmd_visual_symbol      = "[V](bold red)";
+          error_symbol = "[](bold red)";
+          success_symbol = "[](bold green)";
+          vimcmd_symbol = "[N](bold blue)";
+          vimcmd_visual_symbol = "[V](bold red)";
           vimcmd_replace_one_symbol = "[R](bold purple)";
-          vimcmd_replace_symbol     = "[R](bold purple)";
+          vimcmd_replace_symbol = "[R](bold purple)";
         };
 
         username = {
@@ -38,24 +38,36 @@
           disabled = false;
         };
 
-        nix_shell = { symbol = " "; };
+        nix_shell = {
+          symbol = " ";
+        };
 
         golang = {
           style = "blue";
           symbol = " ";
         };
 
-        lua = { symbol = " "; };
+        lua = {
+          symbol = " ";
+        };
 
         cmake = {
           style = "green";
           symbol = "△ ";
         };
 
-        git_branch = { symbol = " "; };
-        rust = { symbol = " "; };
-        nodejs = { symbol = " "; };
-        docker_context = { symbol = " "; };
+        git_branch = {
+          symbol = " ";
+        };
+        rust = {
+          symbol = " ";
+        };
+        nodejs = {
+          symbol = " ";
+        };
+        docker_context = {
+          symbol = " ";
+        };
 
         time = {
           format = "[$time]($style) ";
@@ -84,4 +96,3 @@
     };
   };
 }
-

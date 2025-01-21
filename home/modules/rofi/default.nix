@@ -1,14 +1,16 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.rofi;
-in {
+in
+{
   options = {
     module.rofi.enable = mkEnableOption "Enables rofi";
   };
@@ -33,81 +35,85 @@ in {
         drun-display-format = "{name}";
       };
 
-      theme = let
-        inherit (config.lib.formats.rasi) mkLiteral;
-      in {
-        "*" = {
-          width = 500;
-        };
+      theme =
+        let
+          inherit (config.lib.formats.rasi) mkLiteral;
+        in
+        {
+          "*" = {
+            width = 500;
+          };
 
-        "window" = {
-          height = mkLiteral "550px";
-          border = mkLiteral "3px";
-        };
+          "window" = {
+            height = mkLiteral "550px";
+            border = mkLiteral "3px";
+          };
 
-        "inputbar" = {
-          children = map mkLiteral ["prompt" "entry"];
-          border-radius = mkLiteral "5px";
-          padding = mkLiteral "2px";
-        };
+          "inputbar" = {
+            children = map mkLiteral [
+              "prompt"
+              "entry"
+            ];
+            border-radius = mkLiteral "5px";
+            padding = mkLiteral "2px";
+          };
 
-        "prompt" = {
-          padding = mkLiteral "6px";
-          border-radius = mkLiteral "3px";
-          margin = mkLiteral "20px 0px 0px 20px";
-        };
+          "prompt" = {
+            padding = mkLiteral "6px";
+            border-radius = mkLiteral "3px";
+            margin = mkLiteral "20px 0px 0px 20px";
+          };
 
-        "textbox-prompt-colon" = {
-          expand = "false";
-          str = ":";
-        };
+          "textbox-prompt-colon" = {
+            expand = "false";
+            str = ":";
+          };
 
-        "entry" = {
-          padding = mkLiteral "6px";
-          border-radius = mkLiteral "3px";
-          margin = mkLiteral "20px 10px 0px 10px";
-        };
+          "entry" = {
+            padding = mkLiteral "6px";
+            border-radius = mkLiteral "3px";
+            margin = mkLiteral "20px 10px 0px 10px";
+          };
 
-        "listview" = {
-          border = mkLiteral "0px 0px 0px";
-          padding = mkLiteral "6px 0px 0px";
-          margin = mkLiteral "10px 15px 0px 20px";
-          columns = "2";
-          lines = "8";
-        };
+          "listview" = {
+            border = mkLiteral "0px 0px 0px";
+            padding = mkLiteral "6px 0px 0px";
+            margin = mkLiteral "10px 15px 0px 20px";
+            columns = "2";
+            lines = "8";
+          };
 
-        "element" = {
-          padding = mkLiteral "5px";
-        };
+          "element" = {
+            padding = mkLiteral "5px";
+          };
 
-        "element-icon" = {
-          size = mkLiteral "25px";
-        };
+          "element-icon" = {
+            size = mkLiteral "25px";
+          };
 
-        "element selected" = {
-          border-radius = mkLiteral "3px";
-        };
+          "element selected" = {
+            border-radius = mkLiteral "3px";
+          };
 
-        "button" = {
-          padding = mkLiteral "10px";
-          vertical-align = mkLiteral "0.5";
-          horizontal-align = mkLiteral "0.5";
-        };
+          "button" = {
+            padding = mkLiteral "10px";
+            vertical-align = mkLiteral "0.5";
+            horizontal-align = mkLiteral "0.5";
+          };
 
-        "textbox" = {
-          vertical-align = mkLiteral "0.5";
-          horizontal-align = mkLiteral "0.0";
-          blink = true;
-          markup = true;
-        };
+          "textbox" = {
+            vertical-align = mkLiteral "0.5";
+            horizontal-align = mkLiteral "0.0";
+            blink = true;
+            markup = true;
+          };
 
-        "error-message" = {
-          padding = mkLiteral "10px";
-          border = mkLiteral "0px solid";
-          border-radius = mkLiteral "0px";
+          "error-message" = {
+            padding = mkLiteral "10px";
+            border = mkLiteral "0px solid";
+            border-radius = mkLiteral "0px";
+          };
         };
-      };
     };
   };
 }
-

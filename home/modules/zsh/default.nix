@@ -1,23 +1,25 @@
-{ inputs
-, lib
-, username
-, config
-, homeModules
-, ...
+{
+  inputs,
+  self,
+  lib,
+  username,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.zsh;
-in {
+in
+{
   options = {
     module.zsh.enable = mkEnableOption "Enables zsh";
   };
 
   config = mkIf cfg.enable {
-    home.file.".p10k.zsh".source = "${homeModules}/zsh/p10k.zsh";
-    home.file.".helmrc".source = "${homeModules}/zsh/helmrc";
+    home.file.".p10k.zsh".source = "${self}/home/modules/zsh/p10k.zsh";
+    home.file.".helmrc".source = "${self}/home/modules/zsh/helmrc";
 
     programs.zsh = {
       enable = true;
@@ -50,22 +52,24 @@ in {
         }
       ];
 
-      oh-my-zsh = {
-        enable = true;
+      /*
+        oh-my-zsh = {
+          enable = true;
 
-        plugins = [
-          "git"
-          "vagrant"
-          "docker"
-          "python"
-          "pass"
-          "kubectl"
-        ];
+          plugins = [
+            "git"
+            "vagrant"
+            "docker"
+            "python"
+            "pass"
+            "kubectl"
+          ];
 
-        extraConfig = ''
-          zstyle ':omz:update' mode disabled
-        '';
-      };
+          extraConfig = ''
+            zstyle ':omz:update' mode disabled
+          '';
+        };
+      */
 
       shellAliases = {
         # System
@@ -125,4 +129,3 @@ in {
     };
   };
 }
-

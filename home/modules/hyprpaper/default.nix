@@ -1,13 +1,15 @@
-{ lib
-, config
-, ...
+{
+  lib,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.hyprpaper;
-in {
+in
+{
   options = {
     module.hyprpaper.enable = mkEnableOption "Enables hyprpaper";
   };
@@ -23,4 +25,3 @@ in {
     };
   };
 }
-

@@ -1,13 +1,15 @@
-{ lib
-, config
-, ...
+{
+  lib,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.htop;
-in {
+in
+{
   options = {
     module.htop.enable = mkEnableOption "Enables htop";
   };
@@ -18,4 +20,3 @@ in {
     };
   };
 }
-

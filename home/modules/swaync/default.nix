@@ -1,16 +1,18 @@
-{ lib
-, config
-, homeModules
-, ...
+{
+  self,
+  lib,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.swaync;
-in {
-  options = { 
-    module.swaync.enable = mkEnableOption "Enables swaync";    
+in
+{
+  options = {
+    module.swaync.enable = mkEnableOption "Enables swaync";
   };
 
   config = mkIf cfg.enable {
@@ -58,7 +60,12 @@ in {
         hide-on-clear = false;
 
         # Widget settings
-        widgets = ["title" "dnd" "notifications" "mpris"];
+        widgets = [
+          "title"
+          "dnd"
+          "notifications"
+          "mpris"
+        ];
 
         # Widget config
         widget-config = {
@@ -67,7 +74,9 @@ in {
             clear-all-button = true;
             button-text = "Clear All";
           };
-          dnd = {text = "Do Not Disturb";};
+          dnd = {
+            text = "Do Not Disturb";
+          };
           mpris = {
             image-size = 96;
             image-radius = 12;
@@ -77,9 +86,7 @@ in {
       };
 
       # Custom style
-      # style = builtins.readFile (./. + "/style.css");
-      style = builtins.readFile "${homeModules}/swaync/style.css";
+      style = builtins.readFile "${self}/home/modules/swaync/style.css";
     };
   };
 }
-

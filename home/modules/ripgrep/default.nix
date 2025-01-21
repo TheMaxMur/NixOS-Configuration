@@ -1,13 +1,15 @@
-{ lib
-, config
-, ...
+{
+  lib,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.ripgrep;
-in {
+in
+{
   options = {
     module.ripgrep.enable = mkEnableOption "Enables ripgrep";
   };
@@ -18,4 +20,3 @@ in {
     };
   };
 }
-

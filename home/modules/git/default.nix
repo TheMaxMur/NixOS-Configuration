@@ -1,13 +1,15 @@
-{ lib
-, config
-, ...
+{
+  lib,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.git;
-in {
+in
+{
   options = {
     module.git.enable = mkEnableOption "Enables git";
   };
@@ -33,4 +35,3 @@ in {
     };
   };
 }
-

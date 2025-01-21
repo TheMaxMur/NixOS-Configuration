@@ -1,22 +1,24 @@
-{ lib
-, config
-, pkgs
-, homeModules
-, ...
+{
+  self,
+  lib,
+  config,
+  pkgs,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.nvim;
-in {
+in
+{
   options = {
     module.nvim.enable = mkEnableOption "Enables nvim";
   };
 
   config = mkIf cfg.enable {
     xdg.configFile."nvim" = {
-      source = "${homeModules}/neovim/config";
+      source = "${self}/home/modules/neovim/config";
       recursive = true;
     };
 
@@ -46,4 +48,3 @@ in {
     };
   };
 }
-

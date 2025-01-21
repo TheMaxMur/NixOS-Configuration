@@ -1,8 +1,7 @@
 return {
-  {
-    'mfussenegger/nvim-ansible',
-    enable = true,
-    lazy = false,
-  },
+	{
+		"mfussenegger/nvim-ansible",
+		enable = true,
+		lazy = false,
+	},
 }
-

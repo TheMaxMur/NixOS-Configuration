@@ -26,6 +26,7 @@ _:
         "/var/lib/iwd"
         "/var/lib/libvirt"
         "/var/lib/systemd"
+        "/var/lib/private/yggdrasil"
       ];
 
       files = [
@@ -38,4 +39,3 @@ _:
     };
   };
 }
-

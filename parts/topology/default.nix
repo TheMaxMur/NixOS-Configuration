@@ -1,6 +1,7 @@
-{ inputs
-, self
-, ...
+{
+  inputs,
+  self,
+  ...
 }:
 
 {
@@ -13,23 +14,25 @@
   perSystem = _: {
     # For nix topology
     topology.modules = [
-      ({ config, ... }:
-      let
-        inherit 
-          (config.lib.topology)
-          mkInternet
-          mkConnection;
-      in {
-        inherit (self) nixosConfigurations; 
+      (
+        { config, ... }:
+        let
+          inherit (config.lib.topology)
+            mkInternet
+            mkConnection
+            ;
+        in
+        {
+          inherit (self) nixosConfigurations;
 
-        nodes.internet = mkInternet {
-          connections = [
-            (mkConnection "mgts-bridge-router" "wan1")
-            (mkConnection "timeweb-router" "wan1")
-          ];
-        };
-      })
+          nodes.internet = mkInternet {
+            connections = [
+              (mkConnection "mgts-bridge-router" "wan1")
+              (mkConnection "timeweb-router" "wan1")
+            ];
+          };
+        }
+      )
     ];
   };
 }
-

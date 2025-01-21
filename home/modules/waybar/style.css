@@ -51,8 +51,9 @@ window#waybar {
 #battery,
 #custom-notification,
 #workspaces button,
-#custom-nixlogo, 
+#custom-nixlogo,
 #image,
+#privacy,
 #clock {
   color: @base05;
   background: @base01;
@@ -60,6 +61,10 @@ window#waybar {
   border-radius: 5px;
   margin: 0.35rem 0.25rem;
   padding: 0.2rem 0.6rem 0.2rem 0.6rem;
+}
+
+#privacy {
+  background: @base0B;
 }
 
 .modules-left #workspaces button {
@@ -201,4 +206,3 @@ menu menuitem:only-child {
     color: @base05;
   }
 }
-

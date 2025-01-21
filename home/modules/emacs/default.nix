@@ -1,14 +1,16 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.emacs;
-in {
+in
+{
   options = {
     module.emacs.enable = mkEnableOption "Enable emacs";
   };
@@ -20,11 +22,10 @@ in {
     };
 
     services.emacs = {
-      enable                  = true;
-      package                 = pkgs.emacs30-pgtk;
-      client.enable           = true;
+      inherit (config.programs.emacs) package enable;
+
+      client.enable = true;
       socketActivation.enable = true;
     };
   };
 }
-

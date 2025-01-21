@@ -1,11 +1,12 @@
-{ config
-, lib
-, pkgs
-, inputs
-, hostname
-, swayEnable
-, hyprlandEnable
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  hostname,
+  swayEnable,
+  hyprlandEnable,
+  ...
 }:
 
 with lib;
@@ -15,31 +16,38 @@ let
 
   suspendCmd = "${pkgs.systemd}/bin/systemctl suspend";
   hyprctlCmd = "${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/hyprctl";
-  swaymsg    = "${pkgs.sway}/bin/swaymsg";
+  swaymsg = "${pkgs.sway}/bin/swaymsg";
 
   hyprlockCmd = "${config.programs.hyprlock.package}/bin/hyprlock";
   swaylockCmd = "${pkgs.swaylock}/bin/swaylock";
-  lockScreen  = if hyprlandEnable
-    then hyprlockCmd
-  else if swayEnable
-    then swaylockCmd
-  else "";
+  lockScreen =
+    if hyprlandEnable then
+      hyprlockCmd
+    else if swayEnable then
+      swaylockCmd
+    else
+      "";
 
   hyprlandOnScreen = "${hyprctlCmd} dispatch dpms on";
   hyprlandOffScreen = "${hyprctlCmd} dispatch dpms off";
   swayOnScreen = "${swaymsg} 'output * power on'";
   swayOffScreen = "${swaymsg} 'output * power off'";
-  screenOn = if hyprlandEnable 
-    then hyprlandOnScreen 
-  else if swayEnable
-    then swayOnScreen 
-  else "";
-  screenOff = if hyprlandEnable
-    then hyprlandOffScreen 
-  else if swayEnable
-    then swayOffScreen 
-  else "";
-in {
+  screenOn =
+    if hyprlandEnable then
+      hyprlandOnScreen
+    else if swayEnable then
+      swayOnScreen
+    else
+      "";
+  screenOff =
+    if hyprlandEnable then
+      hyprlandOffScreen
+    else if swayEnable then
+      swayOffScreen
+    else
+      "";
+in
+{
   options = {
     module.hypridle.enable = mkEnableOption "Enables Hypridle";
   };
@@ -58,26 +66,34 @@ in {
           ignore_dbus_inhibit = false;
         };
 
-        listener = [
-          {
-            timeout = 300;
-            on-timeout = screenOff;
-            on-resume = screenOn;
-          }
-          {
-            timeout = 600;
-            on-timeout = lockScreen;
-            on-resume = "";
-          }
-        ] ++ lib.optionals (hostname == "nbox") [
-          {
-            timeout = 900;
-            on-timeout = suspendCmd;
-            on-resume = "";
-          }
-        ];
+        listener =
+          [
+            {
+              timeout = 300;
+              on-timeout = screenOff;
+              on-resume = screenOn;
+            }
+            {
+              timeout = 600;
+              on-timeout = lockScreen;
+              on-resume = "";
+            }
+          ]
+          ++ lib.optionals (hostname == "nbox") [
+            {
+              timeout = 900;
+              on-timeout = suspendCmd;
+              on-resume = "";
+            }
+          ]
+          ++ lib.optionals (hostname == "pcbox") [
+            {
+              timeout = 7200;
+              on-timeout = suspendCmd;
+              on-resume = "";
+            }
+          ];
       };
     };
   };
 }
-

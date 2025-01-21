@@ -1,5 +1,7 @@
-{ pkgs
-, ...
+{
+  pkgs,
+  config,
+  ...
 }:
 
 {
@@ -10,9 +12,12 @@
       "amdgpu"
       "kvm-amd"
       "kvm-intel"
+      "zenpower"
     ];
 
-    extraModulePackages = [ ];
+    extraModulePackages = [
+      config.boot.kernelPackages.zenpower
+    ];
 
     kernelParams = [
       "drm_kms_helper.poll=0"
@@ -34,4 +39,3 @@
     };
   };
 }
-

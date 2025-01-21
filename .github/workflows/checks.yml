@@ -1,29 +1,21 @@
 name: "Check configuration"
-
 on:
   push:
   pull_request:
-
 jobs:
   check:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
       - name: Install Nix
         uses: cachix/install-nix-action@v24
         with:
           extra_nix_config: |
-            experimental-features = nix-command flakes  
-
+            experimental-features = nix-command flakes
       - name: Run statix check
         run: nix run 'nixpkgs/nixos-unstable#statix' -- check .
-
       - name: Run deadnix check
         run: nix run 'nixpkgs/nixos-unstable#deadnix' -- .
-
       - name: Run flake check
         uses: DeterminateSystems/flake-checker-action@v5
-

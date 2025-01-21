@@ -1,14 +1,16 @@
-{ lib
-, config
-, username
-, ...
+{
+  lib,
+  config,
+  username,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.flameshot;
-in {
+in
+{
   options = {
     module.flameshot.enable = mkEnableOption "Enables Flameshot";
   };
@@ -40,4 +42,3 @@ in {
     };
   };
 }
-

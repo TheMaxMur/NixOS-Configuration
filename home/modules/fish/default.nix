@@ -1,22 +1,24 @@
-{ lib
-, config
-, username
-, pkgs
-, homeModules
-, ...
+{
+  self,
+  lib,
+  config,
+  username,
+  pkgs,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.fish;
-in {
+in
+{
   options = {
     module.fish.enable = mkEnableOption "Enables Fish";
   };
 
   imports = [
-    "${homeModules}/fish/starship"
+    "${self}/home/modules/fish/starship"
   ];
 
   config = mkIf cfg.enable {
@@ -89,4 +91,3 @@ in {
     };
   };
 }
-

@@ -63,7 +63,10 @@ _:
                 format = "vfat";
                 mountpoint = "/boot";
 
-                mountOptions = [ "defaults" "umask=0077" ];
+                mountOptions = [
+                  "defaults"
+                  "umask=0077"
+                ];
               };
             };
 
@@ -76,7 +79,7 @@ _:
 
                 content = {
                   type = "lvm_pv";
-                  vg   = "pool";
+                  vg = "pool";
                 };
               };
             };
@@ -103,13 +106,21 @@ _:
                 };
 
                 "/persist" = {
-                  mountpoint   = "/persist";
-                  mountOptions = [ "compress=zstd" "subvol=persist" "noatime" ];
+                  mountpoint = "/persist";
+                  mountOptions = [
+                    "compress=zstd"
+                    "subvol=persist"
+                    "noatime"
+                  ];
                 };
 
                 "/nix" = {
-                  mountpoint   = "/nix";
-                  mountOptions = [ "compress=zstd" "subvol=nix" "noatime" ];
+                  mountpoint = "/nix";
+                  mountOptions = [
+                    "compress=zstd"
+                    "subvol=nix"
+                    "noatime"
+                  ];
                 };
               };
             };
@@ -119,4 +130,3 @@ _:
     };
   };
 }
-

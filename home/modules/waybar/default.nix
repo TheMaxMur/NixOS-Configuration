@@ -1,17 +1,18 @@
-{ self
-, pkgs
-, config
-, lib
-, homeModules
-, wm
-, ...
+{
+  self,
+  pkgs,
+  config,
+  lib,
+  wm,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.waybar;
-in {
+in
+{
   options = {
     module.waybar.enable = mkEnableOption "Enables waybar";
   };
@@ -48,6 +49,7 @@ in {
             "${wm}/language"
             "tray"
             "pulseaudio"
+            "privacy"
             "cpu"
             "memory"
             "network"
@@ -59,13 +61,13 @@ in {
           "custom/nixlogo" = {
             format = "";
             tooltip = false;
-            on-click = "${pkgs.wofi}/bin/wofi --show drun";
+            on-click = config.module.defaults.appLauncherCmd;
           };
 
           "image#nixlogo" = {
             path = "${self}/assets/Nix_Logo.svg";
             tooltip = false;
-            on-click = "${pkgs.wofi}/bin/wofi --show drun";
+            on-click = config.module.defaults.appLauncherCmd;
           };
 
           # Workspaces
@@ -75,7 +77,9 @@ in {
             disable-scroll = true;
             all-outputs = true;
             show-special = true;
-            persistent-workspaces = {"*" = 6;};
+            persistent-workspaces = {
+              "*" = 6;
+            };
           };
 
           "sway/workspaces" = {
@@ -140,7 +144,13 @@ in {
             format-source = "󰍬";
             format-source-muted = "󰍭";
             format-muted = "󰖁 / {format_source}";
-            format-icons = {default = ["󰕿" "󰖀" "󰕾"];};
+            format-icons = {
+              default = [
+                "󰕿"
+                "󰖀"
+                "󰕾"
+              ];
+            };
             on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
             on-click-right = "${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
             on-scroll-up = "${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +1%";
@@ -152,7 +162,13 @@ in {
           battery = {
             format = "{icon} {capacity}%";
             format-charging = "{icon}  {capacity}%";
-            format-icons = ["" "" "" "" ""];
+            format-icons = [
+              ""
+              ""
+              ""
+              ""
+              ""
+            ];
             format-plugged = " {power} W";
             interval = 5;
             tooltip-format = "{timeTo}, {capacity}%\n {power} W";
@@ -190,7 +206,13 @@ in {
 
           # Network
           network = {
-            format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
+            format-icons = [
+              "󰤯"
+              "󰤟"
+              "󰤢"
+              "󰤥"
+              "󰤨"
+            ];
             format-wifi = "{icon}";
             format-ethernet = "󰈀"; # 󰈁
             format-disconnected = "⚠";
@@ -200,13 +222,17 @@ in {
             on-click = "${pkgs.networkmanagerapplet}/bin/nm-connection-editor";
             interval = 5;
           };
+
+          # Privacy
+          privacy = {
+            icon-size = 15;
+          };
         }
       ];
 
       style = mkAfter ''
-        ${builtins.readFile "${homeModules}/waybar/style.css"}
+        ${builtins.readFile "${self}/home/modules/waybar/style.css"}
       '';
     };
   };
 }
-

@@ -1,20 +1,24 @@
-{ self
-, lib
-, hostname
-, pkgs
-, ...
+{
+  self,
+  machineDir,
+  pkgs,
+  allDirs,
+  ...
 }:
 
 let
-  machineHardwareModulesPath = "${self}/system/machine/${hostname}/modules/hardware";
-in {
-  imports = builtins.filter (module: lib.pathIsDirectory module) (
-    map (module: "${machineHardwareModulesPath}/${module}") (builtins.attrNames (builtins.readDir machineHardwareModulesPath))
-  );
+  machineHardwareModulesPath = "${self}/system/machine/${machineDir}/modules/hardware";
+in
+{
+  imports = allDirs machineHardwareModulesPath;
 
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
-    initrd.availableKernelModules = [ "xhci_pci" "usbhid" "usb_storage" ];
+    initrd.availableKernelModules = [
+      "xhci_pci"
+      "usbhid"
+      "usb_storage"
+    ];
 
     loader = {
       grub.enable = false;
@@ -34,10 +38,9 @@ in {
     libraspberrypi
   ];
 
-  services.openssh = {
-    enable = true;
-  };
-
   hardware.enableRedistributableFirmware = true;
+  nix.settings.trusted-users = [
+    "maxmur"
+    "root"
+  ];
 }
-

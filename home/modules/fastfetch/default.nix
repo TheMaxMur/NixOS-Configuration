@@ -1,13 +1,15 @@
-{ lib
-, config
-, ...
+{
+  lib,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.fastfetch;
-in {
+in
+{
   options = {
     module.fastfetch = {
       enable = mkEnableOption "Enable fastfetch";
@@ -26,8 +28,8 @@ in {
 
         display = {
           color = {
-              keys = "blue";
-              title = "blue";
+            keys = "blue";
+            title = "blue";
           };
         };
 
@@ -72,4 +74,3 @@ in {
     };
   };
 }
-

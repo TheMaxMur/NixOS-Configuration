@@ -36,11 +36,45 @@ with lib.hm.gvariant;
       desktop-effects-unmaximize-time = 100;
       desktop-effects-unmaximize-transition = "easeNone";
       device-aliases = [ "/org/freedesktop/UPower/devices/battery_BAT0:=Laptop" ];
-      enabled-applets = [ "panel1:left:0:menu@cinnamon.org:30" "panel1:right:9:notifications@cinnamon.org:35" "panel1:right:11:network@cinnamon.org:40" "panel1:right:12:sound@cinnamon.org:41" "panel1:right:13:power@cinnamon.org:42" "panel1:right:15:calendar@cinnamon.org:43" "panel1:right:14:weather@mockturtl:95" "panel1:left:1:workspace-switcher@cinnamon.org:116" "panel1:center:1:window-list@cinnamon.org:121" "panel1:right:5:keyboard@cinnamon.org:128" "panel1:right:6:systray@cinnamon.org:130" "panel1:right:8:xapp-status@cinnamon.org:133" "panel4:left:0:menu@cinnamon.org:138" "panel4:left:1:workspace-switcher@cinnamon.org:139" "panel4:center:1:window-list@cinnamon.org:140" "panel4:right:5:weather@mockturtl:141" "panel4:right:3:keyboard@cinnamon.org:142" "panel4:right:6:calendar@cinnamon.org:144" "panel4:right:4:workspace-name@willurd:152" "panel4:center:2:spacer@cinnamon.org:154" "panel1:center:2:spacer@cinnamon.org:155" "panel4:center:0:spacer@cinnamon.org:156" "panel1:center:0:spacer@cinnamon.org:157" ];
-      enabled-desklets = [];
+      enabled-applets = [
+        "panel1:left:0:menu@cinnamon.org:30"
+        "panel1:right:9:notifications@cinnamon.org:35"
+        "panel1:right:11:network@cinnamon.org:40"
+        "panel1:right:12:sound@cinnamon.org:41"
+        "panel1:right:13:power@cinnamon.org:42"
+        "panel1:right:15:calendar@cinnamon.org:43"
+        "panel1:right:14:weather@mockturtl:95"
+        "panel1:left:1:workspace-switcher@cinnamon.org:116"
+        "panel1:center:1:window-list@cinnamon.org:121"
+        "panel1:right:5:keyboard@cinnamon.org:128"
+        "panel1:right:6:systray@cinnamon.org:130"
+        "panel1:right:8:xapp-status@cinnamon.org:133"
+        "panel4:left:0:menu@cinnamon.org:138"
+        "panel4:left:1:workspace-switcher@cinnamon.org:139"
+        "panel4:center:1:window-list@cinnamon.org:140"
+        "panel4:right:5:weather@mockturtl:141"
+        "panel4:right:3:keyboard@cinnamon.org:142"
+        "panel4:right:6:calendar@cinnamon.org:144"
+        "panel4:right:4:workspace-name@willurd:152"
+        "panel4:center:2:spacer@cinnamon.org:154"
+        "panel1:center:2:spacer@cinnamon.org:155"
+        "panel4:center:0:spacer@cinnamon.org:156"
+        "panel1:center:0:spacer@cinnamon.org:157"
+      ];
+      enabled-desklets = [ ];
       enabled-extensions = [ "horizontal-osd@berk-karaal" ];
-      favorite-apps = [ "google-chrome.desktop" "cinnamon-settings.desktop" "ulauncher.desktop" "org.gnome.Terminal.desktop" ];
-      hotcorner-layout = [ "expo:false:0" "desktop:false:0" "scale:false:0" "desktop:false:0" ];
+      favorite-apps = [
+        "google-chrome.desktop"
+        "cinnamon-settings.desktop"
+        "ulauncher.desktop"
+        "org.gnome.Terminal.desktop"
+      ];
+      hotcorner-layout = [
+        "expo:false:0"
+        "desktop:false:0"
+        "scale:false:0"
+        "desktop:false:0"
+      ];
       next-applet-id = 158;
       next-desklet-id = 13;
       no-adjacent-panel-barriers = false;
@@ -49,11 +83,36 @@ with lib.hm.gvariant;
       panel-zone-icon-sizes = "[{\"panelId\": 1, \"left\": 0, \"center\": 0, \"right\": 24}, {\"left\": 0, \"center\": 0, \"right\": 0, \"panelId\": 4}, {\"left\": 0, \"center\": 0, \"right\": 24, \"panelId\": 2}]";
       panel-zone-symbolic-icon-sizes = "[{\"panelId\": 1, \"left\": 28, \"center\": 28, \"right\": 16}, {\"left\": 28, \"center\": 28, \"right\": 16, \"panelId\": 4}, {\"left\": 28, \"center\": 28, \"right\": 16, \"panelId\": 2}]";
       panel-zone-text-sizes = "[{\"panelId\":1,\"left\":0,\"center\":0,\"right\":0},{\"left\":0,\"center\":0,\"right\":0,\"panelId\":4},{\"left\":0,\"center\":0,\"right\":0,\"panelId\":2}]";
-      panels-autohide = [ "1:false" "2:false" "3:true" "4:false" ];
-      panels-enabled = [ "1:0:top" "4:1:top" "4:1:top" "2:2:top" ];
-      panels-height = [ "1:27" "2:27" "3:30" "4:27" ];
-      panels-hide-delay = [ "1:0" "2:0" "3:0" "4:0" ];
-      panels-show-delay = [ "1:0" "2:0" "3:0" "4:0" ];
+      panels-autohide = [
+        "1:false"
+        "2:false"
+        "3:true"
+        "4:false"
+      ];
+      panels-enabled = [
+        "1:0:top"
+        "4:1:top"
+        "4:1:top"
+        "2:2:top"
+      ];
+      panels-height = [
+        "1:27"
+        "2:27"
+        "3:30"
+        "4:27"
+      ];
+      panels-hide-delay = [
+        "1:0"
+        "2:0"
+        "3:0"
+        "4:0"
+      ];
+      panels-show-delay = [
+        "1:0"
+        "2:0"
+        "3:0"
+        "4:0"
+      ];
       show-media-keys-osd = "medium";
       window-effect-speed = 1;
       workspace-expo-view-as-grid = true;
@@ -122,8 +181,13 @@ with lib.hm.gvariant;
     };
 
     "org/cinnamon/desktop/keybindings" = {
-      custom-list = [ "__dummy__" "custom2" "custom3" "custom0" ];
-      looking-glass-keybinding = [];
+      custom-list = [
+        "__dummy__"
+        "custom2"
+        "custom3"
+        "custom0"
+      ];
+      looking-glass-keybinding = [ ];
     };
 
     "org/cinnamon/desktop/keybindings/custom-keybindings/custom0" = {
@@ -139,33 +203,73 @@ with lib.hm.gvariant;
     };
 
     "org/cinnamon/desktop/keybindings/custom-keybindings/custom3" = {
-      binding = [];
+      binding = [ ];
       command = "flameshot gui";
       name = "screen-shot";
     };
 
     "org/cinnamon/desktop/keybindings/media-keys" = {
       area-screenshot-clip = [ "<Primary><Shift>Print" ];
-      screensaver = [ "<Super>l" "XF86ScreenSaver" "<Super>Cyrillic_de" ];
-      screenshot = [];
+      screensaver = [
+        "<Super>l"
+        "XF86ScreenSaver"
+        "<Super>Cyrillic_de"
+      ];
+      screenshot = [ ];
       terminal = [ "<Super>Return" ];
     };
 
     "org/cinnamon/desktop/keybindings/wm" = {
       close = [ "<Primary>q" ];
       minimize = [ "<Super>m" ];
-      move-to-workspace-1 = [ "<Primary><Super>1" "<Shift><Super>exclam" ];
-      move-to-workspace-10 = [ "<Primary><Super>0" "<Shift><Super>parenright" ];
-      move-to-workspace-11 = [ "<Shift><Super>underscore" "<Primary><Super>minus" ];
-      move-to-workspace-12 = [ "<Shift><Super>plus" "<Primary><Super>equal" ];
-      move-to-workspace-2 = [ "<Primary><Super>2" "<Shift><Super>at" ];
-      move-to-workspace-3 = [ "<Primary><Super>3" "<Shift><Super>numbersign" ];
-      move-to-workspace-4 = [ "<Primary><Super>4" "<Shift><Super>dollar" ];
-      move-to-workspace-5 = [ "<Primary><Super>5" "<Shift><Super>percent" ];
-      move-to-workspace-6 = [ "<Primary><Super>6" "<Shift><Super>asciicircum" ];
-      move-to-workspace-7 = [ "<Primary><Super>7" "<Shift><Super>ampersand" ];
-      move-to-workspace-8 = [ "<Primary><Super>8" "<Shift><Super>asterisk" ];
-      move-to-workspace-9 = [ "<Primary><Super>9" "<Shift><Super>parenleft" ];
+      move-to-workspace-1 = [
+        "<Primary><Super>1"
+        "<Shift><Super>exclam"
+      ];
+      move-to-workspace-10 = [
+        "<Primary><Super>0"
+        "<Shift><Super>parenright"
+      ];
+      move-to-workspace-11 = [
+        "<Shift><Super>underscore"
+        "<Primary><Super>minus"
+      ];
+      move-to-workspace-12 = [
+        "<Shift><Super>plus"
+        "<Primary><Super>equal"
+      ];
+      move-to-workspace-2 = [
+        "<Primary><Super>2"
+        "<Shift><Super>at"
+      ];
+      move-to-workspace-3 = [
+        "<Primary><Super>3"
+        "<Shift><Super>numbersign"
+      ];
+      move-to-workspace-4 = [
+        "<Primary><Super>4"
+        "<Shift><Super>dollar"
+      ];
+      move-to-workspace-5 = [
+        "<Primary><Super>5"
+        "<Shift><Super>percent"
+      ];
+      move-to-workspace-6 = [
+        "<Primary><Super>6"
+        "<Shift><Super>asciicircum"
+      ];
+      move-to-workspace-7 = [
+        "<Primary><Super>7"
+        "<Shift><Super>ampersand"
+      ];
+      move-to-workspace-8 = [
+        "<Primary><Super>8"
+        "<Shift><Super>asterisk"
+      ];
+      move-to-workspace-9 = [
+        "<Primary><Super>9"
+        "<Shift><Super>parenleft"
+      ];
       switch-to-workspace-1 = [ "<Super>1" ];
       switch-to-workspace-10 = [ "<Super>0" ];
       switch-to-workspace-11 = [ "<Super>minus" ];
@@ -178,7 +282,11 @@ with lib.hm.gvariant;
       switch-to-workspace-7 = [ "<Super>7" ];
       switch-to-workspace-8 = [ "<Super>8" ];
       switch-to-workspace-9 = [ "<Super>9" ];
-      switch-to-workspace-up = [ "<Control><Alt>Up" "<Alt>F1" "<Super>w" ];
+      switch-to-workspace-up = [
+        "<Control><Alt>Up"
+        "<Alt>F1"
+        "<Super>w"
+      ];
       toggle-fullscreen = [ "<Shift><Super>f" ];
       toggle-maximized = [ "<Super>f" ];
     };
@@ -246,7 +354,20 @@ with lib.hm.gvariant;
       num-workspaces = 12;
       theme = "Arc-Dark";
       titlebar-font = "JetBrainsMono Nerd Font 10";
-      workspace-names = [ "1. Home" "2. Chats" "3. Music" "4. Notes" "5. Code" "6. Work" "7. GPT" "8. Education" "9. Media" "10. Monitoring" "11. Offtop" "12. Workspace" ];
+      workspace-names = [
+        "1. Home"
+        "2. Chats"
+        "3. Music"
+        "4. Notes"
+        "5. Code"
+        "6. Work"
+        "7. GPT"
+        "8. Education"
+        "9. Media"
+        "10. Monitoring"
+        "11. Offtop"
+        "12. Workspace"
+      ];
     };
 
     "org/cinnamon/gestures" = {
@@ -330,4 +451,3 @@ with lib.hm.gvariant;
     };
   };
 }
-

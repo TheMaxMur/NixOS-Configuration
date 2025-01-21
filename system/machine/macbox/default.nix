@@ -1,16 +1,33 @@
-{ inputs
-, pkgs
-, ...
-}: 
+{
+  inputs,
+  pkgs,
+  username,
+  ...
+}:
 
 {
-  environment.systemPackages = with pkgs; [ 
+  module = {
+    stylix = {
+      enable = true;
+      useCursor = false;
+    };
+  };
+
+  environment.systemPackages = with pkgs; [
     vim
     neovim
     home-manager
-    nerdfonts
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.ubuntu-mono
+    nerd-fonts.iosevka
     alacritty
   ];
+
+  users.users.${username} = {
+    name = username;
+    home = "/Users/${username}";
+    description = username;
+  };
 
   services.nix-daemon.enable = true;
   # nix.package = pkgs.nix;
@@ -20,4 +37,3 @@
 
   system.configurationRevision = inputs.rev or inputs.dirtyRev or null;
 }
-

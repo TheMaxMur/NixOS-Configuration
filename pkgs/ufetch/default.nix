@@ -1,4 +1,10 @@
-{ lib, stdenv, fetchFromGitLab, makeWrapper, bash }:
+{
+  lib,
+  stdenv,
+  fetchFromGitLab,
+  makeWrapper,
+  bash,
+}:
 
 stdenv.mkDerivation rec {
   pname = "ufetch";
@@ -28,4 +34,3 @@ stdenv.mkDerivation rec {
     # mainProgram = "any-nix-shell";
   };
 }
-

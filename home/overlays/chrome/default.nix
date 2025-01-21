@@ -3,4 +3,3 @@ _: prev: {
     commandLineArgs = "--force-dark-mode";
   };
 }
-
