@@ -1,15 +1,17 @@
-{ inputs
-, lib
-, config
-, pkgs
-, ...
+{
+  inputs,
+  lib,
+  config,
+  pkgs,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.nix-config;
-in {
+in
+{
   options = {
     module.nix-config = {
       enable = mkEnableOption "Enables nix-config";
@@ -42,7 +44,10 @@ in {
       registry.s.flake = inputs.self;
 
       settings = {
-        experimental-features = [ "nix-command" "flakes" ];
+        experimental-features = [
+          "nix-command"
+          "flakes"
+        ];
 
         substituters = [
           "https://hyprland.cachix.org"
@@ -61,4 +66,3 @@ in {
     };
   };
 }
-
