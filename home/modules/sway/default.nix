@@ -1,15 +1,17 @@
-{ self
-, config
-, lib
-, pkgs
-, ...
+{
+  self,
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.sway;
-in {
+in
+{
   imports = [
     "${self}/home/modules/sway/keybinds"
     "${self}/home/modules/sway/outputs"
@@ -22,13 +24,13 @@ in {
   config = mkIf cfg.enable {
     module.sway = {
       keybindings.enable = cfg.enable;
-      outputs.enable     = cfg.enable;
+      outputs.enable = cfg.enable;
     };
 
     home.sessionVariables = {
       XDG_CURRENT_DESKTOP = "sway";
       XDG_SESSION_DESKTOP = "sway";
-      GTK_CSD             = 0;
+      GTK_CSD = 0;
     };
 
     gtk = {
@@ -68,7 +70,7 @@ in {
           inner = 7;
         };
 
-        bars = [  ];
+        bars = [ ];
 
         window = {
           titlebar = false;
@@ -79,15 +81,18 @@ in {
           { command = "${pkgs.wl-clipboard}/bin/wl-paste --type text --watch cliphist store"; }
           { command = "${pkgs.wl-clipboard}/bin/wl-paste --type image --watch cliphist store"; }
           { command = "${pkgs.sway}/bin/swaymsg 'workspace 1; exec ${pkgs.librewolf}/bin/librewolf'"; }
-          { command = "${pkgs.sway}/bin/swaymsg 'workspace 2; exec ${pkgs.telegram-desktop}/bin/telegram-desktop'"; }
+          {
+            command = "${pkgs.sway}/bin/swaymsg 'workspace 2; exec ${pkgs.telegram-desktop}/bin/telegram-desktop'";
+          }
           { command = "${pkgs.sway}/bin/swaymsg 'workspace 4; exec ${pkgs.obsidian}/bin/obsidian'"; }
           { command = "${pkgs.sway}/bin/swaymsg 'workspace 5; exec ${pkgs.foot}/bin/foot'"; }
           { command = "${pkgs.sway}/bin/swaymsg 'workspace 5; exec ${pkgs.foot}/bin/foot'"; }
           { command = "${pkgs.sway}/bin/swaymsg 'workspace 5; exec ${pkgs.foot}/bin/foot'"; }
-          { command = "${pkgs.sway}/bin/swaymsg 'workspace 6; exec ${pkgs.librewolf}/bin/librewolf -P work'"; }
+          {
+            command = "${pkgs.sway}/bin/swaymsg 'workspace 6; exec ${pkgs.librewolf}/bin/librewolf -P Work'";
+          }
         ];
       };
     };
   };
 }
-
