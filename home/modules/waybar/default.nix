@@ -61,13 +61,13 @@ in
           "custom/nixlogo" = {
             format = "";
             tooltip = false;
-            on-click = "${pkgs.wofi}/bin/wofi --show drun";
+            on-click = config.module.defaults.appLauncherCmd;
           };
 
           "image#nixlogo" = {
             path = "${self}/assets/Nix_Logo.svg";
             tooltip = false;
-            on-click = "${pkgs.wofi}/bin/wofi --show drun";
+            on-click = config.module.defaults.appLauncherCmd;
           };
 
           # Workspaces
