@@ -1,8 +1,9 @@
-{ lib
-, self
-, pkgs
-, runCommand
-, nixosOptionsDoc
+{
+  lib,
+  self,
+  pkgs,
+  runCommand,
+  nixosOptionsDoc,
 }:
 
 let
@@ -22,7 +23,7 @@ let
   optionsDoc = nixosOptionsDoc {
     inherit (eval) options;
   };
-in runCommand "options-doc.md" {} ''
-    cat ${optionsDoc.optionsCommonMark} >> $out
-  ''
-
+in
+runCommand "options-doc.md" { } ''
+  cat ${optionsDoc.optionsCommonMark} >> $out
+''
