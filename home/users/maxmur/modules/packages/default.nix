@@ -43,11 +43,11 @@ in
         # Text Editors
         obsidian
 
-      # Fonts
-      nerd-fonts.jetbrains-mono
-      nerd-fonts.ubuntu-mono
-      nerd-fonts.iosevka
-      corefonts
+        # Fonts
+        nerd-fonts.jetbrains-mono
+        nerd-fonts.ubuntu-mono
+        nerd-fonts.iosevka
+        corefonts
       ]
       ++ lib.optionals (isLinux && isWorkstation) [
         inputs.ghostty.packages.x86_64-linux.default
