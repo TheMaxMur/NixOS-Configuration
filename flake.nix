@@ -98,7 +98,7 @@
         nixpkgs-unstable.follows = "nixpkgs";
       };
     };
-    
+
     proxmox-nixos = {
       url = "github:SaumonNet/proxmox-nixos";
     };
@@ -145,31 +145,32 @@
     };
   };
 
-  outputs = { self, flake-parts, ... } @ inputs:
-  let
-    # Description of hosts
-    hosts = import ./hosts.nix; 
+  outputs =
+    { self, flake-parts, ... }@inputs:
+    let
+      # Description of hosts
+      hosts = import ./hosts.nix;
 
-    # Import helper funcfions
-    libx = import ./lib { inherit self inputs; };
-  in flake-parts.lib.mkFlake { inherit inputs; } {
-    systems = libx.forAllSystems;
+      # Import helper funcfions
+      libx = import ./lib { inherit self inputs; };
+    in
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = libx.forAllSystems;
 
-    imports = [
-      ./parts
-      # ./docs
-    ];
+      imports = [
+        ./parts
+        # ./docs
+      ];
 
-    flake = {
-      # NixOS Hosts configuration
-      nixosConfigurations = libx.genNixos hosts.nixos;
+      flake = {
+        # NixOS Hosts configuration
+        nixosConfigurations = libx.genNixos hosts.nixos;
 
-      # MacOS Hosts configuration
-      darwinConfigurations = libx.genDarwin hosts.darwin;
+        # MacOS Hosts configuration
+        darwinConfigurations = libx.genDarwin hosts.darwin;
 
-      # Templates
-      templates = import "${self}/templates" { inherit self; };
+        # Templates
+        templates = import "${self}/templates" { inherit self; };
+      };
     };
-  };
 }
-
