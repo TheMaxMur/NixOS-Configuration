@@ -37,6 +37,7 @@ in
       type = types.enum [
         "librewolf"
         "firefox"
+        "chromium"
       ];
 
       default = "librewolf";
