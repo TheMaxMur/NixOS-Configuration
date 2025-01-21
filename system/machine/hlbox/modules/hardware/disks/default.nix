@@ -5,6 +5,8 @@ _:
 
   boot.zfs.extraPools = [
     "zmirror"
+    "zpool1"
+    "zpool2"
   ];
 
   fileSystems = {
