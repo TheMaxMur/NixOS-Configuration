@@ -1,8 +1,12 @@
-{ config
-, ...
+{
+  config,
+  username,
+  ...
 }:
 
 {
+  users.users.${username}.openssh.authorizedKeys.keys = config.module.defaults.ssh.pubKeys;
+
   systemd.network = {
     enable = true;
 
@@ -30,6 +34,7 @@
         5335
         8053
         8384
+        34561
       ];
 
       allowedUDPPorts = [
@@ -42,13 +47,21 @@
   topology.self = {
     services = {
       nginx.details = {
-        "https" = { text = "0.0.0.0:443"; };
-        "gitlab ssh" = { text = "0.0.0.0:4224"; };
-        "syncthing web" = { text = "0.0.0.0:8384"; };
+        "https" = {
+          text = "0.0.0.0:443";
+        };
+        "gitlab ssh" = {
+          text = "0.0.0.0:4224";
+        };
+        "syncthing web" = {
+          text = "0.0.0.0:8384";
+        };
       };
 
       adguardhome.details = {
-        "dns" = { text = "192.168.1.8:53"; };
+        "dns" = {
+          text = "192.168.1.8:53";
+        };
       };
     };
 
@@ -63,4 +76,3 @@
     };
   };
 }
-
