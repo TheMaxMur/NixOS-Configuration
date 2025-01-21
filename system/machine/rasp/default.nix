@@ -21,6 +21,21 @@
       dconf.enable = true;
       systemPackages.enable = true;
     };
+
+    defaults = {
+      network = {
+        iface = "end0";
+        ip = "192.168.1.8";
+        gw = "192.168.1.1";
+        mask = "255.255.255.0";
+        cidr = "24";
+      };
+
+      ssh.pubKeys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIdsRbzlFB23BdrUzzuBdcDmlkCrdU/620MlH1jdi6vx"
+      ];
+    };
+
     services = {
       unbound.enable = true;
 
@@ -41,6 +56,15 @@
         ];
       };
 
+      ssh = {
+        enable = true;
+        listenAddresses = [
+          {
+            addr = config.module.defaults.network.ip;
+            port = 34561;
+          }
+        ];
+      };
     };
   };
 }
