@@ -1,24 +1,29 @@
-{ self
-, lib
-, inputs
-, machineDir
-, platform ? null
-, stateVersion ? null
-, ...
+{
+  self,
+  lib,
+  inputs,
+  machineDir,
+  hostType,
+  platform ? null,
+  stateVersion ? null,
+  ...
 }:
 
 let
-  machineConfigurationPath      = "${self}/system/machine/${machineDir}";
+  machineConfigurationPath = "${self}/system/machine/${machineDir}";
   machineConfigurationPathExist = builtins.pathExists machineConfigurationPath;
-  machineModulesPath            = "${self}/system/machine/${machineDir}/modules";
-  machineModulesPathExist       = builtins.pathExists machineModulesPath;
-in {
-  imports = [
-    "${self}/modules"
-    "${self}/overlays/nixpkgs"
-  ]
-  ++ lib.optional machineConfigurationPathExist machineConfigurationPath
-  ++ lib.optional machineModulesPathExist machineModulesPath;
+  machineModulesPath = "${self}/system/machine/${machineDir}/modules";
+  machineModulesPathExist = builtins.pathExists machineModulesPath;
+in
+{
+  imports =
+    [
+      "${self}/modules"
+      "${self}/overlays/nixpkgs"
+      "${self}/system/${hostType}/modules"
+    ]
+    ++ lib.optional machineConfigurationPathExist machineConfigurationPath
+    ++ lib.optional machineModulesPathExist machineModulesPath;
 
   module.nix-config.enable = true;
   system = { inherit stateVersion; };
@@ -32,4 +37,3 @@ in {
     ];
   };
 }
-
