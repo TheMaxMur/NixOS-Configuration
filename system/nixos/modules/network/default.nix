@@ -18,10 +18,14 @@ in
   };
 
   config = mkIf cfg.enable {
-    systemd.services.NetworkManager-wait-online.enable = false;
-    systemd.services.systemd-networkd-wait-online.enable = mkForce false;
+    systemd = {
+      network.enable = true;
 
-    systemd.network.enable = true;
+      services = {
+        NetworkManager-wait-online.enable = false;
+        systemd-networkd-wait-online.enable = mkForce false;
+      };
+    };
 
     networking = {
       firewall = {
