@@ -1,10 +1,11 @@
-{ pkgs
-, lib
-, config
-, username
-, inputs
-, wm
-, ...
+{
+  pkgs,
+  lib,
+  config,
+  username,
+  inputs,
+  wm,
+  ...
 }:
 
 with lib;
@@ -12,12 +13,14 @@ with lib;
 let
   cfg = config.module.services.greetd;
 
-  cmd = if wm == "hyprland"
-    then "${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/Hyprland"
-  else if wm == "sway"
-    then "${pkgs.sway}/bin/sway"
-  else "";
-in {
+  wms = {
+    hyprland = "${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/Hyprland";
+    sway = "${pkgs.sway}/bin/sway";
+  };
+
+  wmCmd = wms.${wm};
+in
+{
   options = {
     module.services.greetd = {
       enable = mkEnableOption "Enable greetd";
@@ -31,7 +34,11 @@ in {
 
     programs.regreet = {
       enable = true;
-      cageArgs = [ "-s" "-m" "last" ];
+      cageArgs = [
+        "-s"
+        "-m"
+        "last"
+      ];
     };
 
     services.greetd = {
@@ -47,11 +54,10 @@ in {
             "--asterisks"
             "--remember"
             "--time"
-            "--cmd ${cmd}"
+            "--cmd ${wmCmd}"
           ];
         };
       };
     };
   };
 }
-
