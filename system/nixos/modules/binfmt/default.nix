@@ -1,13 +1,15 @@
-{ config
-, lib
-, ...
+{
+  config,
+  lib,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.binfmt;
-in {
+in
+{
   options.module.binfmt = {
     enable = mkEnableOption "Enable module binfmt";
   };
@@ -16,4 +18,3 @@ in {
     boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   };
 }
-

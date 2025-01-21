@@ -1,15 +1,17 @@
-{ lib
-, config
-, username
-, pkgs
-, ...
+{
+  lib,
+  config,
+  username,
+  pkgs,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.virtualisation;
-in {
+in
+{
   options = {
     module.virtualisation = {
       enable = mkEnableOption "Enables virtualisation";
@@ -32,4 +34,3 @@ in {
     };
   };
 }
-

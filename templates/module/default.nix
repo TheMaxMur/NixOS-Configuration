@@ -1,13 +1,15 @@
-{ config
-, lib
-, ...
+{
+  config,
+  lib,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module."<name>";
-in {
+in
+{
   options.module."<name>" = {
     enable = mkEnableOption "Enable module";
   };
@@ -15,4 +17,3 @@ in {
   config = mkIf cfg.enable {
   };
 }
-

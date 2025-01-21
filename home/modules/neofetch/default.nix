@@ -1,15 +1,17 @@
-{ self
-, pkgs
-, lib
-, config
-, ...
+{
+  self,
+  pkgs,
+  lib,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.neofetch;
-in {
+in
+{
   options = {
     module.neofetch.enable = mkEnableOption "Enables neofetch";
   };
@@ -19,4 +21,3 @@ in {
     xdg.configFile."neofetch/config.conf".source = "${self}/home/modules/neofetch/neofetch.conf";
   };
 }
-

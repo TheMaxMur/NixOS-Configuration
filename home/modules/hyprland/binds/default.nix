@@ -1,8 +1,9 @@
-{ config
-, self
-, lib
-, pkgs
-, ...
+{
+  config,
+  self,
+  lib,
+  pkgs,
+  ...
 }:
 
 with lib;
@@ -10,16 +11,17 @@ with lib;
 let
   cfg = config.module.hyprland.binds;
 
-  terminal          = config.module.defaults.terminalCmd;
-  appLauncher       = config.module.defaults.appLauncherCmd;
-  audioControl      = config.module.defaults.audioControlCmd;
+  terminal = config.module.defaults.terminalCmd;
+  appLauncher = config.module.defaults.appLauncherCmd;
+  audioControl = config.module.defaults.audioControlCmd;
   brightnessControl = config.module.defaults.brightnessControlCmd;
-  clipHist          = config.module.defaults.clipHistCmd;
-  notificationsApp  = config.module.defaults.notificationsAppCmd;
+  clipHist = config.module.defaults.clipHistCmd;
+  notificationsApp = config.module.defaults.notificationsAppCmd;
 
-  screenshotArea    = "${pkgs.grimblast}/bin/grimblast --notify --freeze copy area";
-  screenshotScreen  = "${pkgs.grimblast}/bin/grimblast --notify --freeze copy output";
-in {
+  screenshotArea = "${pkgs.grimblast}/bin/grimblast --notify --freeze copy area";
+  screenshotScreen = "${pkgs.grimblast}/bin/grimblast --notify --freeze copy output";
+in
+{
   options = {
     module.hyprland.binds.enable = mkEnableOption "Enables binds in Hyprland";
   };
@@ -144,21 +146,32 @@ in {
       ];
 
       # Mouse bindings
-      bindm = ["SUPER, mouse:272, movewindow" "SUPER, mouse:273, resizewindow"];
+      bindm = [
+        "SUPER, mouse:272, movewindow"
+        "SUPER, mouse:273, resizewindow"
+      ];
 
       # layer rules
-      layerrule = let
-        toRegex = list: let
-          elements = lib.concatStringsSep "|" list;
-        in "^(${elements})$";
+      layerrule =
+        let
+          toRegex =
+            list:
+            let
+              elements = lib.concatStringsSep "|" list;
+            in
+            "^(${elements})$";
 
-        layers = [
-          "gtk-layer-shell"
-          "swaync-control-center"
-          "swaync-notification-window"
-          "waybar"
+          layers = [
+            "gtk-layer-shell"
+            "swaync-control-center"
+            "swaync-notification-window"
+            "waybar"
+          ];
+        in
+        [
+          "blur, ${toRegex layers}"
+          "ignorealpha 0.5, ${toRegex layers}"
         ];
-      in ["blur, ${toRegex layers}" "ignorealpha 0.5, ${toRegex layers}"];
 
       # Window rules
       windowrulev2 = [
@@ -184,4 +197,3 @@ in {
     };
   };
 }
-

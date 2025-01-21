@@ -1,13 +1,15 @@
-{ lib
-, config
-, ...
+{
+  lib,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.cinnamon;
-in {
+in
+{
   imports = [
     #    ./dconf2nix.nix
   ];
@@ -20,4 +22,3 @@ in {
     dconf.enable = true;
   };
 }
-

@@ -1,13 +1,15 @@
-{ lib
-, config
-, ...
+{
+  lib,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.nixos-ng;
-in {
+in
+{
   options = {
     module.nixos-ng = {
       enable = mkEnableOption "Enables nixos-ng";
@@ -18,7 +20,7 @@ in {
     boot.initrd.systemd.enable = true;
 
     services = {
-      userborn.enable     = true;
+      userborn.enable = true;
       dbus.implementation = "broker";
     };
 
@@ -28,11 +30,12 @@ in {
         enableNg = true;
       };
 
-      /* etc.overlay = {
-        enable = true;
-        mutable = true;
-      }; */
+      /*
+        etc.overlay = {
+          enable = true;
+          mutable = true;
+        };
+      */
     };
   };
 }
-

@@ -1,14 +1,16 @@
-{ inputs
-, lib
-, config
-, ...
+{
+  inputs,
+  lib,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.programs.hm;
-in {
+in
+{
   options = {
     module.programs.hm.enable = mkEnableOption "Enable Home Manager";
   };
@@ -16,11 +18,10 @@ in {
   config = mkIf cfg.enable {
     home-manager = {
       useGlobalPkgs = true;
-      useUserPackages = true; 
+      useUserPackages = true;
       extraSpecialArgs = {
         inherit inputs;
       };
     };
   };
 }
-

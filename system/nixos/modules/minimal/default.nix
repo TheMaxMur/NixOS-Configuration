@@ -1,13 +1,15 @@
-{ lib
-, config
-, ...
+{
+  lib,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.minimal;
-in {
+in
+{
   options = {
     module.minimal = {
       enable = mkEnableOption "Enables minimal";
@@ -28,4 +30,3 @@ in {
     programs.command-not-found.enable = mkDefault false;
   };
 }
-

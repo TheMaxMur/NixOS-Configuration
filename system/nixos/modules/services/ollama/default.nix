@@ -1,13 +1,15 @@
-{ lib
-, config
-, ...
+{
+  lib,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.services.ollama;
-in {
+in
+{
   options = {
     module.services.ollama.enable = mkEnableOption "Enables ollama";
   };
@@ -18,4 +20,3 @@ in {
     };
   };
 }
-

@@ -1,13 +1,15 @@
-{ lib
-, config
-, ...
+{
+  lib,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.thunderbird;
-in {
+in
+{
   options = {
     module.thunderbird.enable = mkEnableOption "Enables thunderbird";
   };
@@ -30,4 +32,3 @@ in {
     };
   };
 }
-

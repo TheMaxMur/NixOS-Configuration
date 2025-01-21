@@ -1,17 +1,19 @@
-{ lib
-, config
-, ...
+{
+  lib,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.services.adguard-home;
-in {
+in
+{
   options = {
     module.services.adguard-home = {
       enable = mkEnableOption "Enables adguard-home";
-      
+
       httpAddress = mkOption {
         type = types.str;
         default = "0.0.0.0";
@@ -24,7 +26,7 @@ in {
 
       dnsRewrites = mkOption {
         type = types.listOf types.attrs;
-        default = [  ];
+        default = [ ];
       };
     };
   };
@@ -34,7 +36,7 @@ in {
       enable = true;
       port = 3000;
       mutableSettings = true;
-      
+
       settings = {
         auth_attempts = 3;
         block_auth_min = 5;
@@ -65,4 +67,3 @@ in {
     };
   };
 }
-

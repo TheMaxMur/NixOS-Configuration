@@ -1,13 +1,15 @@
-{ lib
-, config
-, ...
+{
+  lib,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.wofi;
-in {
+in
+{
   options = {
     module.wofi = {
       enable = mkEnableOption "Enable wofi app runner";
@@ -20,10 +22,9 @@ in {
 
       settings = {
         allow_images = true;
-        insensitive  = true;
-        width        = "30%";
+        insensitive = true;
+        width = "30%";
       };
     };
   };
 }
-

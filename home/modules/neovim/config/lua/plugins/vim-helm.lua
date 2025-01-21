@@ -1,10 +1,9 @@
 return {
-  {
-    'towolf/vim-helm',
-    enable = true,
-    lazy = false,
+	{
+		"towolf/vim-helm",
+		enable = true,
+		lazy = false,
 
-    ft = 'helm',
-  },
+		ft = "helm",
+	},
 }
-

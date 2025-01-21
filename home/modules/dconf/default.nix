@@ -1,13 +1,15 @@
-{ lib
-, config
-, ...
+{
+  lib,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.dconf;
-in {
+in
+{
   options = {
     module.dconf.enable = mkEnableOption "Enables dconf";
   };
@@ -26,4 +28,3 @@ in {
     };
   };
 }
-

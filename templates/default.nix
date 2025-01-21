@@ -1,5 +1,6 @@
-{ self
-, ...
+{
+  self,
+  ...
 }:
 
 {
@@ -18,4 +19,3 @@
     path = "${self}/templates/overlay";
   };
 }
-

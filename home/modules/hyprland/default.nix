@@ -1,16 +1,18 @@
-{ inputs
-, self
-, config
-, lib
-, pkgs
-, ...
+{
+  inputs,
+  self,
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.hyprland;
-in {
+in
+{
   imports = [
     "${self}/home/modules/hyprland/binds"
     "${self}/home/modules/hyprland/monitors"
@@ -48,7 +50,10 @@ in {
 
         animations = {
           enabled = true;
-          bezier = [ "md3_decel, 0.05, 0.7, 0.1, 1" "workspace,0.17, 1.17, 0.3,1" ];
+          bezier = [
+            "md3_decel, 0.05, 0.7, 0.1, 1"
+            "workspace,0.17, 1.17, 0.3,1"
+          ];
 
           animation = [
             "border, 1, 2, default"
@@ -111,4 +116,3 @@ in {
     };
   };
 }
-

@@ -1,7 +1,8 @@
-{ config
-, lib
-, hostname
-, ...
+{
+  config,
+  lib,
+  hostname,
+  ...
 }:
 
 with lib;
@@ -9,12 +10,18 @@ with lib;
 let
   cfg = config.module.hyprland.monitors;
 
-  monitorsSettings = 
-    if hostname == "pcbox" then ["DP-1,1920x1080@144,0x0,1" "DP-2,1920x1080@144,1920x0,1"]
-    else if hostname == "nbox" then ["eDP-1,2880x1800@120,0x0,1.8"]
-    else [];
+  monitorsSettings =
+    if hostname == "pcbox" then
+      [
+        "DP-1,1920x1080@144,0x0,1"
+        "DP-2,1920x1080@144,1920x0,1"
+      ]
+    else if hostname == "nbox" then
+      [ "eDP-1,2880x1800@120,0x0,1.8" ]
+    else
+      [ ];
 
-  workspacesSettings = 
+  workspacesSettings =
     if hostname == "pcbox" then
       [
         "1, monitor:DP-2, default:true"
@@ -30,7 +37,7 @@ let
         "11, monitor:DP-1, default:true"
         "12, monitor:DP-1, default:true"
       ]
-    else if hostname == "nbox" then 
+    else if hostname == "nbox" then
       [
         "1, monitor:eDP-1, default:true"
         "2, monitor:eDP-1, default:true"
@@ -45,8 +52,10 @@ let
         # "11, monitor:eDP-1, default:true"
         # "12, monitor:eDP-1, default:true"
       ]
-    else [];
-in {
+    else
+      [ ];
+in
+{
   options = {
     module.hyprland.monitors.enable = mkEnableOption "Enables monitors in Hyprland";
   };
@@ -58,4 +67,3 @@ in {
     };
   };
 }
-

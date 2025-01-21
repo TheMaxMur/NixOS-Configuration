@@ -1,14 +1,16 @@
-{ lib
-, pkgs
-, config
-, ...
+{
+  lib,
+  pkgs,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.services.qmk;
-in {
+in
+{
   options = {
     module.services.qmk.enable = mkEnableOption "Enables qmk";
   };
@@ -25,4 +27,3 @@ in {
     hardware.keyboard.qmk.enable = true;
   };
 }
-

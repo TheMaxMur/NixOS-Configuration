@@ -3,4 +3,3 @@ _: prev: {
     rofi-unwrapped = prev.rofi-wayland-unwrapped;
   };
 }
-

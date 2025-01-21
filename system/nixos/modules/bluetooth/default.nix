@@ -1,13 +1,15 @@
-{ lib
-, config
-, ...
+{
+  lib,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.bluetooth;
-in {
+in
+{
   options = {
     module.bluetooth = {
       enable = mkEnableOption "Enables bluetooth";
@@ -23,4 +25,3 @@ in {
     };
   };
 }
-

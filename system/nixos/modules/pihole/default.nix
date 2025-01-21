@@ -1,13 +1,15 @@
-{ lib
-, config
-, ...
+{
+  lib,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.pihole;
-in {
+in
+{
   options = {
     module.pihole.enable = mkEnableOption "Enables pihole";
   };
@@ -57,4 +59,3 @@ in {
     };
   };
 }
-

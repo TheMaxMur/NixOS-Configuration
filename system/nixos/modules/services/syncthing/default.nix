@@ -1,14 +1,16 @@
-{ lib
-, config
-, username
-, ...
+{
+  lib,
+  config,
+  username,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.services.syncthing;
-in {
+in
+{
   options = {
     module.services.syncthing.enable = mkEnableOption "Enable syncthing";
   };
@@ -22,4 +24,3 @@ in {
     };
   };
 }
-

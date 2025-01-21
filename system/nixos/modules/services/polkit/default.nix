@@ -1,13 +1,15 @@
-{ lib
-, config
-, ...
+{
+  lib,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.services.polkit;
-in {
+in
+{
   options = {
     module.services.polkit.enable = mkEnableOption "Enable polkit";
   };
@@ -33,4 +35,3 @@ in {
     '';
   };
 }
-

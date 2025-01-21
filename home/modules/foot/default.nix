@@ -1,13 +1,15 @@
-{ lib
-, config
-, ...
+{
+  lib,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.foot;
-in {
+in
+{
   options = {
     module.foot.enable = mkEnableOption "Enables Foot";
   };
@@ -46,4 +48,3 @@ in {
     };
   };
 }
-

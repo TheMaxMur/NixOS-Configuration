@@ -1,16 +1,18 @@
-{ self
-, lib
-, config
-, username
-, pkgs
-, ...
+{
+  self,
+  lib,
+  config,
+  username,
+  pkgs,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.fish;
-in {
+in
+{
   options = {
     module.fish.enable = mkEnableOption "Enables Fish";
   };
@@ -89,4 +91,3 @@ in {
     };
   };
 }
-

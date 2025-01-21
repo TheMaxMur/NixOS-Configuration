@@ -1,16 +1,18 @@
-{ self
-, pkgs
-, lib
-, config
-, username
-, ...
+{
+  self,
+  pkgs,
+  lib,
+  config,
+  username,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.users;
-in {
+in
+{
   options = {
     module.users.enable = mkEnableOption "Enables users";
   };
@@ -19,7 +21,7 @@ in {
     users = {
       mutableUsers = false;
 
-      groups = { 
+      groups = {
         ${username} = {
           gid = 1000;
         };
@@ -27,13 +29,13 @@ in {
 
       users = {
         ${username} = {
-          uid                = 1000;
-          home               = "/home/${username}";
-          shell              = pkgs.fish;
-          group              = "${username}";
-          createHome         = true;
-          description        = "${username}";
-          isSystemUser       = true;
+          uid = 1000;
+          home = "/home/${username}";
+          shell = pkgs.fish;
+          group = "${username}";
+          createHome = true;
+          description = "${username}";
+          isSystemUser = true;
           hashedPasswordFile = "${self}/secrets/hashes/${username}.hash";
 
           extraGroups = [
@@ -54,4 +56,3 @@ in {
     };
   };
 }
-

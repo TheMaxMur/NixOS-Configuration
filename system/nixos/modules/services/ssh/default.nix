@@ -1,19 +1,26 @@
-{ config
-, lib
-, ...
+{
+  config,
+  lib,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.services.ssh;
-in {
+in
+{
   options.module.services.ssh = {
     enable = mkEnableOption "Enable module";
 
     listenAddresses = lib.mkOption {
       type = lib.types.listOf lib.types.attrs;
-      default = [ { addr = "0.0.0.0"; port = 2222; } ];
+      default = [
+        {
+          addr = "0.0.0.0";
+          port = 2222;
+        }
+      ];
       description = ''
         Specifies on which ports and addreses the SSH daemon listens.
       '';
@@ -37,8 +44,7 @@ in {
       settings = {
         PermitRootLogin = "no";
         PasswordAuthentication = true;
-      }; 
+      };
     };
   };
 }
-

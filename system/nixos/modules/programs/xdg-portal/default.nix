@@ -1,15 +1,17 @@
-{ pkgs
-, lib
-, config
-, wm
-, ...
+{
+  pkgs,
+  lib,
+  config,
+  wm,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.programs.xdg-portal;
-in {
+in
+{
   options = {
     module.programs.xdg-portal.enable = mkEnableOption "Enable xdg-portal";
   };
@@ -36,4 +38,3 @@ in {
     };
   };
 }
-

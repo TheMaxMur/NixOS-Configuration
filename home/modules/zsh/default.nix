@@ -1,16 +1,18 @@
-{ inputs
-, self
-, lib
-, username
-, config
-, ...
+{
+  inputs,
+  self,
+  lib,
+  username,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.zsh;
-in {
+in
+{
   options = {
     module.zsh.enable = mkEnableOption "Enables zsh";
   };
@@ -50,22 +52,24 @@ in {
         }
       ];
 
-      /* oh-my-zsh = {
-        enable = true;
+      /*
+        oh-my-zsh = {
+          enable = true;
 
-        plugins = [
-          "git"
-          "vagrant"
-          "docker"
-          "python"
-          "pass"
-          "kubectl"
-        ];
+          plugins = [
+            "git"
+            "vagrant"
+            "docker"
+            "python"
+            "pass"
+            "kubectl"
+          ];
 
-        extraConfig = ''
-          zstyle ':omz:update' mode disabled
-        '';
-      }; */
+          extraConfig = ''
+            zstyle ':omz:update' mode disabled
+          '';
+        };
+      */
 
       shellAliases = {
         # System
@@ -125,4 +129,3 @@ in {
     };
   };
 }
-

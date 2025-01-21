@@ -1,14 +1,16 @@
-{ lib
-, config
-, username
-, ...
+{
+  lib,
+  config,
+  username,
+  ...
 }:
 
 with lib;
 
 let
-  cfg = config.module.user.impermanence;  
-in {
+  cfg = config.module.user.impermanence;
+in
+{
   options = {
     module.user.impermanence.enable = mkEnableOption "Enables home impermanence";
   };
@@ -89,4 +91,3 @@ in {
     };
   };
 }
-

@@ -1,13 +1,15 @@
-{ config
-, lib
-, ...
+{
+  config,
+  lib,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.user.xdg;
-in {
+in
+{
   options = {
     module.user.xdg.enable = mkEnableOption "Enables xdg";
   };
@@ -35,4 +37,3 @@ in {
     };
   };
 }
-

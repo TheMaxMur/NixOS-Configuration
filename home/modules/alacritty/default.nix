@@ -1,13 +1,15 @@
-{ lib
-, config
-, ...
+{
+  lib,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.alacritty;
-in {
+in
+{
   options = {
     module.alacritty.enable = mkEnableOption "Enables Alacritty";
   };
@@ -87,4 +89,3 @@ in {
     };
   };
 }
-

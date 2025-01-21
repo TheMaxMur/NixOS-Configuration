@@ -1,13 +1,15 @@
-{ lib
-, config
-, ...
+{
+  lib,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.services.bolt;
-in {
+in
+{
   options = {
     module.services.bolt.enable = mkEnableOption "Enable bolt";
   };
@@ -16,4 +18,3 @@ in {
     services.hardware.bolt.enable = true;
   };
 }
-

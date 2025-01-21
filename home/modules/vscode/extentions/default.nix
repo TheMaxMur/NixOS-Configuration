@@ -1,5 +1,6 @@
-{ pkgs
-, ...
+{
+  pkgs,
+  ...
 }:
 
 {
@@ -57,4 +58,3 @@
     redhat.vscode-yaml
   ];
 }
-

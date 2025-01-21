@@ -1,13 +1,15 @@
-{ lib
-, config
-, ...
+{
+  lib,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.programs.kdeconnect;
-in {
+in
+{
   options = {
     module.programs.kdeconnect.enable = mkEnableOption "Enable kdeconnect";
   };
@@ -16,4 +18,3 @@ in {
     programs.kdeconnect.enable = true;
   };
 }
-

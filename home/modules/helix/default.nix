@@ -1,14 +1,16 @@
-{ lib
-, pkgs
-, config
-, ...
+{
+  lib,
+  pkgs,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.helix;
-in {
+in
+{
   options = {
     module.helix.enable = mkEnableOption "Enables helix";
   };
@@ -24,7 +26,7 @@ in {
       helm-ls
       nil
     ];
-    
+
     programs.helix = {
       enable = true;
       settings = {
@@ -35,14 +37,14 @@ in {
           text-width = 70;
           bufferline = "multiple";
           default-line-ending = "lf";
-          rulers = [73];
+          rulers = [ 73 ];
           cursorline = true;
           auto-info = true;
           color-modes = true;
 
           lsp = {
             display-messages = true;
-            display-inlay-hints	= true;
+            display-inlay-hints = true;
           };
 
           soft-wrap = {
@@ -57,9 +59,24 @@ in {
           };
 
           statusline = {
-            left = ["mode" "spinner" "file-modification-indicator" "read-only-indicator"];
-            center = [ "version-control" "file-name"];
-            right = ["diagnostics" "selections" "position" "file-encoding" "file-line-ending" "file-type"];
+            left = [
+              "mode"
+              "spinner"
+              "file-modification-indicator"
+              "read-only-indicator"
+            ];
+            center = [
+              "version-control"
+              "file-name"
+            ];
+            right = [
+              "diagnostics"
+              "selections"
+              "position"
+              "file-encoding"
+              "file-line-ending"
+              "file-type"
+            ];
             separator = "│";
             mode = {
               normal = "NORMAL";
@@ -83,4 +100,3 @@ in {
     };
   };
 }
-

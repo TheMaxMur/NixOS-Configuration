@@ -1,15 +1,17 @@
-{ self
-, lib
-, config
-, pkgs
-, ...
+{
+  self,
+  lib,
+  config,
+  pkgs,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.nvim;
-in {
+in
+{
   options = {
     module.nvim.enable = mkEnableOption "Enables nvim";
   };
@@ -46,4 +48,3 @@ in {
     };
   };
 }
-

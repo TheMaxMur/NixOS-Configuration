@@ -1,14 +1,16 @@
-{ lib
-, config
-, pkgs
-, ...
+{
+  lib,
+  config,
+  pkgs,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.zapret;
-in {
+in
+{
   options = {
     module.zapret = {
       enable = mkEnableOption "Enables zapret";
@@ -61,4 +63,3 @@ in {
     };
   };
 }
-

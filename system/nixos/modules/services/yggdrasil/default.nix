@@ -1,13 +1,15 @@
-{ config
-, lib
-, ...
+{
+  config,
+  lib,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.services.yggdrasil;
-in {
+in
+{
   options.module.services.yggdrasil = {
     enable = mkEnableOption "Enable module yggdrasil";
   };
@@ -28,4 +30,3 @@ in {
     };
   };
 }
-

@@ -1,14 +1,16 @@
-{ lib 
-, config
-, pkgs
-, ...
+{
+  lib,
+  config,
+  pkgs,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.services.netbird;
-in {
+in
+{
   options = {
     module.services.netbird = {
       enable = mkEnableOption "Enables netbird";
@@ -20,4 +22,3 @@ in {
     environment.systemPackages = [ pkgs.netbird-ui ];
   };
 }
-

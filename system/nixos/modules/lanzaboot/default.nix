@@ -1,13 +1,15 @@
-{ lib
-, config
-, ...
+{
+  lib,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.lanzaboote;
-in {
+in
+{
   options = {
     module.lanzaboote = {
       enable = mkEnableOption "Enables lanzaboote";
@@ -21,10 +23,9 @@ in {
       loader.efi.canTouchEfiVariables = true;
 
       lanzaboote = {
-       enable = true;
-       pkiBundle = "/etc/secureboot";
+        enable = true;
+        pkiBundle = "/etc/secureboot";
       };
     };
   };
 }
-

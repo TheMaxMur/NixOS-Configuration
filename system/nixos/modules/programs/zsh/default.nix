@@ -1,13 +1,15 @@
-{ lib
-, config
-, ...
+{
+  lib,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.programs.zsh;
-in {
+in
+{
   options = {
     module.programs.zsh.enable = mkEnableOption "Enable zsh";
   };
@@ -16,4 +18,3 @@ in {
     programs.zsh.enable = true;
   };
 }
-

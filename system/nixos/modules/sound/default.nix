@@ -1,13 +1,15 @@
-{ lib
-, config
-, ... 
+{
+  lib,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.sound;
-in {
+in
+{
   options = {
     module.sound.enable = mkEnableOption "Enables sound in your system";
   };
@@ -15,7 +17,7 @@ in {
   config = mkIf cfg.enable {
     # Sound settings
     security.rtkit.enable = true;
-    
+
     services.pipewire = {
       enable = true;
       alsa.enable = true;
@@ -24,4 +26,3 @@ in {
     };
   };
 }
-

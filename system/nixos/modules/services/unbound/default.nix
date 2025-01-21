@@ -1,13 +1,15 @@
-{ lib
-, config 
-, ... 
+{
+  lib,
+  config,
+  ...
 }:
 
 with lib;
 
 let
   cfg = config.module.services.unbound;
-in {
+in
+{
   options = {
     module.services.unbound = {
       enable = mkEnableOption "Enables unbound";
@@ -31,7 +33,7 @@ in {
         prefer-ip6 = "no";
         harden-glue = "yes";
         harden-dnssec-stripped = "yes";
-        use-caps-for-id  = "no";
+        use-caps-for-id = "no";
         edns-buffer-size = "1232";
         prefetch = "yes";
         num-threads = "1";
@@ -55,4 +57,3 @@ in {
     };
   };
 }
-
