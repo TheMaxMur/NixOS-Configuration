@@ -43,7 +43,10 @@
     };
 
     services = {
-      proxmox-ve.enable = true;
+      proxmox-ve = {
+        enable = true;
+        ipAddress = config.module.defaults.network.ip;
+      };
 
       ssh = {
         enable = true;
