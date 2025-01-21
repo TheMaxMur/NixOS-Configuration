@@ -1,11 +1,9 @@
-{ self
-, lib
-, ...
+{
+  self,
+  allDirs,
+  ...
 }:
 
 {
-  imports = builtins.filter (module: lib.pathIsDirectory module) (
-    map (module: "${self}/modules/${module}") (builtins.attrNames (builtins.readDir "${self}/modules"))
-  );
+  imports = allDirs "${self}/modules";
 }
-

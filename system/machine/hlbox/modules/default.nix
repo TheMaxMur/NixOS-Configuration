@@ -1,14 +1,13 @@
-{ self
-, machineDir
-, lib
-, ...
+{
+  self,
+  machineDir,
+  allDirs,
+  ...
 }:
 
 let
   modules = "${self}/system/machine/${machineDir}/modules";
-in {
-  imports = builtins.filter (module: lib.pathIsDirectory module) (
-    map (module: "${modules}/${module}") (builtins.attrNames (builtins.readDir modules))
-  );
+in
+{
+  imports = allDirs modules;
 }
-

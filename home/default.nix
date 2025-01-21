@@ -12,6 +12,7 @@
   swayEnable ? false,
   hyprlandEnable ? false,
   wmEnable ? false,
+  allDirs,
   ...
 }:
 
@@ -47,6 +48,7 @@ in
       inherit
         inputs
         self
+        allDirs
         hostname
         username
         platform

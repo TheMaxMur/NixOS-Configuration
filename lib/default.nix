@@ -6,6 +6,12 @@
 let
   defaultStateVersion = "24.11";
 
+  allDirs =
+    dirName:
+    builtins.filter (
+      module: ((builtins.pathExists module) && ((builtins.readFileType module) == "directory"))
+    ) (map (module: "${dirName}/${module}") (builtins.attrNames (builtins.readDir dirName)));
+
   # Helper function for generating host configs
   mkHost = machineDir:
     { username ? "user"
@@ -25,6 +31,7 @@ let
         inherit 
           inputs
           self
+          allDirs
           hostname
           username
           stateVersion
@@ -75,6 +82,7 @@ let
         inherit 
           inputs
           self
+          allDirs
           hostname
           username
           platform

@@ -2,6 +2,7 @@
   self,
   machineDir,
   pkgs,
+  allDirs,
   ...
 }:
 
@@ -9,6 +10,7 @@ let
   machineHardwareModulesPath = "${self}/system/machine/${machineDir}/modules/hardware";
 in
 {
+  imports = allDirs machineHardwareModulesPath;
 
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
