@@ -29,6 +29,14 @@
       stateVersion = "25.05";
       isWorkstation = false;
     };
+
+    p8box = {
+      username = "maxmur";
+      platform = "x86_64-linux";
+      stateVersion = "25.05";
+      isWorkstation = true;
+      wm = "sway";
+    };
   };
 
   darwin = {
