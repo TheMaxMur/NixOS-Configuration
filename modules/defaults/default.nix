@@ -26,10 +26,11 @@ in
       type = types.enum [
         "wofi"
         "rofi"
+        "rofi-wayland"
         "fuzzel"
       ];
 
-      default = "wofi";
+      default = "rofi-wayland";
     };
 
     browser = mkOption {
