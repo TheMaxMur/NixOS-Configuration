@@ -103,6 +103,11 @@
       url = "github:SaumonNet/proxmox-nixos";
     };
 
+    nvf = {
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Security
     sops-nix = {
       url = "github:Mic92/sops-nix";
