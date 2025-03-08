@@ -17,6 +17,7 @@ in
     terminal = mkOption {
       type = enum [
         "foot"
+        "foot-client"
         "alacritty"
       ];
 
@@ -45,13 +46,20 @@ in
     };
 
     # Defaults cmds
-    terminalCmd = mkOption {
-      type = types.str;
-      default = "${pkgs.${cfg.terminal}}/bin/${cfg.terminal}";
-    };
+    terminalCmd =
+      let
+        terminalExecs = {
+          foot = "${pkgs.foot}/bin/foot";
+          foot-client = "${pkgs.foot}/bin/footclient";
+          alacritty = "${pkgs.alacritty}/bin/alacritty";
+        };
+      in
+      mkOption {
+        type = str;
+        default = terminalExecs.${cfg.terminal};
+      };
 
     browserCmd =
-
       let
         browserExecs = {
           librewolf = "${pkgs.librewolf}/bin/librewolf";
