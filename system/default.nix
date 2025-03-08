@@ -10,6 +10,8 @@
 }:
 
 let
+  inherit (lib) optional;
+
   machineConfigurationPath = "${self}/system/machine/${machineDir}";
   machineConfigurationPathExist = builtins.pathExists machineConfigurationPath;
   machineModulesPath = "${self}/system/machine/${machineDir}/modules";
@@ -22,8 +24,8 @@ in
       "${self}/overlays/nixpkgs"
       "${self}/system/${hostType}/modules"
     ]
-    ++ lib.optional machineConfigurationPathExist machineConfigurationPath
-    ++ lib.optional machineModulesPathExist machineModulesPath;
+    ++ optional machineConfigurationPathExist machineConfigurationPath
+    ++ optional machineModulesPathExist machineModulesPath;
 
   module.nix-config.enable = true;
   system = { inherit stateVersion; };

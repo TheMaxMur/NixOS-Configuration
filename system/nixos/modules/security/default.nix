@@ -4,9 +4,10 @@
   ...
 }:
 
-with lib;
-
 let
+  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) optionals optionalAttrs;
+
   cfg = config.module.security;
 in
 {

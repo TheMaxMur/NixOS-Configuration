@@ -7,9 +7,9 @@
   ...
 }:
 
-with lib;
-
 let
+  inherit (lib) mkEnableOption mkIf mkAfter;
+
   cfg = config.module.waybar;
 in
 {

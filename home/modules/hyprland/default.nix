@@ -7,9 +7,14 @@
   ...
 }:
 
-with lib;
-
 let
+  inherit (lib)
+    mkEnableOption
+    mkDefault
+    mkBefore
+    mkIf
+    ;
+
   cfg = config.module.hyprland;
 in
 {
@@ -35,7 +40,7 @@ in
 
       systemd = {
         enable = true;
-        extraCommands = lib.mkBefore [
+        extraCommands = mkBefore [
           "systemctl --user stop graphical-session.target"
           "systemctl --user start hyprland-session.target"
         ];

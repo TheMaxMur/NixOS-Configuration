@@ -5,16 +5,17 @@
   ...
 }:
 
-with lib;
-
 let
+  inherit (lib) mkOption;
+  inherit (lib.types) enum str listOf;
+
   cfg = config.module.defaults;
 in
 {
   options.module.defaults = {
     # Defaults
     terminal = mkOption {
-      type = types.enum [
+      type = enum [
         "foot"
         "alacritty"
       ];
@@ -23,7 +24,7 @@ in
     };
 
     appLauncher = mkOption {
-      type = types.enum [
+      type = enum [
         "wofi"
         "rofi"
         "rofi-wayland"
@@ -34,7 +35,7 @@ in
     };
 
     browser = mkOption {
-      type = types.enum [
+      type = enum [
         "librewolf"
         "firefox"
         "chromium"
@@ -59,7 +60,7 @@ in
         };
       in
       mkOption {
-        type = types.str;
+        type = str;
         default = browserExecs.${cfg.browser};
       };
 
@@ -73,17 +74,17 @@ in
         };
       in
       mkOption {
-        type = types.str;
+        type = str;
         default = appLauncherExecs.${cfg.appLauncher};
       };
 
     audioControlCmd = mkOption {
-      type = types.str;
+      type = str;
       default = "${pkgs.pulseaudio}/bin/pactl";
     };
 
     brightnessControlCmd = mkOption {
-      type = types.str;
+      type = str;
       default = "${pkgs.brightnessctl}/bin/brightnessctl";
     };
 
@@ -93,40 +94,40 @@ in
     };
 
     notificationsAppCmd = mkOption {
-      type = types.str;
+      type = str;
       default = "${pkgs.swaynotificationcenter}/bin/swaync-client -t -sw";
     };
 
     ssh = {
       pubKeys = mkOption {
-        type = types.listOf types.str;
+        type = listOf str;
         default = [ ];
       };
     };
 
     network = {
       iface = mkOption {
-        type = types.str;
+        type = str;
         default = "";
       };
 
       ip = mkOption {
-        type = types.str;
+        type = str;
         default = "";
       };
 
       gw = mkOption {
-        type = types.str;
+        type = str;
         default = "";
       };
 
       mask = mkOption {
-        type = types.str;
+        type = str;
         default = "";
       };
 
       cidr = mkOption {
-        type = types.str;
+        type = str;
         default = "";
       };
     };

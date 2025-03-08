@@ -8,10 +8,10 @@
   ...
 }:
 
-with lib;
-
 let
+  inherit (lib) mkEnableOption mkIf optionals;
   inherit (pkgs.stdenv) isLinux;
+
   cfg = config.module.user.packages;
 in
 {
@@ -39,7 +39,7 @@ in
         age
         sops
       ]
-      ++ lib.optionals isWorkstation [
+      ++ optionals isWorkstation [
         # Text Editors
         obsidian
 
@@ -49,7 +49,7 @@ in
         nerd-fonts.iosevka
         corefonts
       ]
-      ++ lib.optionals (isLinux && isWorkstation) [
+      ++ optionals (isLinux && isWorkstation) [
         inputs.ghostty.packages.x86_64-linux.default
         # Programming
         go
@@ -78,7 +78,7 @@ in
         vlc
         eog
       ]
-      ++ lib.optionals wmEnable [
+      ++ optionals wmEnable [
         imagemagick
         grim
         slurp

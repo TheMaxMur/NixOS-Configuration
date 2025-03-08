@@ -6,9 +6,9 @@
   ...
 }:
 
-with lib;
-
 let
+  inherit (lib) mkEnableOption mkIf;
+
   cfg = config.module.neofetch;
 in
 {

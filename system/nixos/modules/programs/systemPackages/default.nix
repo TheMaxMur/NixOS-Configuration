@@ -6,9 +6,10 @@
   ...
 }:
 
-with lib;
-
 let
+  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) optionals;
+
   cfg = config.module.programs.systemPackages;
 in
 {

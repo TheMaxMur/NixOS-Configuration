@@ -4,9 +4,10 @@
   ...
 }:
 
-with lib;
-
 let
+  inherit (lib) mkEnableOption mkIf mkOption;
+  inherit (lib.types) str;
+
   cfg = config.module.services.proxmox-ve;
 in
 {
@@ -14,7 +15,7 @@ in
     enable = mkEnableOption "Enable module proxmox-ve";
 
     ipAddress = mkOption {
-      type = types.str;
+      type = str;
       default = "";
       description = "IP address for proxmox";
     };

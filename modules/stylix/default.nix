@@ -7,9 +7,11 @@
   ...
 }:
 
-with lib;
-
 let
+  inherit (lib) mkEnableOption mkOption mkIf;
+  inherit (lib) optionalAttrs;
+  inherit (lib.types) bool;
+
   cfg = config.module.stylix;
 
   theme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
@@ -22,7 +24,7 @@ in
       enable = mkEnableOption "Enables stylix";
 
       useCursor = mkOption {
-        type = types.bool;
+        type = bool;
         default = true;
         description = "Enable cursor settings";
       };

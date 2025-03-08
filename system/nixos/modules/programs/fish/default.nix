@@ -4,9 +4,9 @@
   ...
 }:
 
-with lib;
-
 let
+  inherit (lib) mkEnableOption mkIf;
+
   cfg = config.module.programs.fish;
 in
 {

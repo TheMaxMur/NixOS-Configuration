@@ -6,9 +6,10 @@
   ...
 }:
 
-with lib;
-
 let
+  inherit (lib) mkEnableOption mkIf;
+  inherit (lib.generators) mkLuaInline;
+
   cfg = config.module.nvim;
 in
 {
@@ -237,7 +238,7 @@ in
                   number = false;
                   float = {
                     enable = true;
-                    open_win_config = lib.generators.mkLuaInline ''
+                    open_win_config = mkLuaInline ''
                       function()
                         local screen_w = vim.opt.columns:get()
                         local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
@@ -259,7 +260,7 @@ in
                     '';
                   };
 
-                  width = lib.generators.mkLuaInline ''
+                  width = mkLuaInline ''
                     function()
                       return math.floor(vim.opt.columns:get() * 0.5)
                     end
@@ -323,16 +324,16 @@ in
 
               setupOpts = {
                 auto_session_enabled = true;
-                auto_session_root_dir = lib.generators.mkLuaInline ''
+                auto_session_root_dir = mkLuaInline ''
                   vim.fn.stdpath("data") .. "/sessions/"
                 '';
-                pre_save_cmds = lib.generators.mkLuaInline ''
+                pre_save_cmds = mkLuaInline ''
                   { close_floating_windows, close_toggleterm, "NvimTreeClose" }
                 '';
-                post_restore_cmds = lib.generators.mkLuaInline ''
+                post_restore_cmds = mkLuaInline ''
                   { clear_jumps, "NvimTreeOpen" }
                 '';
-                save_extra_cmds = lib.generators.mkLuaInline ''
+                save_extra_cmds = mkLuaInline ''
                   { "NvimTreeOpen" }
                 '';
               };

@@ -9,9 +9,10 @@
   ...
 }:
 
-with lib;
-
 let
+  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) optionals;
+
   cfg = config.module.hypridle;
 
   suspendCmd = "${pkgs.systemd}/bin/systemctl suspend";
@@ -79,14 +80,14 @@ in
               on-resume = "";
             }
           ]
-          ++ lib.optionals (hostname == "nbox") [
+          ++ optionals (hostname == "nbox") [
             {
               timeout = 900;
               on-timeout = suspendCmd;
               on-resume = "";
             }
           ]
-          ++ lib.optionals (hostname == "pcbox") [
+          ++ optionals (hostname == "pcbox") [
             {
               timeout = 7200;
               on-timeout = suspendCmd;

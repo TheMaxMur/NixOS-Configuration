@@ -6,9 +6,10 @@
   ...
 }:
 
-with lib;
-
 let
+  inherit (lib) mkEnableOption mkOption mkIf;
+  inherit (lib.types) bool;
+
   cfg = config.module.nix-config;
 in
 {
@@ -17,7 +18,7 @@ in
       enable = mkEnableOption "Enables nix-config";
 
       useNixPackageManagerConfig = mkOption {
-        type = types.bool;
+        type = bool;
         description = "Whether to use custom Nix package manager settings.";
         default = true;
       };

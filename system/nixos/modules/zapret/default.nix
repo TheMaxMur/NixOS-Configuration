@@ -5,9 +5,10 @@
   ...
 }:
 
-with lib;
-
 let
+  inherit (lib) mkEnableOption mkIf mkOption;
+  inherit (lib.types) str int;
+
   cfg = config.module.zapret;
 in
 {
@@ -16,13 +17,13 @@ in
       enable = mkEnableOption "Enables zapret";
 
       wan = mkOption {
-        type = types.str;
+        type = str;
         default = "eth0";
         description = "";
       };
 
       qnum = mkOption {
-        type = types.int;
+        type = int;
         default = 200;
         description = "";
       };

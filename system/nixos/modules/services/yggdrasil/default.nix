@@ -4,9 +4,9 @@
   ...
 }:
 
-with lib;
-
 let
+  inherit (lib) mkEnableOption mkIf;
+
   cfg = config.module.services.yggdrasil;
 in
 {

@@ -5,9 +5,14 @@
   ...
 }:
 
-with lib;
-
 let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkDefault
+    mkForce
+    ;
+
   cfg = config.module.network;
 in
 {

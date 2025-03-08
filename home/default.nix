@@ -19,6 +19,7 @@
 let
   inherit (pkgs.stdenv) isDarwin;
   inherit (pkgs.stdenv) isLinux;
+  inherit (lib) optional;
 
   stateVersion = hmStateVersion;
   isRoot = username == "root";
@@ -73,11 +74,10 @@ in
           "${self}/modules"
           "${self}/home/modules"
         ]
-        ++ lib.optional sshModuleExistPath sshModulePath
-        ++ lib.optional userConfigurationPathExist userConfigurationPath
-        ++ lib.optional userModulesPathExist userModulesPath;
-
       nixpkgs.overlays = [ inputs.nur.overlay ];
+        ++ optional sshModuleExistPath sshModulePath
+        ++ optional userConfigurationPathExist userConfigurationPath
+        ++ optional userModulesPathExist userModulesPath;
 
       home = {
         inherit username;
