@@ -31,7 +31,6 @@ in
           withRuby = false;
 
           enableLuaLoader = true;
-          enableEditorconfig = true;
           useSystemClipboard = true;
           hideSearchHighlight = true;
           searchCase = "smart";
@@ -54,6 +53,7 @@ in
 
           globals = {
             mapleader = ",";
+            editorconfig = true;
           };
 
           keymaps = [
@@ -144,18 +144,30 @@ in
             enableTreesitter = true;
             enableExtraDiagnostics = true;
 
-            rust.enable = true;
-            nix.enable = true;
-            sql.enable = true;
+            bash.enable = true;
             clang.enable = true;
-            ts.enable = true;
-            python.enable = true;
-            zig.enable = true;
-            markdown.enable = true;
-            html.enable = true;
+            css.enable = true;
             dart.enable = true;
             go.enable = true;
+            haskell.enable = true;
+            hcl.enable = true;
+            html.enable = true;
+            java.enable = true;
+            kotlin.enable = true;
             lua.enable = true;
+            markdown.enable = true;
+            nim.enable = true;
+            nix.enable = true;
+            python.enable = true;
+            ruby.enable = true;
+            rust.enable = true;
+            scala.enable = true;
+            sql.enable = true;
+            typst.enable = true;
+            ts.enable = true;
+            terraform.enable = true;
+            yaml.enable = true;
+            zig.enable = true;
           };
 
           theme = {
@@ -174,9 +186,20 @@ in
 
           spellcheck = {
             enable = true;
-            languages = [ "en" ];
+            languages = [
+              "en"
+              "ru"
+            ];
           };
-          
+
+          terminal.toggleterm = {
+            enable = true;
+
+            setupOpts = {
+              direction = "float";
+            };
+          };
+
           utility = {
             preview.markdownPreview = {
               enable = true;
@@ -227,12 +250,13 @@ in
               setupOpts = {
                 sync_root_with_cwd = true;
                 respect_buf_cwd = true;
+                sort_by = "case_sensitive";
+                git.enable = true;
+
                 update_focused_file = {
                   enable = true;
                   update_root = true;
                 };
-
-                sort_by = "case_sensitive";
 
                 view = {
                   number = false;
