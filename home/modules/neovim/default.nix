@@ -3,6 +3,7 @@
   lib,
   config,
   pkgs,
+  theme,
   ...
 }:
 
@@ -172,7 +173,8 @@ in
 
           theme = {
             enable = true;
-            name = "nord";
+            name = theme;
+            style = "dark";
           };
 
           notify.nvim-notify = {

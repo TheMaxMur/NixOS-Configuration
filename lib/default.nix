@@ -29,6 +29,7 @@ let
       hostname ? machineDir,
       isWorkstation ? false,
       wm ? null,
+      theme ? "nord",
       hostType ? "nixos",
     }:
     let
@@ -50,6 +51,7 @@ let
           machineDir
           isWorkstation
           wm
+          theme
           hyprlandEnable
           swayEnable
           wmEnable
@@ -67,7 +69,6 @@ let
           lanzaboote.nixosModules.lanzaboote
           chaotic.nixosModules.default
           nix-topology.nixosModules.default
-          nur.modules.nixos.default
           proxmox-nixos.nixosModules.proxmox-ve
           sops-nix.nixosModules.sops
           nur.modules.nixos.default
@@ -86,6 +87,7 @@ let
       platform ? "aarch64-darwin",
       isWorkstation ? false,
       wm ? null,
+      theme ? "nord",
       hostType ? "darwin",
     }:
     let
@@ -107,6 +109,7 @@ let
           stateVersion
           hmStateVersion
           wm
+          theme
           hyprlandEnable
           swayEnable
           wmEnable

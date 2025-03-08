@@ -9,6 +9,7 @@
   hmStateVersion,
   isWorkstation ? false,
   wm ? "",
+  theme,
   swayEnable ? false,
   hyprlandEnable ? false,
   wmEnable ? false,
@@ -57,6 +58,7 @@ in
         isLinux
         isWorkstation
         wm
+        theme
         swayEnable
         hyprlandEnable
         wmEnable
