@@ -85,10 +85,10 @@ in
 
         # Change focus
         # Vim like
-        "${super}+h" = "focus left";
-        "${super}+j" = "focus down";
-        "${super}+k" = "focus up";
-        "${super}+l" = "focus right";
+        "${super}+j" = "focus left";
+        "${super}+k" = "focus down";
+        "${super}+l" = "focus up";
+        "${super}+apostrophe" = "focus right";
 
         # With arrows
         "${super}+Left" = "focus left";
@@ -98,10 +98,10 @@ in
 
         # Move focused window
         # Vim like
-        "${super}+Shift+h" = "move left";
-        "${super}+Shift+j" = "move down";
-        "${super}+Shift+k" = "move up";
-        "${super}+Shift+l" = "move right";
+        "${super}+Shift+j" = "move left";
+        "${super}+Shift+k" = "move down";
+        "${super}+Shift+l" = "move up";
+        "${super}+Shift+apostrophe" = "move right";
 
         # With arrows
         "${super}+Shift+Left" = "move left";
@@ -134,7 +134,7 @@ in
         "${super}+f" = "fullscreen";
 
         # Float mode
-        "${super}+Space" = "floating toggle";
+        "${super}+Shift+f" = "floating toggle";
 
         # Resize mode
         "${super}+r" = "mode resize";
