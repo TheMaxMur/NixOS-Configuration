@@ -2,11 +2,8 @@
   self,
   allDirs,
   ...
-}:
-
-let
+}: let
   hostServicesModulesPath = "${self}/system/nixos/modules/services";
-in
-{
+in {
   imports = allDirs hostServicesModulesPath;
 }

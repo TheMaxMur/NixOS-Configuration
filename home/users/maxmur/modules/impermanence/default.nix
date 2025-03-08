@@ -3,14 +3,11 @@
   config,
   username,
   ...
-}:
+}: let
+  inherit (lib) mkEnableOption mkIf;
 
-with lib;
-
-let
   cfg = config.module.user.impermanence;
-in
-{
+in {
   options = {
     module.user.impermanence.enable = mkEnableOption "Enables home impermanence";
   };
@@ -62,10 +59,13 @@ in
           ".config/syncthing"
           ".config/obs-studio"
           ".config/pulse"
+          ".config/Thunar"
+          ".config/vlc"
           ".local/share/chat.fluffy.fluffychat"
           ".local/share/zoxide"
           ".local/share/fish"
           ".local/share/nix"
+          ".local/share/nvf"
           ".local/share/containers"
           ".local/share/Trash"
           ".local/share/TelegramDesktop"

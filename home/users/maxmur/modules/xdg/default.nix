@@ -2,14 +2,11 @@
   config,
   lib,
   ...
-}:
+}: let
+  inherit (lib) mkEnableOption mkIf;
 
-with lib;
-
-let
   cfg = config.module.user.xdg;
-in
-{
+in {
   options = {
     module.user.xdg.enable = mkEnableOption "Enables xdg";
   };
@@ -32,7 +29,7 @@ in
         "image/jpeg" = "org.gnome.eog.desktop";
         "image/jpg" = "org.gnome.eog.desktop";
 
-        "application/pdf" = "org.pwmt.zathura.desktop";
+        "application/pdf" = "org.pwmt.zathura-pdf-mupdf.desktop";
       };
     };
   };

@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
+}: let
+  inherit (lib) mkEnableOption mkIf;
 
-with lib;
-
-let
   cfg = config.module.locales;
-in
-{
+in {
   options = {
     module.locales.enable = mkEnableOption "Enables locales";
   };
@@ -18,7 +15,7 @@ in
     # Locale settings
     i18n = {
       defaultLocale = "en_US.UTF-8";
-      supportedLocales = [ "all" ];
+      supportedLocales = ["all"];
     };
   };
 }

@@ -3,14 +3,11 @@
   pkgs,
   config,
   ...
-}:
+}: let
+  inherit (lib) mkEnableOption mkIf;
 
-with lib;
-
-let
   cfg = config.module.services.qmk;
-in
-{
+in {
   options = {
     module.services.qmk.enable = mkEnableOption "Enables qmk";
   };

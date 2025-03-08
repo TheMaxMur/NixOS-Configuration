@@ -5,14 +5,17 @@
   lib,
   pkgs,
   ...
-}:
+}: let
+  inherit
+    (lib)
+    mkEnableOption
+    mkDefault
+    mkBefore
+    mkIf
+    ;
 
-with lib;
-
-let
   cfg = config.module.hyprland;
-in
-{
+in {
   imports = [
     "${self}/home/modules/hyprland/binds"
     "${self}/home/modules/hyprland/monitors"
@@ -35,7 +38,7 @@ in
 
       systemd = {
         enable = true;
-        extraCommands = lib.mkBefore [
+        extraCommands = mkBefore [
           "systemctl --user stop graphical-session.target"
           "systemctl --user start hyprland-session.target"
         ];

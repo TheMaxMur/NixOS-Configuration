@@ -4,11 +4,9 @@
   lib,
   pkgs,
   ...
-}:
+}: let
+  inherit (lib) mkEnableOption mkIf;
 
-with lib;
-
-let
   cfg = config.module.hyprland.binds;
 
   terminal = config.module.defaults.terminalCmd;
@@ -20,8 +18,7 @@ let
 
   screenshotArea = "${pkgs.grimblast}/bin/grimblast --notify --freeze copy area";
   screenshotScreen = "${pkgs.grimblast}/bin/grimblast --notify --freeze copy output";
-in
-{
+in {
   options = {
     module.hyprland.binds.enable = mkEnableOption "Enables binds in Hyprland";
   };
@@ -80,7 +77,7 @@ in
         # Compositor commands
         "SUPER, Q, killactive"
         "SUPER, F, fullscreen, 1"
-        "SUPER, Space, togglefloating"
+        "SUPERSHIFT, F, togglefloating"
 
         # Grouped (tabbed) windows
         "SUPER, G, togglegroup"
@@ -152,26 +149,21 @@ in
       ];
 
       # layer rules
-      layerrule =
-        let
-          toRegex =
-            list:
-            let
-              elements = lib.concatStringsSep "|" list;
-            in
-            "^(${elements})$";
+      layerrule = let
+        toRegex = list: let
+          elements = lib.concatStringsSep "|" list;
+        in "^(${elements})$";
 
-          layers = [
-            "gtk-layer-shell"
-            "swaync-control-center"
-            "swaync-notification-window"
-            "waybar"
-          ];
-        in
-        [
-          "blur, ${toRegex layers}"
-          "ignorealpha 0.5, ${toRegex layers}"
+        layers = [
+          "gtk-layer-shell"
+          "swaync-control-center"
+          "swaync-notification-window"
+          "waybar"
         ];
+      in [
+        "blur, ${toRegex layers}"
+        "ignorealpha 0.5, ${toRegex layers}"
+      ];
 
       # Window rules
       windowrulev2 = [

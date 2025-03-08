@@ -2,9 +2,7 @@
   inputs,
   self,
   ...
-}:
-
-{
+}: {
   imports = [
     inputs.nix-topology.flakeModule
     ./timeweb
@@ -15,14 +13,13 @@
     # For nix topology
     topology.modules = [
       (
-        { config, ... }:
-        let
-          inherit (config.lib.topology)
+        {config, ...}: let
+          inherit
+            (config.lib.topology)
             mkInternet
             mkConnection
             ;
-        in
-        {
+        in {
           inherit (self) nixosConfigurations;
 
           nodes.internet = mkInternet {

@@ -3,11 +3,8 @@
   machineDir,
   allDirs,
   ...
-}:
-
-let
+}: let
   modules = "${self}/system/machine/${machineDir}/modules";
-in
-{
+in {
   imports = allDirs modules;
 }

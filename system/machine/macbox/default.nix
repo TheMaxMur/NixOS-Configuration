@@ -3,9 +3,7 @@
   pkgs,
   username,
   ...
-}:
-
-{
+}: {
   module = {
     stylix = {
       enable = true;

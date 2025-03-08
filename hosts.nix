@@ -6,6 +6,7 @@
       stateVersion = "25.05";
       isWorkstation = true;
       wm = "sway";
+      theme = "nord";
     };
 
     nbox = {
@@ -14,6 +15,7 @@
       stateVersion = "25.05";
       isWorkstation = true;
       wm = "sway";
+      theme = "nord";
     };
 
     rasp = {
@@ -21,6 +23,7 @@
       platform = "aarch64-linux";
       stateVersion = "25.05";
       isWorkstation = false;
+      theme = "nord";
     };
 
     hlbox = {
@@ -28,6 +31,7 @@
       platform = "x86_64-linux";
       stateVersion = "25.05";
       isWorkstation = false;
+      theme = "nord";
     };
 
     p8box = {
@@ -36,6 +40,7 @@
       stateVersion = "25.05";
       isWorkstation = true;
       wm = "sway";
+      theme = "nord";
     };
   };
 
@@ -45,6 +50,7 @@
       platform = "aarch64-darwin";
       stateVersion = 5;
       isWorkstation = true;
+      theme = "nord";
     };
   };
 }

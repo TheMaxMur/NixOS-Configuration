@@ -1,5 +1,4 @@
 local autocmd = vim.api.nvim_create_autocmd
-
 local function check_git_repo()
 	local cmd = "git rev-parse --is-inside-work-tree"
 	if vim.fn.system(cmd) == "true\n" then

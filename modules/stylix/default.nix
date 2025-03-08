@@ -4,25 +4,58 @@
   self,
   config,
   hostname,
+  theme,
   ...
-}:
+}: let
+  inherit (lib) mkEnableOption mkOption mkIf;
+  inherit (lib) optionalAttrs;
+  inherit (lib.types) bool;
 
-with lib;
-
-let
   cfg = config.module.stylix;
 
-  theme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
-  wallpaper = "${self}/assets/grey_gradient.png";
-  cursorSize = if hostname == "nbox" then 24 else 14;
-in
-{
+  cursorSize =
+    if hostname == "nbox"
+    then 24
+    else 14;
+
+  themes = {
+    nord = {
+      scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
+      wallpaper = "${self}/assets/grey_gradient.png";
+
+      font = {
+        package = pkgs.nerd-fonts.iosevka;
+        name = "Iosevka Nerd Font Mono";
+      };
+
+      cursor = {
+        name = "Vimix-cursors";
+        package = pkgs.vimix-cursors;
+      };
+    };
+
+    gruvbox = {
+      scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-medium.yaml";
+      wallpaper = "${self}/assets/grey_gradient.png";
+
+      font = {
+        package = pkgs.nerd-fonts.jetbrains-mono;
+        name = "JetBrains Mono Nerd Font";
+      };
+
+      cursor = {
+        package = pkgs.material-cursors;
+        name = "material_dark_cursors";
+      };
+    };
+  };
+in {
   options = {
     module.stylix = {
       enable = mkEnableOption "Enables stylix";
 
       useCursor = mkOption {
-        type = types.bool;
+        type = bool;
         default = true;
         description = "Enable cursor settings";
       };
@@ -33,11 +66,10 @@ in
     stylix =
       {
         enable = true;
-        image = wallpaper;
+        image = themes.${theme}.wallpaper;
         autoEnable = true;
         polarity = "dark";
-
-        base16Scheme = theme;
+        base16Scheme = themes.${theme}.scheme;
 
         opacity = {
           applications = 1.0;
@@ -55,24 +87,17 @@ in
           };
 
           serif = {
-            package = pkgs.nerd-fonts.iosevka;
-            name = "Iosevka Nerd Font Mono";
+            inherit (themes.${theme}.font) package name;
           };
 
           sansSerif = config.stylix.fonts.serif;
-
-          monospace = {
-            inherit (config.stylix.fonts.serif) package;
-            name = "Iosevka Nerd Font Mono";
-          };
-
+          monospace = config.stylix.fonts.serif;
           emoji = config.stylix.fonts.serif;
         };
       }
       // optionalAttrs cfg.useCursor {
         cursor = {
-          name = "Vimix-cursors";
-          package = pkgs.vimix-cursors;
+          inherit (themes.${theme}.cursor) package name;
           size = cursorSize;
         };
       };

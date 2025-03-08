@@ -1,22 +1,16 @@
-{
-  self,
-  ...
-}:
-
-{
+{self, ...}: {
   perSystem = _: {
     # For nix topology
     topology.modules = [
       (
-        { config, ... }:
-        let
-          inherit (config.lib.topology)
+        {config, ...}: let
+          inherit
+            (config.lib.topology)
             mkRouter
             mkDevice
             mkConnection
             ;
-        in
-        {
+        in {
           inherit (self) nixosConfigurations;
 
           networks = {
@@ -35,13 +29,13 @@
             timeweb-router = mkRouter "Timeweb router" {
               info = "Timeweb internal router";
               interfaceGroups = [
-                [ "eth1" ]
-                [ "wan1" ]
+                ["eth1"]
+                ["wan1"]
               ];
 
               interfaces = {
                 eth1 = {
-                  addresses = [ "10.20.0.1" ];
+                  addresses = ["10.20.0.1"];
                   network = "timeweb-private";
                 };
               };
@@ -61,12 +55,12 @@
 
               interfaces = {
                 eth0 = {
-                  addresses = [ "10.20.0.4" ];
+                  addresses = ["10.20.0.4"];
                   network = "timeweb-private";
                 };
 
                 wg0 = {
-                  addresses = [ "10.200.100.1" ];
+                  addresses = ["10.200.100.1"];
                   network = "wireguard-private";
                   renderer.hidePhysicalConnections = false;
                   virtual = true;
@@ -75,8 +69,8 @@
               };
 
               interfaceGroups = [
-                [ "eth0" ]
-                [ "wg0" ]
+                ["eth0"]
+                ["wg0"]
               ];
 
               services = {
@@ -102,13 +96,13 @@
 
               interfaces = {
                 eth0 = {
-                  addresses = [ "10.20.0.5" ];
+                  addresses = ["10.20.0.5"];
                   network = "timeweb-private";
                 };
               };
 
               interfaceGroups = [
-                [ "eth0" ]
+                ["eth0"]
               ];
 
               services = {

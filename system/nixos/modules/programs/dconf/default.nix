@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
+}: let
+  inherit (lib) mkEnableOption mkIf;
 
-with lib;
-
-let
   cfg = config.module.programs.dconf;
-in
-{
+in {
   options = {
     module.programs.dconf.enable = mkEnableOption "Enable dconf";
   };

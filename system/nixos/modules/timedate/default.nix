@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
+}: let
+  inherit (lib) mkEnableOption mkIf;
 
-with lib;
-
-let
   cfg = config.module.timedate;
-in
-{
+in {
   options = {
     module.timedate.enable = mkEnableOption "Enables timedate";
   };

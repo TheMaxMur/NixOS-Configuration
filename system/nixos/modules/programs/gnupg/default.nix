@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
+}: let
+  inherit (lib) mkEnableOption mkIf;
 
-with lib;
-
-let
   cfg = config.module.programs.gnupg;
-in
-{
+in {
   options = {
     module.programs.gnupg.enable = mkEnableOption "Enables GnuPG";
   };

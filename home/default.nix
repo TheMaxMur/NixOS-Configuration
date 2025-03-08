@@ -9,40 +9,38 @@
   hmStateVersion,
   isWorkstation ? false,
   wm ? "",
+  theme,
   swayEnable ? false,
   hyprlandEnable ? false,
   wmEnable ? false,
   allDirs,
   ...
-}:
-
-let
+}: let
   inherit (pkgs.stdenv) isDarwin;
   inherit (pkgs.stdenv) isLinux;
+  inherit (lib) optional;
 
   stateVersion = hmStateVersion;
   isRoot = username == "root";
   homeDirectory =
-    if isDarwin then
-      "/Users/${username}"
-    else if isRoot then
-      "/root"
-    else
-      "/home/${username}";
+    if isDarwin
+    then "/Users/${username}"
+    else if isRoot
+    then "/root"
+    else "/home/${username}";
   userConfigurationPath = "${self}/home/users/${username}";
   userConfigurationPathExist = builtins.pathExists userConfigurationPath;
   userModulesPath = "${self}/home/users/${username}/modules";
   userModulesPathExist = builtins.pathExists userModulesPath;
   sshModulePath = "${self}/home/modules/ssh";
   sshModuleExistPath = builtins.pathExists sshModulePath;
-in
-{
+in {
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
     backupFileExtension =
       "backup-"
-      + pkgs.lib.readFile "${pkgs.runCommand "timestamp" { } "echo -n `date '+%Y%m%d%H%M%S'` > $out"}";
+      + pkgs.lib.readFile "${pkgs.runCommand "timestamp" {} "echo -n `date '+%Y%m%d%H%M%S'` > $out"}";
 
     extraSpecialArgs = {
       inherit
@@ -56,6 +54,7 @@ in
         isLinux
         isWorkstation
         wm
+        theme
         swayEnable
         hyprlandEnable
         wmEnable
@@ -68,15 +67,14 @@ in
           inputs.impermanence.nixosModules.home-manager.impermanence
           inputs.sops-nix.homeManagerModules.sops
           inputs.nur.modules.homeManager.default
+          inputs.nvf.homeManagerModules.default
 
           "${self}/modules"
           "${self}/home/modules"
         ]
-        ++ lib.optional sshModuleExistPath sshModulePath
-        ++ lib.optional userConfigurationPathExist userConfigurationPath
-        ++ lib.optional userModulesPathExist userModulesPath;
-
-      nixpkgs.overlays = [ inputs.nur.overlay ];
+        ++ optional sshModuleExistPath sshModulePath
+        ++ optional userConfigurationPathExist userConfigurationPath
+        ++ optional userModulesPathExist userModulesPath;
 
       home = {
         inherit username;

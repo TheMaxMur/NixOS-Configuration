@@ -6,15 +6,12 @@
   isWorkstation,
   wmEnable,
   ...
-}:
-
-with lib;
-
-let
+}: let
+  inherit (lib) mkEnableOption mkIf optionals;
   inherit (pkgs.stdenv) isLinux;
+
   cfg = config.module.user.packages;
-in
-{
+in {
   options.module.user.packages = {
     enable = mkEnableOption "Enable user packages";
   };
@@ -22,8 +19,7 @@ in
   config = mkIf cfg.enable {
     fonts.fontconfig.enable = true;
 
-    home.packages =
-      with pkgs;
+    home.packages = with pkgs;
       [
         # Utils
         bat
@@ -39,7 +35,7 @@ in
         age
         sops
       ]
-      ++ lib.optionals isWorkstation [
+      ++ optionals isWorkstation [
         # Text Editors
         obsidian
 
@@ -49,7 +45,7 @@ in
         nerd-fonts.iosevka
         corefonts
       ]
-      ++ lib.optionals (isLinux && isWorkstation) [
+      ++ optionals (isLinux && isWorkstation) [
         inputs.ghostty.packages.x86_64-linux.default
         # Programming
         go
@@ -66,6 +62,7 @@ in
         telegram-desktop
         fluffychat
         vesktop
+        google-chrome
 
         # Office
         onlyoffice-bin
@@ -74,11 +71,12 @@ in
         obs-studio
         dconf2nix
         via
+        vial
         gat
         vlc
         eog
       ]
-      ++ lib.optionals wmEnable [
+      ++ optionals wmEnable [
         imagemagick
         grim
         slurp

@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
+}: let
+  inherit (lib) mkEnableOption mkIf;
 
-with lib;
-
-let
   cfg = config.module.boot;
-in
-{
+in {
   options = {
     module.boot = {
       enable = mkEnableOption "Enables Bootloader";

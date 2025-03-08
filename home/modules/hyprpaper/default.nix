@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
+}: let
+  inherit (lib) mkEnableOption mkIf;
 
-with lib;
-
-let
   cfg = config.module.hyprpaper;
-in
-{
+in {
   options = {
     module.hyprpaper.enable = mkEnableOption "Enables hyprpaper";
   };
@@ -19,8 +16,8 @@ in
       enable = true;
 
       settings = {
-        preload = [ "../../../assets/grey_gradient.png" ];
-        wallpapers = [ "../../../assets/grey_gradient.png" ];
+        preload = ["../../../assets/grey_gradient.png"];
+        wallpapers = ["../../../assets/grey_gradient.png"];
       };
     };
   };

@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
+}: let
+  inherit (lib) mkEnableOption mkIf mkDefault;
 
-with lib;
-
-let
   cfg = config.module.minimal;
-in
-{
+in {
   options = {
     module.minimal = {
       enable = mkEnableOption "Enables minimal";

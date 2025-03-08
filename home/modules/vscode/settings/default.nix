@@ -1,7 +1,5 @@
-_:
-
-{
-  programs.vscode.userSettings = {
+_: {
+  programs.vscode.profiles.default.userSettings = {
     "workbench.startupEditor" = "newUntitledFile";
     "workbench.colorCustomizations" = {
       "[Oceanic Next (dimmed bg)]" = {
@@ -9,11 +7,11 @@ _:
         "editor.background" = "#262626";
       };
     };
-    "editor.rulers" = [ 80 ];
+    "editor.rulers" = [80];
     "[dart]" = {
       "editor.formatOnSave" = true;
       "editor.formatOnType" = true;
-      "editor.rulers" = [ 80 ];
+      "editor.rulers" = [80];
       "editor.selectionHighlight" = false;
       "editor.suggest.snippetsPreventQuickSuggestions" = false;
       "editor.suggestSelection" = "first";

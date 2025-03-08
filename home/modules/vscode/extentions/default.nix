@@ -1,10 +1,5 @@
-{
-  pkgs,
-  ...
-}:
-
-{
-  programs.vscode.extensions = with pkgs.vscode-extensions; [
+{pkgs, ...}: {
+  programs.vscode.profiles.default.extensions = with pkgs.vscode-extensions; [
     # "13xforever".language-x86-64-assembly
     arcticicestudio.nord-visual-studio-code
     naumovs.theme-oceanicnext

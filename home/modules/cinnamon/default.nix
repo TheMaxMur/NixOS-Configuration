@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
+}: let
+  inherit (lib) mkEnableOption mkIf;
 
-with lib;
-
-let
   cfg = config.module.cinnamon;
-in
-{
+in {
   imports = [
     #    ./dconf2nix.nix
   ];

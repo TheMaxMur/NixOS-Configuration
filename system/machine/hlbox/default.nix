@@ -1,9 +1,4 @@
-{
-  config,
-  ...
-}:
-
-{
+{config, ...}: {
   module = {
     boot.enable = true;
     timedate.enable = true;
@@ -43,6 +38,8 @@
     };
 
     services = {
+      irqbalance.enable = true;
+
       proxmox-ve = {
         enable = true;
         ipAddress = config.module.defaults.network.ip;

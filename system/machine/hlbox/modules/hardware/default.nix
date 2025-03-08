@@ -3,11 +3,8 @@
   machineDir,
   allDirs,
   ...
-}:
-
-let
+}: let
   hardwareModulesPath = "${self}/system/machine/${machineDir}/modules/hardware";
-in
-{
+in {
   imports = allDirs hardwareModulesPath;
 }

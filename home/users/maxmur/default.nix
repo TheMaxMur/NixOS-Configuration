@@ -5,11 +5,7 @@
   swayEnable ? false,
   wmEnable ? false,
   ...
-}:
-
-{
-  nixpkgs.overlays = [ ];
-
+}: {
   stylix.targets = {
     vscode.enable = false;
     helix.enable = false;
@@ -23,7 +19,6 @@
     stylix.enable = isWorkstation;
 
     chromium.enable = isLinux && isWorkstation;
-    firefox.enable = isLinux && isWorkstation;
     librewolf.enable = isLinux && isWorkstation;
     thunderbird.enable = isLinux && isWorkstation;
     foot.enable = isLinux && isWorkstation;
@@ -62,6 +57,7 @@
       xdg.enable = isLinux && isWorkstation;
 
       packages.enable = true;
+      variables.enable = true;
     };
   };
 }

@@ -2,19 +2,17 @@
   config,
   lib,
   ...
-}:
+}: let
+  inherit (lib) mkEnableOption mkIf mkOption;
+  inherit (lib.types) str;
 
-with lib;
-
-let
   cfg = config.module.services.proxmox-ve;
-in
-{
+in {
   options.module.services.proxmox-ve = {
     enable = mkEnableOption "Enable module proxmox-ve";
 
     ipAddress = mkOption {
-      type = types.str;
+      type = str;
       default = "";
       description = "IP address for proxmox";
     };

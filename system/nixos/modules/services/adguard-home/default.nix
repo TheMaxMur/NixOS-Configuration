@@ -2,31 +2,29 @@
   lib,
   config,
   ...
-}:
+}: let
+  inherit (lib) mkEnableOption mkIf mkOption;
+  inherit (lib.types) str listOf attrs;
 
-with lib;
-
-let
   cfg = config.module.services.adguard-home;
-in
-{
+in {
   options = {
     module.services.adguard-home = {
       enable = mkEnableOption "Enables adguard-home";
 
       httpAddress = mkOption {
-        type = types.str;
+        type = str;
         default = "0.0.0.0";
       };
 
       bindHosts = mkOption {
-        type = types.listOf types.str;
-        default = [ "0.0.0.0" ];
+        type = listOf str;
+        default = ["0.0.0.0"];
       };
 
       dnsRewrites = mkOption {
-        type = types.listOf types.attrs;
-        default = [ ];
+        type = listOf attrs;
+        default = [];
       };
     };
   };

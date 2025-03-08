@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
+}: let
+  inherit (lib) mkEnableOption mkIf;
 
-with lib;
-
-let
   cfg = config.module.programs.kdeconnect;
-in
-{
+in {
   options = {
     module.programs.kdeconnect.enable = mkEnableOption "Enable kdeconnect";
   };

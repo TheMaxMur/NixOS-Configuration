@@ -7,26 +7,25 @@
   platform ? null,
   stateVersion ? null,
   ...
-}:
+}: let
+  inherit (lib) optional;
 
-let
   machineConfigurationPath = "${self}/system/machine/${machineDir}";
   machineConfigurationPathExist = builtins.pathExists machineConfigurationPath;
   machineModulesPath = "${self}/system/machine/${machineDir}/modules";
   machineModulesPathExist = builtins.pathExists machineModulesPath;
-in
-{
+in {
   imports =
     [
       "${self}/modules"
       "${self}/overlays/nixpkgs"
       "${self}/system/${hostType}/modules"
     ]
-    ++ lib.optional machineConfigurationPathExist machineConfigurationPath
-    ++ lib.optional machineModulesPathExist machineModulesPath;
+    ++ optional machineConfigurationPathExist machineConfigurationPath
+    ++ optional machineModulesPathExist machineModulesPath;
 
   module.nix-config.enable = true;
-  system = { inherit stateVersion; };
+  system = {inherit stateVersion;};
 
   nixpkgs = {
     hostPlatform = platform;
@@ -34,6 +33,7 @@ in
     overlays = [
       inputs.nix-topology.overlays.default
       inputs.proxmox-nixos.overlays.${platform}
+      inputs.nur.overlays.default
     ];
   };
 }

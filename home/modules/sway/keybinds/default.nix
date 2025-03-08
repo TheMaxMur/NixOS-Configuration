@@ -3,11 +3,9 @@
   lib,
   pkgs,
   ...
-}:
+}: let
+  inherit (lib) mkEnableOption mkIf;
 
-with lib;
-
-let
   cfg = config.module.sway.keybindings;
   super = "Mod4";
 
@@ -39,7 +37,7 @@ let
 
     op=$(echo -e " Poweroff\n Reboot\n Suspend\n Lock\n Logout" | ${pkgs.rofi-wayland}/bin/rofi -i -dmenu | ${pkgs.gawk}/bin/awk '{print tolower($2)}')
 
-    case $op in 
+    case $op in
       poweroff)
         ;&
       reboot)
@@ -55,8 +53,7 @@ let
         ;;
     esac
   '';
-in
-{
+in {
   options.module.sway.keybindings = {
     enable = mkEnableOption "Enable sway keybindings";
   };
@@ -68,9 +65,9 @@ in
       bindkeysToCode = true;
 
       assigns = {
-        "2" = [ { app_id = "org.telegram.desktop"; } ];
-        "4" = [ { app_id = "obsidian"; } ];
-        "8" = [ { app_id = "vesktop"; } ];
+        "2" = [{app_id = "org.telegram.desktop";}];
+        "4" = [{app_id = "obsidian";}];
+        "8" = [{app_id = "vesktop";}];
       };
 
       keybindings = {
@@ -85,10 +82,10 @@ in
 
         # Change focus
         # Vim like
-        "${super}+h" = "focus left";
-        "${super}+j" = "focus down";
-        "${super}+k" = "focus up";
-        "${super}+l" = "focus right";
+        "${super}+j" = "focus left";
+        "${super}+k" = "focus down";
+        "${super}+l" = "focus up";
+        "${super}+apostrophe" = "focus right";
 
         # With arrows
         "${super}+Left" = "focus left";
@@ -98,10 +95,10 @@ in
 
         # Move focused window
         # Vim like
-        "${super}+Shift+h" = "move left";
-        "${super}+Shift+j" = "move down";
-        "${super}+Shift+k" = "move up";
-        "${super}+Shift+l" = "move right";
+        "${super}+Shift+j" = "move left";
+        "${super}+Shift+k" = "move down";
+        "${super}+Shift+l" = "move up";
+        "${super}+Shift+apostrophe" = "move right";
 
         # With arrows
         "${super}+Shift+Left" = "move left";
@@ -134,7 +131,7 @@ in
         "${super}+f" = "fullscreen";
 
         # Float mode
-        "${super}+Space" = "floating toggle";
+        "${super}+Shift+f" = "floating toggle";
 
         # Resize mode
         "${super}+r" = "mode resize";

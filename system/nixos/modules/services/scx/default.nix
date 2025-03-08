@@ -2,20 +2,18 @@
   lib,
   config,
   ...
-}:
+}: let
+  inherit (lib) mkEnableOption mkIf mkOption;
+  inherit (lib.types) str;
 
-with lib;
-
-let
   cfg = config.module.services.scx;
-in
-{
+in {
   options = {
     module.services.scx = {
       enable = mkEnableOption "Enables scx module";
 
       schedulerType = mkOption {
-        type = types.str;
+        type = str;
         default = "scx_rustland";
       };
     };

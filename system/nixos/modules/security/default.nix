@@ -2,14 +2,12 @@
   lib,
   config,
   ...
-}:
+}: let
+  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) optionals optionalAttrs;
 
-with lib;
-
-let
   cfg = config.module.security;
-in
-{
+in {
   options = {
     module.security = {
       enable = mkEnableOption "Enables security";
@@ -23,9 +21,9 @@ in
       sudo.enable = false;
 
       pam.services = {
-        gtklock = { };
-        swaylock = { };
-        hyprlock = { };
+        gtklock = {};
+        swaylock = {};
+        hyprlock = {};
       };
 
       sudo-rs = {
@@ -43,6 +41,7 @@ in
           "page_alloc.shuffle=1"
           "page_poison=1"
           "slab_nomerge"
+          "oops=panic"
         ]
         ++ optionals cfg.disableIPV6 [
           # Disable ipv6
@@ -50,6 +49,9 @@ in
         ];
 
       blacklistedKernelModules = [
+        "appletalk"
+        "decnet"
+
         # Obscure network protocols
         "ax25"
         "netrom"

@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
+}: let
+  inherit (lib) mkEnableOption mkIf;
 
-with lib;
-
-let
   cfg = config.module.services.tlp;
-in
-{
+in {
   options = {
     module.services.tlp.enable = mkEnableOption "Enable tlp";
   };

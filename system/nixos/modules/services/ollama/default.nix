@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
+}: let
+  inherit (lib) mkEnableOption mkIf;
 
-with lib;
-
-let
   cfg = config.module.services.ollama;
-in
-{
+in {
   options = {
     module.services.ollama.enable = mkEnableOption "Enables ollama";
   };

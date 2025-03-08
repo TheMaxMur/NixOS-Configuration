@@ -1,9 +1,4 @@
-{
-  config,
-  ...
-}:
-
-{
+{config, ...}: {
   module = {
     sound.enable = true;
     boot.enable = true;
@@ -37,6 +32,7 @@
       netbird.enable = true;
       yggdrasil.enable = true;
       zram.enable = true;
+      irqbalance.enable = true;
 
       scx = {
         enable = true;

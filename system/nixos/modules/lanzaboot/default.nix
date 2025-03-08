@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
+}: let
+  inherit (lib) mkEnableOption mkIf mkForce;
 
-with lib;
-
-let
   cfg = config.module.lanzaboote;
-in
-{
+in {
   options = {
     module.lanzaboote = {
       enable = mkEnableOption "Enables lanzaboote";
@@ -19,7 +16,7 @@ in
   config = mkIf cfg.enable {
     # Bootloader settings
     boot = {
-      loader.systemd-boot.enable = lib.mkForce false;
+      loader.systemd-boot.enable = mkForce false;
       loader.efi.canTouchEfiVariables = true;
 
       lanzaboote = {

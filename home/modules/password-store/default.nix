@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
+}: let
+  inherit (lib) mkEnableOption mkIf;
 
-with lib;
-
-let
   cfg = config.module.password-store;
-in
-{
+in {
   options = {
     module.password-store.enable = mkEnableOption "Enables password-store";
   };

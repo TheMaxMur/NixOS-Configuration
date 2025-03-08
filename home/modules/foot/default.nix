@@ -2,14 +2,16 @@
   lib,
   config,
   ...
-}:
+}: let
+  inherit (lib) mkEnableOption mkIf;
 
-with lib;
-
-let
   cfg = config.module.foot;
-in
-{
+
+  serverEnable =
+    if config.module.defaults.terminal == "foot-client"
+    then true
+    else false;
+in {
   options = {
     module.foot.enable = mkEnableOption "Enables Foot";
   };
@@ -17,7 +19,7 @@ in
   config = mkIf cfg.enable {
     programs.foot = {
       enable = true;
-      server.enable = true;
+      server.enable = serverEnable;
 
       settings = {
         main = {
@@ -39,6 +41,7 @@ in
         key-bindings = {
           clipboard-copy = "Control+c XF86Copy";
           clipboard-paste = "Control+v XF86Paste";
+          noop = "Mod4+space";
         };
 
         text-bindings = {

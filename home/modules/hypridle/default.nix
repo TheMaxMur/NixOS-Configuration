@@ -7,11 +7,10 @@
   swayEnable,
   hyprlandEnable,
   ...
-}:
+}: let
+  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) optionals;
 
-with lib;
-
-let
   cfg = config.module.hypridle;
 
   suspendCmd = "${pkgs.systemd}/bin/systemctl suspend";
@@ -21,33 +20,29 @@ let
   hyprlockCmd = "${config.programs.hyprlock.package}/bin/hyprlock";
   swaylockCmd = "${pkgs.swaylock}/bin/swaylock";
   lockScreen =
-    if hyprlandEnable then
-      hyprlockCmd
-    else if swayEnable then
-      swaylockCmd
-    else
-      "";
+    if hyprlandEnable
+    then hyprlockCmd
+    else if swayEnable
+    then swaylockCmd
+    else "";
 
   hyprlandOnScreen = "${hyprctlCmd} dispatch dpms on";
   hyprlandOffScreen = "${hyprctlCmd} dispatch dpms off";
   swayOnScreen = "${swaymsg} 'output * power on'";
   swayOffScreen = "${swaymsg} 'output * power off'";
   screenOn =
-    if hyprlandEnable then
-      hyprlandOnScreen
-    else if swayEnable then
-      swayOnScreen
-    else
-      "";
+    if hyprlandEnable
+    then hyprlandOnScreen
+    else if swayEnable
+    then swayOnScreen
+    else "";
   screenOff =
-    if hyprlandEnable then
-      hyprlandOffScreen
-    else if swayEnable then
-      swayOffScreen
-    else
-      "";
-in
-{
+    if hyprlandEnable
+    then hyprlandOffScreen
+    else if swayEnable
+    then swayOffScreen
+    else "";
+in {
   options = {
     module.hypridle.enable = mkEnableOption "Enables Hypridle";
   };
@@ -79,14 +74,14 @@ in
               on-resume = "";
             }
           ]
-          ++ lib.optionals (hostname == "nbox") [
+          ++ optionals (hostname == "nbox") [
             {
               timeout = 900;
               on-timeout = suspendCmd;
               on-resume = "";
             }
           ]
-          ++ lib.optionals (hostname == "pcbox") [
+          ++ optionals (hostname == "pcbox") [
             {
               timeout = 7200;
               on-timeout = suspendCmd;

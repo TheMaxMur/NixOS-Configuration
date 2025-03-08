@@ -1,6 +1,4 @@
-_:
-
-{
+_: {
   module = {
     sound.enable = true;
     lanzaboote.enable = true;
@@ -34,6 +32,7 @@ _:
       greetd.enable = true;
       ollama.enable = true;
       netbird.enable = true;
+      irqbalance.enable = true;
 
       scx = {
         enable = true;

@@ -3,14 +3,17 @@
   config,
   hostname,
   ...
-}:
+}: let
+  inherit
+    (lib)
+    mkEnableOption
+    mkIf
+    mkDefault
+    mkForce
+    ;
 
-with lib;
-
-let
   cfg = config.module.network;
-in
-{
+in {
   options = {
     module.network = {
       enable = mkEnableOption "Enables network";

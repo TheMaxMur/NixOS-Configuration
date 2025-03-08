@@ -1,12 +1,10 @@
-_:
-
-{
+_: {
   systemd.network = {
     enable = true;
 
     networks.eth0 = {
-      address = [ "192.168.1.50/24" ];
-      dns = [ "192.168.1.8" ];
+      address = ["192.168.1.50/24"];
+      dns = ["192.168.1.8"];
     };
   };
 
@@ -15,6 +13,7 @@ _:
       enable = true;
 
       allowedTCPPorts = [
+        3500
         8384
         22000
       ];
@@ -37,6 +36,12 @@ _:
           to = 1764;
         } # KDE Connect
       ];
+    };
+  };
+
+  topology.self = {
+    interfaces.eth0 = {
+      addresses = ["192.168.1.50"];
     };
   };
 }

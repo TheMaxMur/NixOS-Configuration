@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
+}: let
+  inherit (lib) mkEnableOption mkIf;
 
-with lib;
-
-let
   cfg = config.module.nixos-ng;
-in
-{
+in {
   options = {
     module.nixos-ng = {
       enable = mkEnableOption "Enables nixos-ng";
@@ -31,10 +28,10 @@ in
       };
 
       /*
-        etc.overlay = {
-          enable = true;
-          mutable = true;
-        };
+      etc.overlay = {
+        enable = true;
+        mutable = true;
+      };
       */
     };
   };

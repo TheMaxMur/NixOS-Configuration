@@ -4,14 +4,11 @@
   lib,
   pkgs,
   ...
-}:
+}: let
+  inherit (lib) mkEnableOption mkIf;
 
-with lib;
-
-let
   cfg = config.module.sway;
-in
-{
+in {
   imports = [
     "${self}/home/modules/sway/keybinds"
     "${self}/home/modules/sway/outputs"
@@ -54,7 +51,7 @@ in
 
           "type:keyboard" = {
             xkb_layout = "us,ru";
-            xkb_options = "grp:caps_toggle";
+            xkb_options = "grp:win_space_toggle,grp:alt_shift_toggle,grp:caps_toggle";
             repeat_delay = "300";
             repeat_rate = "60";
           };
@@ -70,24 +67,24 @@ in
           inner = 7;
         };
 
-        bars = [ ];
+        bars = [];
 
         window = {
           titlebar = false;
         };
 
         startup = [
-          { command = "${pkgs.blueman}/bin/blueman-applet"; }
-          { command = "${pkgs.wl-clipboard}/bin/wl-paste --type text --watch cliphist store"; }
-          { command = "${pkgs.wl-clipboard}/bin/wl-paste --type image --watch cliphist store"; }
-          { command = "${pkgs.sway}/bin/swaymsg 'workspace 1; exec ${pkgs.librewolf}/bin/librewolf'"; }
+          {command = "${pkgs.blueman}/bin/blueman-applet";}
+          {command = "${pkgs.wl-clipboard}/bin/wl-paste --type text --watch cliphist store";}
+          {command = "${pkgs.wl-clipboard}/bin/wl-paste --type image --watch cliphist store";}
+          {command = "${pkgs.sway}/bin/swaymsg 'workspace 1; exec ${pkgs.librewolf}/bin/librewolf'";}
           {
             command = "${pkgs.sway}/bin/swaymsg 'workspace 2; exec ${pkgs.telegram-desktop}/bin/telegram-desktop'";
           }
-          { command = "${pkgs.sway}/bin/swaymsg 'workspace 4; exec ${pkgs.obsidian}/bin/obsidian'"; }
-          { command = "${pkgs.sway}/bin/swaymsg 'workspace 5; exec ${pkgs.foot}/bin/foot'"; }
-          { command = "${pkgs.sway}/bin/swaymsg 'workspace 5; exec ${pkgs.foot}/bin/foot'"; }
-          { command = "${pkgs.sway}/bin/swaymsg 'workspace 5; exec ${pkgs.foot}/bin/foot'"; }
+          {command = "${pkgs.sway}/bin/swaymsg 'workspace 4; exec ${pkgs.obsidian}/bin/obsidian'";}
+          {command = "${pkgs.sway}/bin/swaymsg 'workspace 5; exec ${pkgs.foot}/bin/foot'";}
+          {command = "${pkgs.sway}/bin/swaymsg 'workspace 5; exec ${pkgs.foot}/bin/foot'";}
+          {command = "${pkgs.sway}/bin/swaymsg 'workspace 5; exec ${pkgs.foot}/bin/foot'";}
           {
             command = "${pkgs.sway}/bin/swaymsg 'workspace 6; exec ${pkgs.librewolf}/bin/librewolf -P Work'";
           }

@@ -1,6 +1,4 @@
-_:
-
-{
+_: {
   module = {
     sound.enable = true;
     boot.enable = true;
@@ -29,6 +27,7 @@ _:
       zram.enable = true;
       greetd.enable = true;
       netbird.enable = true;
+      irqbalance.enable = true;
 
       scx = {
         enable = true;

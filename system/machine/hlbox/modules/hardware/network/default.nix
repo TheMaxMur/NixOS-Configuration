@@ -2,9 +2,7 @@
   config,
   username,
   ...
-}:
-
-{
+}: {
   users.users.${username}.openssh.authorizedKeys.keys = config.module.defaults.ssh.pubKeys;
 
   networking = {
@@ -21,7 +19,7 @@
 
     networks = {
       "10-lan" = {
-        matchConfig.Name = [ config.module.defaults.network.iface ];
+        matchConfig.Name = [config.module.defaults.network.iface];
         networkConfig = {
           Bridge = "vmbr0";
         };
@@ -36,7 +34,7 @@
         ];
 
         routes = [
-          { Gateway = config.module.defaults.network.gw; }
+          {Gateway = config.module.defaults.network.gw;}
         ];
       };
     };

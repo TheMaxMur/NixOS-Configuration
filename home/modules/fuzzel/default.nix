@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
+}: let
+  inherit (lib) mkEnableOption mkIf;
 
-with lib;
-
-let
   cfg = config.module.fuzzel;
-in
-{
+in {
   options = {
     module.fuzzel = {
       enable = mkEnableOption "Enable fuzzel app runner";

@@ -1,9 +1,4 @@
-{
-  config,
-  ...
-}:
-
-{
+{config, ...}: {
   module = {
     locales.enable = true;
     network.enable = true;
@@ -38,6 +33,7 @@
 
     services = {
       unbound.enable = true;
+      irqbalance.enable = true;
 
       adguard-home = {
         enable = true;

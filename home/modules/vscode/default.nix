@@ -3,14 +3,11 @@
   lib,
   config,
   ...
-}:
+}: let
+  inherit (lib) mkEnableOption mkIf;
 
-with lib;
-
-let
   cfg = config.module.vscode;
-in
-{
+in {
   imports = [
     "${self}/home/modules/vscode/keybindings"
     "${self}/home/modules/vscode/extentions"
@@ -22,7 +19,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    programs.vscode = {
+    programs.vscode.profiles.default = {
       enable = true;
       enableUpdateCheck = false;
     };

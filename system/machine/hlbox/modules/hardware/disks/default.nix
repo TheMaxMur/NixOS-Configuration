@@ -1,7 +1,5 @@
-_:
-
-{
-  swapDevices = [ ];
+_: {
+  swapDevices = [];
 
   boot.zfs.extraPools = [
     "zmirror"
@@ -13,7 +11,7 @@ _:
     "/" = {
       device = "zpool/root";
       fsType = "zfs";
-      options = [ "zfsutil" ];
+      options = ["zfsutil"];
     };
 
     "/boot" = {
@@ -28,13 +26,13 @@ _:
     "/home" = {
       device = "zpool/home";
       fsType = "zfs";
-      options = [ "zfsutil" ];
+      options = ["zfsutil"];
     };
 
     "/nix" = {
       device = "zpool/nix";
       fsType = "zfs";
-      options = [ "zfsutil" ];
+      options = ["zfsutil"];
     };
   };
 }
