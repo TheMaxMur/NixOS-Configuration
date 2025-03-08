@@ -44,6 +44,7 @@ in
           "page_alloc.shuffle=1"
           "page_poison=1"
           "slab_nomerge"
+          "oops=panic"
         ]
         ++ optionals cfg.disableIPV6 [
           # Disable ipv6
@@ -51,6 +52,9 @@ in
         ];
 
       blacklistedKernelModules = [
+        "appletalk"
+        "decnet"
+
         # Obscure network protocols
         "ax25"
         "netrom"
