@@ -15,6 +15,7 @@ _:
       enable = true;
 
       allowedTCPPorts = [
+        3500
         8384
         22000
       ];
@@ -37,6 +38,12 @@ _:
           to = 1764;
         } # KDE Connect
       ];
+    };
+  };
+
+  topology.self = {
+    interfaces.eth0 = {
+      addresses = [ "192.168.1.50" ];
     };
   };
 }

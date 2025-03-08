@@ -26,4 +26,10 @@ _:
       ];
     };
   };
+
+  topology.self = {
+    interfaces.wlp3s0 = {
+      addresses = [ "192.168.1.102" ];
+    };
+  };
 }

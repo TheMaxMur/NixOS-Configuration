@@ -84,7 +84,14 @@
               };
 
               connections = {
-                wifi = mkConnection "nbox" "wlp3s0";
+                wifi = [
+                  (mkConnection
+                  "nbox"
+                  "wlp3s0")
+                  (mkConnection
+                  "p8box"
+                  "wlp3s0")
+                ];
               };
             };
 
@@ -107,7 +114,7 @@
                 eth2 = mkConnection "pcbox" "eth0";
                 eth3 = mkConnection "rasp" "eth0";
                 eth4 = mkConnection "macbox" "eth0";
-                eth5 = mkConnection "mbox" "eth0";
+                eth5 = mkConnection "hlbox" "vmbr0";
               };
             };
 
@@ -119,23 +126,6 @@
               interfaces = {
                 eth0 = {
                   addresses = [ "192.168.1.75" ];
-                  network = "home-maxmur";
-                };
-              };
-
-              interfaceGroups = [
-                [ "eth0" ]
-              ];
-            };
-
-            mbox = mkDevice "mbox" {
-              deviceType = "device";
-              hardware.info = "Mint box";
-              deviceIcon = ../images/linux-mint.png;
-
-              interfaces = {
-                eth0 = {
-                  addresses = [ "192.168.1.80" ];
                   network = "home-maxmur";
                 };
               };
