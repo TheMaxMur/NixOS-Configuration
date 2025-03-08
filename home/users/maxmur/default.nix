@@ -59,6 +59,7 @@
       xdg.enable = isLinux && isWorkstation;
 
       packages.enable = true;
+      variables.enable = true;
     };
   };
 }
