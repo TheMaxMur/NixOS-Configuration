@@ -29,6 +29,7 @@ _:
       zram.enable = true;
       greetd.enable = true;
       netbird.enable = true;
+      irqbalance.enable = true;
 
       scx = {
         enable = true;

@@ -43,6 +43,8 @@
     };
 
     services = {
+      irqbalance.enable = true;
+
       proxmox-ve = {
         enable = true;
         ipAddress = config.module.defaults.network.ip;

@@ -38,6 +38,7 @@
 
     services = {
       unbound.enable = true;
+      irqbalance.enable = true;
 
       adguard-home = {
         enable = true;

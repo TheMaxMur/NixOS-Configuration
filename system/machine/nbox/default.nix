@@ -34,6 +34,7 @@ _:
       greetd.enable = true;
       ollama.enable = true;
       netbird.enable = true;
+      irqbalance.enable = true;
 
       scx = {
         enable = true;
