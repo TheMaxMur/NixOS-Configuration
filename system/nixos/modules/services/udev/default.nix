@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.services.udev;
-in
-{
+in {
   options = {
     module.services.udev.enable = mkEnableOption "Enable udev";
   };

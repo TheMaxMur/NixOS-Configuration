@@ -1,9 +1,4 @@
-{
-  inputs,
-  ...
-}:
-
-{
+{inputs, ...}: {
   imports = [
     inputs.treefmt-nix.flakeModule
   ];
@@ -35,7 +30,7 @@
         shellcheck.enable = true;
         prettier.enable = true;
 
-        nixfmt.enable = true;
+        alejandra.enable = true;
         stylua.enable = true;
         yamlfmt.enable = true;
       };

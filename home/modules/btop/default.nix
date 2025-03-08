@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.btop;
-in
-{
+in {
   options = {
     module.btop.enable = mkEnableOption "Enables btop";
   };

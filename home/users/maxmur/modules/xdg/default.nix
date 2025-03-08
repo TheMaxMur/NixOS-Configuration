@@ -2,14 +2,11 @@
   config,
   lib,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.user.xdg;
-in
-{
+in {
   options = {
     module.user.xdg.enable = mkEnableOption "Enables xdg";
   };

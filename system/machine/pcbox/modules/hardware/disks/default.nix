@@ -1,14 +1,12 @@
-_:
-
-{
+_: {
   # For impermanence
   boot.initrd.systemd.services.rollback = {
     description = "Rollback BTRFS root subvolume to a pristine state";
     unitConfig.DefaultDependencies = "no";
     serviceConfig.Type = "oneshot";
-    wantedBy = [ "initrd.target" ];
-    after = [ "systemd-cryptsetup@crypted.service" ];
-    before = [ "sysroot.mount" ];
+    wantedBy = ["initrd.target"];
+    after = ["systemd-cryptsetup@crypted.service"];
+    before = ["sysroot.mount"];
 
     script = ''
       vgchange -ay pool
@@ -98,7 +96,7 @@ _:
 
             content = {
               type = "btrfs";
-              extraArgs = [ "-f" ];
+              extraArgs = ["-f"];
 
               subvolumes = {
                 "/root" = {

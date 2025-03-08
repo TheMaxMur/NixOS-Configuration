@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.zoxide;
-in
-{
+in {
   options = {
     module.zoxide.enable = mkEnableOption "Enables zoxide";
   };

@@ -2,14 +2,11 @@
   config,
   lib,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.services.yggdrasil;
-in
-{
+in {
   options.module.services.yggdrasil = {
     enable = mkEnableOption "Enable module yggdrasil";
   };

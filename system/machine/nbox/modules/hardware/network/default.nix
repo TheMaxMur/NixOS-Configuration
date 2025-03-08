@@ -1,12 +1,10 @@
-_:
-
-{
+_: {
   systemd.network = {
     enable = true;
 
     networks.wlp3s0 = {
       matchConfig.Name = "wlp3s0";
-      address = [ "192.168.1.111/24" ];
+      address = ["192.168.1.111/24"];
     };
   };
 

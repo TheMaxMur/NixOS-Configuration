@@ -5,14 +5,11 @@
   username,
   pkgs,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.fish;
-in
-{
+in {
   options = {
     module.fish.enable = mkEnableOption "Enables Fish";
   };

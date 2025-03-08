@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf mkForce;
 
   cfg = config.module.lanzaboote;
-in
-{
+in {
   options = {
     module.lanzaboote = {
       enable = mkEnableOption "Enables lanzaboote";

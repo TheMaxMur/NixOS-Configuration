@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.services.unbound;
-in
-{
+in {
   options = {
     module.services.unbound = {
       enable = mkEnableOption "Enables unbound";

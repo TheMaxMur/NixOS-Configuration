@@ -2,18 +2,16 @@
   config,
   lib,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module."<name>";
-in
-{
+in {
   options.module."<name>" = {
     enable = mkEnableOption "Enable module";
   };
 
-  config = mkIf cfg.enable {
-  };
+  config =
+    mkIf cfg.enable {
+    };
 }

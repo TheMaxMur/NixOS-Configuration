@@ -6,16 +6,17 @@
   hostname,
   theme,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkOption mkIf;
   inherit (lib) optionalAttrs;
   inherit (lib.types) bool;
 
   cfg = config.module.stylix;
 
-  cursorSize = if hostname == "nbox" then 24 else 14;
+  cursorSize =
+    if hostname == "nbox"
+    then 24
+    else 14;
 
   themes = {
     nord = {
@@ -48,8 +49,7 @@ let
       };
     };
   };
-in
-{
+in {
   options = {
     module.stylix = {
       enable = mkEnableOption "Enables stylix";

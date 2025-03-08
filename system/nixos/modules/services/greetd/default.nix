@@ -6,9 +6,7 @@
   inputs,
   wm,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.services.greetd;
@@ -19,8 +17,7 @@ let
   };
 
   wmCmd = wms.${wm};
-in
-{
+in {
   options = {
     module.services.greetd = {
       enable = mkEnableOption "Enable greetd";

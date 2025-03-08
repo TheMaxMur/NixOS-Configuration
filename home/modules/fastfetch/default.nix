@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.fastfetch;
-in
-{
+in {
   options = {
     module.fastfetch = {
       enable = mkEnableOption "Enable fastfetch";

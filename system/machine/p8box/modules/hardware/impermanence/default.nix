@@ -1,6 +1,4 @@
-_:
-
-{
+_: {
   programs.fuse.userAllowOther = true;
 
   environment.persistence = {

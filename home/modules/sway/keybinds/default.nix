@@ -3,9 +3,7 @@
   lib,
   pkgs,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.sway.keybindings;
@@ -39,7 +37,7 @@ let
 
     op=$(echo -e " Poweroff\n Reboot\n Suspend\n Lock\n Logout" | ${pkgs.rofi-wayland}/bin/rofi -i -dmenu | ${pkgs.gawk}/bin/awk '{print tolower($2)}')
 
-    case $op in 
+    case $op in
       poweroff)
         ;&
       reboot)
@@ -55,8 +53,7 @@ let
         ;;
     esac
   '';
-in
-{
+in {
   options.module.sway.keybindings = {
     enable = mkEnableOption "Enable sway keybindings";
   };
@@ -68,9 +65,9 @@ in
       bindkeysToCode = true;
 
       assigns = {
-        "2" = [ { app_id = "org.telegram.desktop"; } ];
-        "4" = [ { app_id = "obsidian"; } ];
-        "8" = [ { app_id = "vesktop"; } ];
+        "2" = [{app_id = "org.telegram.desktop";}];
+        "4" = [{app_id = "obsidian";}];
+        "8" = [{app_id = "vesktop";}];
       };
 
       keybindings = {

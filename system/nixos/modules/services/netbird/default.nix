@@ -3,14 +3,11 @@
   config,
   pkgs,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.services.netbird;
-in
-{
+in {
   options = {
     module.services.netbird = {
       enable = mkEnableOption "Enables netbird";
@@ -19,6 +16,6 @@ in
 
   config = mkIf cfg.enable {
     services.netbird.enable = true;
-    environment.systemPackages = [ pkgs.netbird-ui ];
+    environment.systemPackages = [pkgs.netbird-ui];
   };
 }

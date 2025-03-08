@@ -4,14 +4,11 @@
   lib,
   pkgs,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.hyprlock;
-in
-{
+in {
   options = {
     module.hyprlock.enable = mkEnableOption "Enables Hyprlock";
   };

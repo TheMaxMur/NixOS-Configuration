@@ -3,15 +3,12 @@
   config,
   pkgs,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf mkOption;
   inherit (lib.types) str int;
 
   cfg = config.module.zapret;
-in
-{
+in {
   options = {
     module.zapret = {
       enable = mkEnableOption "Enables zapret";
@@ -48,8 +45,8 @@ in
       services = {
         zapret = {
           description = "gigi za shagi";
-          wantedBy = [ "multi-user.target" ];
-          requires = [ "network.target" ];
+          wantedBy = ["multi-user.target"];
+          requires = ["network.target"];
 
           serviceConfig = {
             ExecStart = "${pkgs.zapret}/bin/nfqws --pidfile=/run/nfqws.pid --dpi-desync=fake --dpi-desync=disorder --dpi-desync=split2 --dpi-desync-ttl=1 --dpi-desync-repeats=6 --dpi-desync-autottl=3 --wssize 1:6 --dpi-desync-fake-tls=0x00000000 --dpi-desync-split-pos=1 --qnum=${toString cfg.qnum}";

@@ -2,16 +2,13 @@
   config,
   lib,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
   inherit (lib) zipAttrs;
   inherit (lib.types) attrs listOf;
 
   cfg = config.module.services.ssh;
-in
-{
+in {
   options.module.services.ssh = {
     enable = mkEnableOption "Enable module";
 
@@ -30,9 +27,11 @@ in
   };
 
   config = mkIf cfg.enable {
-    networking.firewall.allowedTCPPorts = [
-      22
-    ] ++ (zipAttrs cfg.listenAddresses).port;
+    networking.firewall.allowedTCPPorts =
+      [
+        22
+      ]
+      ++ (zipAttrs cfg.listenAddresses).port;
 
     services.endlessh-go = {
       enable = true;

@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.yazi;
-in
-{
+in {
   options = {
     module.yazi.enable = mkEnableOption "Enables yazi";
   };

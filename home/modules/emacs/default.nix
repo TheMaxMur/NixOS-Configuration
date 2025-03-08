@@ -3,14 +3,11 @@
   lib,
   pkgs,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.emacs;
-in
-{
+in {
   options = {
     module.emacs.enable = mkEnableOption "Enable emacs";
   };

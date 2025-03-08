@@ -7,9 +7,7 @@
   swayEnable,
   hyprlandEnable,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
   inherit (lib) optionals;
 
@@ -22,33 +20,29 @@ let
   hyprlockCmd = "${config.programs.hyprlock.package}/bin/hyprlock";
   swaylockCmd = "${pkgs.swaylock}/bin/swaylock";
   lockScreen =
-    if hyprlandEnable then
-      hyprlockCmd
-    else if swayEnable then
-      swaylockCmd
-    else
-      "";
+    if hyprlandEnable
+    then hyprlockCmd
+    else if swayEnable
+    then swaylockCmd
+    else "";
 
   hyprlandOnScreen = "${hyprctlCmd} dispatch dpms on";
   hyprlandOffScreen = "${hyprctlCmd} dispatch dpms off";
   swayOnScreen = "${swaymsg} 'output * power on'";
   swayOffScreen = "${swaymsg} 'output * power off'";
   screenOn =
-    if hyprlandEnable then
-      hyprlandOnScreen
-    else if swayEnable then
-      swayOnScreen
-    else
-      "";
+    if hyprlandEnable
+    then hyprlandOnScreen
+    else if swayEnable
+    then swayOnScreen
+    else "";
   screenOff =
-    if hyprlandEnable then
-      hyprlandOffScreen
-    else if swayEnable then
-      swayOffScreen
-    else
-      "";
-in
-{
+    if hyprlandEnable
+    then hyprlandOffScreen
+    else if swayEnable
+    then swayOffScreen
+    else "";
+in {
   options = {
     module.hypridle.enable = mkEnableOption "Enables Hypridle";
   };

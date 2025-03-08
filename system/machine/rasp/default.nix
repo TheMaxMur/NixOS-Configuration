@@ -1,9 +1,4 @@
-{
-  config,
-  ...
-}:
-
-{
+{config, ...}: {
   module = {
     locales.enable = true;
     network.enable = true;

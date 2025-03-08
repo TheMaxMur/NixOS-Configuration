@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.services.fwupd;
-in
-{
+in {
   options = {
     module.services.fwupd.enable = mkEnableOption "Enable fwupd";
   };

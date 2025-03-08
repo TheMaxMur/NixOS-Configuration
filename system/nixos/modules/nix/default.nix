@@ -1,9 +1,4 @@
-{
-  config,
-  ...
-}:
-
-{
+{config, ...}: {
   nix = {
     gc = {
       automatic = !config.programs.nh.enable;

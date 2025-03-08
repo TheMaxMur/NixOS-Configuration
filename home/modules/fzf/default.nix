@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.fzf;
-in
-{
+in {
   options = {
     module.fzf.enable = mkEnableOption "Enables fzf";
   };

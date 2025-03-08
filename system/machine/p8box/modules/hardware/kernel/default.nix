@@ -1,9 +1,4 @@
-{
-  pkgs,
-  ...
-}:
-
-{
+{pkgs, ...}: {
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
 
@@ -16,7 +11,7 @@
       "video=DSI-1:panel_orientation=right_side_up"
     ];
 
-    extraModulePackages = [ ];
+    extraModulePackages = [];
 
     initrd = {
       availableKernelModules = [

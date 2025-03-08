@@ -150,16 +150,18 @@
     };
   };
 
-  outputs =
-    { self, flake-parts, ... }@inputs:
-    let
-      # Description of hosts
-      hosts = import ./hosts.nix;
+  outputs = {
+    self,
+    flake-parts,
+    ...
+  } @ inputs: let
+    # Description of hosts
+    hosts = import ./hosts.nix;
 
-      # Import helper funcfions
-      libx = import ./lib { inherit self inputs; };
-    in
-    flake-parts.lib.mkFlake { inherit inputs; } {
+    # Import helper funcfions
+    libx = import ./lib {inherit self inputs;};
+  in
+    flake-parts.lib.mkFlake {inherit inputs;} {
       systems = libx.forAllSystems;
 
       imports = [
@@ -175,7 +177,7 @@
         darwinConfigurations = libx.genDarwin hosts.darwin;
 
         # Templates
-        templates = import "${self}/templates" { inherit self; };
+        templates = import "${self}/templates" {inherit self;};
       };
     };
 }

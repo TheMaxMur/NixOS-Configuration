@@ -2,9 +2,7 @@
   pkgs,
   inputs,
   ...
-}:
-
-{
+}: {
   home = {
     # Software
     packages = with pkgs; [

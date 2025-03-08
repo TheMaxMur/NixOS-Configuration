@@ -2,9 +2,7 @@
   pkgs,
   self,
   ...
-}:
-
-{
+}: {
   # Graphics card settings
   nixpkgs.overlays = [
     (import "${self}/system/nixos/overlays/vaapiIntel")

@@ -2,15 +2,12 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
   inherit (lib) optionals optionalAttrs;
 
   cfg = config.module.security;
-in
-{
+in {
   options = {
     module.security = {
       enable = mkEnableOption "Enables security";
@@ -24,9 +21,9 @@ in
       sudo.enable = false;
 
       pam.services = {
-        gtklock = { };
-        swaylock = { };
-        hyprlock = { };
+        gtklock = {};
+        swaylock = {};
+        hyprlock = {};
       };
 
       sudo-rs = {

@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.sound;
-in
-{
+in {
   options = {
     module.sound.enable = mkEnableOption "Enables sound in your system";
   };

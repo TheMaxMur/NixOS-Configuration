@@ -1,9 +1,4 @@
-{
-  pkgs,
-  ...
-}:
-
-{
+{pkgs, ...}: {
   hardware = {
     enableAllFirmware = true;
     cpu.intel.updateMicrocode = true;

@@ -5,9 +5,7 @@
   swayEnable ? false,
   wmEnable ? false,
   ...
-}:
-
-{
+}: {
   stylix.targets = {
     vscode.enable = false;
     helix.enable = false;

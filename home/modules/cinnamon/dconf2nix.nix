@@ -1,9 +1,10 @@
 # Generated via dconf2nix: https://github.com/gvolpe/dconf2nix
-{ lib, username, ... }:
-
-with lib.hm.gvariant;
-
 {
+  lib,
+  username,
+  ...
+}:
+with lib.hm.gvariant; {
   dconf.settings = {
     "org/cinnamon" = {
       alttab-minimized-aware = true;
@@ -12,7 +13,7 @@ with lib.hm.gvariant;
       alttab-switcher-show-all-workspaces = false;
       alttab-switcher-style = "icons+thumbnails";
       app-menu-label = "";
-      command-history = [ "r" ];
+      command-history = ["r"];
       desklet-snap-interval = 25;
       desktop-effects-close = "fly";
       desktop-effects-close-effect = "traditional";
@@ -35,7 +36,7 @@ with lib.hm.gvariant;
       desktop-effects-unmaximize-effect = "none";
       desktop-effects-unmaximize-time = 100;
       desktop-effects-unmaximize-transition = "easeNone";
-      device-aliases = [ "/org/freedesktop/UPower/devices/battery_BAT0:=Laptop" ];
+      device-aliases = ["/org/freedesktop/UPower/devices/battery_BAT0:=Laptop"];
       enabled-applets = [
         "panel1:left:0:menu@cinnamon.org:30"
         "panel1:right:9:notifications@cinnamon.org:35"
@@ -61,8 +62,8 @@ with lib.hm.gvariant;
         "panel4:center:0:spacer@cinnamon.org:156"
         "panel1:center:0:spacer@cinnamon.org:157"
       ];
-      enabled-desklets = [ ];
-      enabled-extensions = [ "horizontal-osd@berk-karaal" ];
+      enabled-desklets = [];
+      enabled-extensions = ["horizontal-osd@berk-karaal"];
       favorite-apps = [
         "google-chrome.desktop"
         "cinnamon-settings.desktop"
@@ -79,7 +80,7 @@ with lib.hm.gvariant;
       next-desklet-id = 13;
       no-adjacent-panel-barriers = false;
       panel-edit-mode = false;
-      panel-launchers = [ "DEPRECATED" ];
+      panel-launchers = ["DEPRECATED"];
       panel-zone-icon-sizes = "[{\"panelId\": 1, \"left\": 0, \"center\": 0, \"right\": 24}, {\"left\": 0, \"center\": 0, \"right\": 0, \"panelId\": 4}, {\"left\": 0, \"center\": 0, \"right\": 24, \"panelId\": 2}]";
       panel-zone-symbolic-icon-sizes = "[{\"panelId\": 1, \"left\": 28, \"center\": 28, \"right\": 16}, {\"left\": 28, \"center\": 28, \"right\": 16, \"panelId\": 4}, {\"left\": 28, \"center\": 28, \"right\": 16, \"panelId\": 2}]";
       panel-zone-text-sizes = "[{\"panelId\":1,\"left\":0,\"center\":0,\"right\":0},{\"left\":0,\"center\":0,\"right\":0,\"panelId\":4},{\"left\":0,\"center\":0,\"right\":0,\"panelId\":2}]";
@@ -187,41 +188,41 @@ with lib.hm.gvariant;
         "custom3"
         "custom0"
       ];
-      looking-glass-keybinding = [ ];
+      looking-glass-keybinding = [];
     };
 
     "org/cinnamon/desktop/keybindings/custom-keybindings/custom0" = {
-      binding = [ "<Super>Tab" ];
+      binding = ["<Super>Tab"];
       command = "gnome-terminal";
       name = "mouse button 10";
     };
 
     "org/cinnamon/desktop/keybindings/custom-keybindings/custom2" = {
-      binding = [ "Print" ];
+      binding = ["Print"];
       command = "flameshot gui";
       name = "screenshot";
     };
 
     "org/cinnamon/desktop/keybindings/custom-keybindings/custom3" = {
-      binding = [ ];
+      binding = [];
       command = "flameshot gui";
       name = "screen-shot";
     };
 
     "org/cinnamon/desktop/keybindings/media-keys" = {
-      area-screenshot-clip = [ "<Primary><Shift>Print" ];
+      area-screenshot-clip = ["<Primary><Shift>Print"];
       screensaver = [
         "<Super>l"
         "XF86ScreenSaver"
         "<Super>Cyrillic_de"
       ];
-      screenshot = [ ];
-      terminal = [ "<Super>Return" ];
+      screenshot = [];
+      terminal = ["<Super>Return"];
     };
 
     "org/cinnamon/desktop/keybindings/wm" = {
-      close = [ "<Primary>q" ];
-      minimize = [ "<Super>m" ];
+      close = ["<Primary>q"];
+      minimize = ["<Super>m"];
       move-to-workspace-1 = [
         "<Primary><Super>1"
         "<Shift><Super>exclam"
@@ -270,25 +271,25 @@ with lib.hm.gvariant;
         "<Primary><Super>9"
         "<Shift><Super>parenleft"
       ];
-      switch-to-workspace-1 = [ "<Super>1" ];
-      switch-to-workspace-10 = [ "<Super>0" ];
-      switch-to-workspace-11 = [ "<Super>minus" ];
-      switch-to-workspace-12 = [ "<Super>equal" ];
-      switch-to-workspace-2 = [ "<Super>2" ];
-      switch-to-workspace-3 = [ "<Super>3" ];
-      switch-to-workspace-4 = [ "<Super>4" ];
-      switch-to-workspace-5 = [ "<Super>5" ];
-      switch-to-workspace-6 = [ "<Super>6" ];
-      switch-to-workspace-7 = [ "<Super>7" ];
-      switch-to-workspace-8 = [ "<Super>8" ];
-      switch-to-workspace-9 = [ "<Super>9" ];
+      switch-to-workspace-1 = ["<Super>1"];
+      switch-to-workspace-10 = ["<Super>0"];
+      switch-to-workspace-11 = ["<Super>minus"];
+      switch-to-workspace-12 = ["<Super>equal"];
+      switch-to-workspace-2 = ["<Super>2"];
+      switch-to-workspace-3 = ["<Super>3"];
+      switch-to-workspace-4 = ["<Super>4"];
+      switch-to-workspace-5 = ["<Super>5"];
+      switch-to-workspace-6 = ["<Super>6"];
+      switch-to-workspace-7 = ["<Super>7"];
+      switch-to-workspace-8 = ["<Super>8"];
+      switch-to-workspace-9 = ["<Super>9"];
       switch-to-workspace-up = [
         "<Control><Alt>Up"
         "<Alt>F1"
         "<Super>w"
       ];
-      toggle-fullscreen = [ "<Shift><Super>f" ];
-      toggle-maximized = [ "<Super>f" ];
+      toggle-fullscreen = ["<Shift><Super>f"];
+      toggle-maximized = ["<Super>f"];
     };
 
     "org/cinnamon/desktop/media-handling" = {
@@ -398,7 +399,7 @@ with lib.hm.gvariant;
       attach-modal-dialogs = true;
       center-new-windows = true;
       draggable-border-width = 10;
-      experimental-features = [ "scale-monitor-framebuffer" ];
+      experimental-features = ["scale-monitor-framebuffer"];
       placement-mode = "center";
       resize-threshold = 24;
       tile-hud-threshold = 25;

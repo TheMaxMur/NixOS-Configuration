@@ -4,15 +4,12 @@
   config,
   isWorkstation,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
   inherit (lib) optionals;
 
   cfg = config.module.programs.systemPackages;
-in
-{
+in {
   options = {
     module.programs.systemPackages.enable = mkEnableOption "Enable System Software";
   };
@@ -25,8 +22,7 @@ in
       corefonts
     ];
 
-    environment.systemPackages =
-      with pkgs;
+    environment.systemPackages = with pkgs;
       [
         # Utils
         git

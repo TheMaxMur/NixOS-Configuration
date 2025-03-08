@@ -3,10 +3,9 @@
   config,
   hostname,
   ...
-}:
-
-let
-  inherit (lib)
+}: let
+  inherit
+    (lib)
     mkEnableOption
     mkIf
     mkDefault
@@ -14,8 +13,7 @@ let
     ;
 
   cfg = config.module.network;
-in
-{
+in {
   options = {
     module.network = {
       enable = mkEnableOption "Enables network";

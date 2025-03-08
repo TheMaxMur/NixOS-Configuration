@@ -2,16 +2,16 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.foot;
 
-  serverEnable = if config.module.defaults.terminal == "foot-client" then true else false;
-in
-{
+  serverEnable =
+    if config.module.defaults.terminal == "foot-client"
+    then true
+    else false;
+in {
   options = {
     module.foot.enable = mkEnableOption "Enables Foot";
   };

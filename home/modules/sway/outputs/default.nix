@@ -3,15 +3,13 @@
   lib,
   hostname,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.sway.outputs;
 
   outputs = {
-    default = { };
+    default = {};
 
     pcbox = {
       DP-1 = {
@@ -41,7 +39,7 @@ let
   };
 
   workspaces = {
-    default = [ ];
+    default = [];
 
     pcbox = [
       {
@@ -148,8 +146,7 @@ let
       }
     ];
   };
-in
-{
+in {
   options.module.sway.outputs = {
     enable = mkEnableOption "Enable sway outputs";
   };

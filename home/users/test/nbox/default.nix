@@ -2,9 +2,7 @@
   inputs,
   pkgs,
   ...
-}:
-
-{
+}: {
   home = {
     homeDirectory = "/home/test";
 

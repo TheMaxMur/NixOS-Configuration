@@ -2,9 +2,7 @@
   pkgs,
   inputs,
   ...
-}:
-
-{
+}: {
   programs.home-manager.enable = true;
 
   home = {

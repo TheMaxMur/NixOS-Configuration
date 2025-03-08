@@ -1,9 +1,4 @@
-{
-  self,
-  ...
-}:
-
-{
+{self, ...}: {
   devshell = {
     description = "Flake devshell template";
     path = "${self}/templates/devshell";

@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.programs.zsh;
-in
-{
+in {
   options = {
     module.programs.zsh.enable = mkEnableOption "Enable zsh";
   };

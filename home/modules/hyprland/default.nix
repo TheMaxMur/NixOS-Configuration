@@ -5,10 +5,9 @@
   lib,
   pkgs,
   ...
-}:
-
-let
-  inherit (lib)
+}: let
+  inherit
+    (lib)
     mkEnableOption
     mkDefault
     mkBefore
@@ -16,8 +15,7 @@ let
     ;
 
   cfg = config.module.hyprland;
-in
-{
+in {
   imports = [
     "${self}/home/modules/hyprland/binds"
     "${self}/home/modules/hyprland/monitors"

@@ -3,14 +3,11 @@
   config,
   pkgs,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.librewolf;
-in
-{
+in {
   options = {
     module.librewolf.enable = mkEnableOption "Enables librewolf";
   };
@@ -81,7 +78,7 @@ in
 
               "4get" = {
                 updateInterval = 24 * 60 * 60 * 1000;
-                definedAliases = [ "@4get" ];
+                definedAliases = ["@4get"];
                 urls = [
                   {
                     template = "https://4get.bloat.cat/web";
@@ -97,7 +94,7 @@ in
 
               "nogoo" = {
                 updateInterval = 24 * 60 * 60 * 1000;
-                definedAliases = [ "@nogoo" ];
+                definedAliases = ["@nogoo"];
                 urls = [
                   {
                     template = "https://nogoo.me/search";
@@ -114,7 +111,7 @@ in
               "YouTube" = {
                 iconUpdateURL = "https://youtube.com/favicon.ico";
                 updateInterval = 24 * 60 * 60 * 1000;
-                definedAliases = [ "@yt" ];
+                definedAliases = ["@yt"];
                 urls = [
                   {
                     template = "https://www.youtube.com/results";
@@ -130,7 +127,7 @@ in
 
               "Nix Packages" = {
                 icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-                definedAliases = [ "@np" ];
+                definedAliases = ["@np"];
                 urls = [
                   {
                     template = "https://search.nixos.org/packages";
@@ -150,7 +147,7 @@ in
 
               "NixOS Options" = {
                 icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-                definedAliases = [ "@no" ];
+                definedAliases = ["@no"];
                 urls = [
                   {
                     template = "https://search.nixos.org/options";
@@ -171,7 +168,7 @@ in
               "GitHub" = {
                 iconUpdateURL = "https://github.com/favicon.ico";
                 updateInterval = 24 * 60 * 60 * 1000;
-                definedAliases = [ "@gh" ];
+                definedAliases = ["@gh"];
 
                 urls = [
                   {
@@ -188,7 +185,7 @@ in
 
               "Home Manager" = {
                 icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-                definedAliases = [ "@hm" ];
+                definedAliases = ["@hm"];
 
                 url = [
                   {

@@ -2,9 +2,7 @@
   config,
   username,
   ...
-}:
-
-{
+}: {
   users.users.${username}.openssh.authorizedKeys.keys = config.module.defaults.ssh.pubKeys;
 
   systemd.network = {
@@ -12,7 +10,7 @@
 
     networks.eth0 = {
       matchConfig.Name = "eth0";
-      address = [ "192.168.1.8/24" ];
+      address = ["192.168.1.8/24"];
     };
   };
 
@@ -66,7 +64,7 @@
     };
 
     interfaces.wg0 = {
-      addresses = [ "10.200.100.3" ];
+      addresses = ["10.200.100.3"];
       renderer.hidePhysicalConnections = false;
       virtual = true;
       type = "wireguard";

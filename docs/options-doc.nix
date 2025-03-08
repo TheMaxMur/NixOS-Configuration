@@ -4,11 +4,9 @@
   pkgs,
   runCommand,
   nixosOptionsDoc,
-}:
-
-let
+}: let
   eval = lib.evalModules {
-    specialArgs = { inherit self pkgs; };
+    specialArgs = {inherit self pkgs;};
 
     modules = [
       (lib.nixosSystem {
@@ -24,6 +22,6 @@ let
     inherit (eval) options;
   };
 in
-runCommand "options-doc.md" { } ''
-  cat ${optionsDoc.optionsCommonMark} >> $out
-''
+  runCommand "options-doc.md" {} ''
+    cat ${optionsDoc.optionsCommonMark} >> $out
+  ''

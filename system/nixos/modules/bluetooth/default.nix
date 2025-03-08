@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.bluetooth;
-in
-{
+in {
   options = {
     module.bluetooth = {
       enable = mkEnableOption "Enables bluetooth";

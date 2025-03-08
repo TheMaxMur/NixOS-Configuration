@@ -4,12 +4,9 @@
   pkgs,
   allDirs,
   ...
-}:
-
-let
+}: let
   machineHardwareModulesPath = "${self}/system/machine/${machineDir}/modules/hardware";
-in
-{
+in {
   imports = allDirs machineHardwareModulesPath;
 
   boot = {
@@ -30,7 +27,7 @@ in
     "/" = {
       device = "/dev/disk/by-label/NIXOS_SD";
       fsType = "ext4";
-      options = [ "noatime" ];
+      options = ["noatime"];
     };
   };
 

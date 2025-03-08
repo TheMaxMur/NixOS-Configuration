@@ -6,15 +6,12 @@
   isWorkstation,
   wmEnable,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf optionals;
   inherit (pkgs.stdenv) isLinux;
 
   cfg = config.module.user.packages;
-in
-{
+in {
   options.module.user.packages = {
     enable = mkEnableOption "Enable user packages";
   };
@@ -22,8 +19,7 @@ in
   config = mkIf cfg.enable {
     fonts.fontconfig.enable = true;
 
-    home.packages =
-      with pkgs;
+    home.packages = with pkgs;
       [
         # Utils
         bat

@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.htop;
-in
-{
+in {
   options = {
     module.htop.enable = mkEnableOption "Enables htop";
   };

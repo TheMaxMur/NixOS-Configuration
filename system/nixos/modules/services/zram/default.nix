@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.services.zram;
-in
-{
+in {
   options = {
     module.services.zram.enable = mkEnableOption "Enable zram";
   };

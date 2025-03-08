@@ -4,14 +4,11 @@
   username,
   pkgs,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.virtualisation;
-in
-{
+in {
   options = {
     module.virtualisation = {
       enable = mkEnableOption "Enables virtualisation";
@@ -24,7 +21,7 @@ in
       virt-manager
     ];
 
-    users.extraGroups.vboxusers.members = [ username ];
+    users.extraGroups.vboxusers.members = [username];
 
     virtualisation = {
       docker.enable = true;

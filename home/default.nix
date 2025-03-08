@@ -15,9 +15,7 @@
   wmEnable ? false,
   allDirs,
   ...
-}:
-
-let
+}: let
   inherit (pkgs.stdenv) isDarwin;
   inherit (pkgs.stdenv) isLinux;
   inherit (lib) optional;
@@ -25,26 +23,24 @@ let
   stateVersion = hmStateVersion;
   isRoot = username == "root";
   homeDirectory =
-    if isDarwin then
-      "/Users/${username}"
-    else if isRoot then
-      "/root"
-    else
-      "/home/${username}";
+    if isDarwin
+    then "/Users/${username}"
+    else if isRoot
+    then "/root"
+    else "/home/${username}";
   userConfigurationPath = "${self}/home/users/${username}";
   userConfigurationPathExist = builtins.pathExists userConfigurationPath;
   userModulesPath = "${self}/home/users/${username}/modules";
   userModulesPathExist = builtins.pathExists userModulesPath;
   sshModulePath = "${self}/home/modules/ssh";
   sshModuleExistPath = builtins.pathExists sshModulePath;
-in
-{
+in {
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
     backupFileExtension =
       "backup-"
-      + pkgs.lib.readFile "${pkgs.runCommand "timestamp" { } "echo -n `date '+%Y%m%d%H%M%S'` > $out"}";
+      + pkgs.lib.readFile "${pkgs.runCommand "timestamp" {} "echo -n `date '+%Y%m%d%H%M%S'` > $out"}";
 
     extraSpecialArgs = {
       inherit

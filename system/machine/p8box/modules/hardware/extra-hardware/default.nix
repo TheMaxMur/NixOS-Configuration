@@ -2,12 +2,9 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkDefault;
-in
-{
+in {
   hardware = {
     enableRedistributableFirmware = true;
     cpu.intel.updateMicrocode = mkDefault config.hardware.enableRedistributableFirmware;

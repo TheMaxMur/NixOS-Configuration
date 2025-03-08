@@ -3,14 +3,11 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.services.xserver;
-in
-{
+in {
   options = {
     module.services.xserver.enable = mkEnableOption "Enable xserver";
   };

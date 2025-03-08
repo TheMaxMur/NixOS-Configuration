@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.pihole;
-in
-{
+in {
   options = {
     module.pihole.enable = mkEnableOption "Enables pihole";
   };
@@ -54,8 +51,8 @@ in
     };
 
     systemd.services.docker-pihole = {
-      after = [ "network.target" ];
-      wantedBy = [ "multi-user.target" ];
+      after = ["network.target"];
+      wantedBy = ["multi-user.target"];
     };
   };
 }

@@ -5,7 +5,6 @@
   makeWrapper,
   bash,
 }:
-
 stdenv.mkDerivation rec {
   pname = "ufetch";
   version = "0.3";
@@ -18,8 +17,8 @@ stdenv.mkDerivation rec {
   };
 
   strictDeps = true;
-  nativeBuildInputs = [ makeWrapper ];
-  buildInputs = [ bash ];
+  nativeBuildInputs = [makeWrapper];
+  buildInputs = [bash];
   installPhase = ''
     mkdir -p $out/bin
     cp -r ufetch-nixos $out/bin

@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.wofi;
-in
-{
+in {
   options = {
     module.wofi = {
       enable = mkEnableOption "Enable wofi app runner";

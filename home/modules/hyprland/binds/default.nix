@@ -4,9 +4,7 @@
   lib,
   pkgs,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.hyprland.binds;
@@ -20,8 +18,7 @@ let
 
   screenshotArea = "${pkgs.grimblast}/bin/grimblast --notify --freeze copy area";
   screenshotScreen = "${pkgs.grimblast}/bin/grimblast --notify --freeze copy output";
-in
-{
+in {
   options = {
     module.hyprland.binds.enable = mkEnableOption "Enables binds in Hyprland";
   };
@@ -152,26 +149,21 @@ in
       ];
 
       # layer rules
-      layerrule =
-        let
-          toRegex =
-            list:
-            let
-              elements = lib.concatStringsSep "|" list;
-            in
-            "^(${elements})$";
+      layerrule = let
+        toRegex = list: let
+          elements = lib.concatStringsSep "|" list;
+        in "^(${elements})$";
 
-          layers = [
-            "gtk-layer-shell"
-            "swaync-control-center"
-            "swaync-notification-window"
-            "waybar"
-          ];
-        in
-        [
-          "blur, ${toRegex layers}"
-          "ignorealpha 0.5, ${toRegex layers}"
+        layers = [
+          "gtk-layer-shell"
+          "swaync-control-center"
+          "swaync-notification-window"
+          "waybar"
         ];
+      in [
+        "blur, ${toRegex layers}"
+        "ignorealpha 0.5, ${toRegex layers}"
+      ];
 
       # Window rules
       windowrulev2 = [

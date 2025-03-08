@@ -3,14 +3,11 @@
   config,
   username,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.services.syncthing;
-in
-{
+in {
   options = {
     module.services.syncthing.enable = mkEnableOption "Enable syncthing";
   };

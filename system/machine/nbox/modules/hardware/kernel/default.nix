@@ -1,14 +1,9 @@
-{
-  pkgs,
-  ...
-}:
-
-{
+{pkgs, ...}: {
   # Kernel settings
   boot = {
     kernelPackages = pkgs.linuxPackages_cachyos;
 
-    extraModulePackages = [ ];
+    extraModulePackages = [];
 
     kernelModules = [
       "kvm-intel"

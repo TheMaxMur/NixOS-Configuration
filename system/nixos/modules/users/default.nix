@@ -5,14 +5,11 @@
   config,
   username,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.users;
-in
-{
+in {
   options = {
     module.users.enable = mkEnableOption "Enables users";
   };

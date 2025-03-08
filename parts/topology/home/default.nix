@@ -1,23 +1,17 @@
-{
-  self,
-  ...
-}:
-
-{
+{self, ...}: {
   perSystem = _: {
     # For nix topology
     topology.modules = [
       (
-        { config, ... }:
-        let
-          inherit (config.lib.topology)
+        {config, ...}: let
+          inherit
+            (config.lib.topology)
             mkRouter
             mkSwitch
             mkDevice
             mkConnection
             ;
-        in
-        {
+        in {
           inherit (self) nixosConfigurations;
 
           networks = {
@@ -38,13 +32,13 @@
               image = ../images/Innbox_G84.png;
 
               interfaceGroups = [
-                [ "eth1" ]
-                [ "wan1" ]
+                ["eth1"]
+                ["wan1"]
               ];
 
               interfaces = {
                 eth1 = {
-                  addresses = [ "192.168.0.1" ];
+                  addresses = ["192.168.0.1"];
                   network = "mgts-bridge";
                 };
               };
@@ -63,22 +57,22 @@
                   "eth1"
                   "wifi"
                 ]
-                [ "wan1" ]
+                ["wan1"]
               ];
 
               interfaces = {
                 eth1 = {
-                  addresses = [ "192.168.1.1" ];
+                  addresses = ["192.168.1.1"];
                   network = "home-maxmur";
                 };
 
                 wifi = {
-                  addresses = [ "192.168.1.1" ];
+                  addresses = ["192.168.1.1"];
                   network = "home-maxmur";
                 };
 
                 wan1 = {
-                  addresses = [ "192.168.0.2" ];
+                  addresses = ["192.168.0.2"];
                   network = "mgts-bridge";
                 };
               };
@@ -86,11 +80,11 @@
               connections = {
                 wifi = [
                   (mkConnection
-                  "nbox"
-                  "wlp3s0")
+                    "nbox"
+                    "wlp3s0")
                   (mkConnection
-                  "p8box"
-                  "wlp3s0")
+                    "p8box"
+                    "wlp3s0")
                 ];
               };
             };
@@ -125,13 +119,13 @@
 
               interfaces = {
                 eth0 = {
-                  addresses = [ "192.168.1.75" ];
+                  addresses = ["192.168.1.75"];
                   network = "home-maxmur";
                 };
               };
 
               interfaceGroups = [
-                [ "eth0" ]
+                ["eth0"]
               ];
             };
           };

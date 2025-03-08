@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.alacritty;
-in
-{
+in {
   options = {
     module.alacritty.enable = mkEnableOption "Enables Alacritty";
   };

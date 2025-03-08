@@ -1,6 +1,4 @@
-_:
-
-{
+_: {
   module = {
     sound.enable = true;
     lanzaboote.enable = true;

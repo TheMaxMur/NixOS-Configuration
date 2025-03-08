@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.plymouth;
-in
-{
+in {
   options = {
     module.plymouth = {
       enable = mkEnableOption "Enables plymouth";

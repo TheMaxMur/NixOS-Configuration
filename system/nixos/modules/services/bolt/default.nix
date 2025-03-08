@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.services.bolt;
-in
-{
+in {
   options = {
     module.services.bolt.enable = mkEnableOption "Enable bolt";
   };

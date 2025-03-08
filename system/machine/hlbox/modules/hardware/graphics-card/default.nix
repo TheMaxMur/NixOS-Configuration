@@ -1,6 +1,4 @@
-_:
-
-{
+_: {
   hardware = {
     graphics.enable = true;
     nvidia.open = true;

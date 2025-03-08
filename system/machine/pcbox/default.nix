@@ -1,9 +1,4 @@
-{
-  config,
-  ...
-}:
-
-{
+{config, ...}: {
   module = {
     sound.enable = true;
     boot.enable = true;

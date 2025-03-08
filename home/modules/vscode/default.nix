@@ -3,14 +3,11 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.vscode;
-in
-{
+in {
   imports = [
     "${self}/home/modules/vscode/keybindings"
     "${self}/home/modules/vscode/extentions"

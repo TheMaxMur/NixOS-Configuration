@@ -5,15 +5,12 @@
   pkgs,
   theme,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
   inherit (lib.generators) mkLuaInline;
 
   cfg = config.module.nvim;
-in
-{
+in {
   options = {
     module.nvim.enable = mkEnableOption "Enables nvim";
   };
@@ -60,7 +57,7 @@ in
           keymaps = [
             {
               key = "<C-n>";
-              mode = [ "n" ];
+              mode = ["n"];
               action = ":NvimTreeToggle<CR>";
               silent = true;
               desc = "Toggle File tree";

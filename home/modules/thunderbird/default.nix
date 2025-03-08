@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.thunderbird;
-in
-{
+in {
   options = {
     module.thunderbird.enable = mkEnableOption "Enables thunderbird";
   };

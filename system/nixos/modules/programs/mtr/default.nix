@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.programs.mtr;
-in
-{
+in {
   options = {
     module.programs.mtr.enable = mkEnableOption "Enable mtr";
   };

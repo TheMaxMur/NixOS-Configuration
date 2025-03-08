@@ -2,14 +2,11 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.services.irqbalance;
-in
-{
+in {
   options = {
     module.services.irqbalance.enable = mkEnableOption "Enables irqbalance";
   };

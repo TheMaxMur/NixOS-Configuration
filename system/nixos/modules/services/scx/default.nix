@@ -2,15 +2,12 @@
   lib,
   config,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf mkOption;
   inherit (lib.types) str;
 
   cfg = config.module.services.scx;
-in
-{
+in {
   options = {
     module.services.scx = {
       enable = mkEnableOption "Enables scx module";

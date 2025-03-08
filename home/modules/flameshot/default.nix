@@ -3,14 +3,11 @@
   config,
   username,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.flameshot;
-in
-{
+in {
   options = {
     module.flameshot.enable = mkEnableOption "Enables Flameshot";
   };

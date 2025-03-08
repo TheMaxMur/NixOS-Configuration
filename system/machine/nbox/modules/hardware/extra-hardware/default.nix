@@ -3,12 +3,9 @@
   pkgs,
   config,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkDefault;
-in
-{
+in {
   # Extra drivers settings
   hardware = {
     enableAllFirmware = true;

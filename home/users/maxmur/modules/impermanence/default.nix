@@ -3,14 +3,11 @@
   config,
   username,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.user.impermanence;
-in
-{
+in {
   options = {
     module.user.impermanence.enable = mkEnableOption "Enables home impermanence";
   };

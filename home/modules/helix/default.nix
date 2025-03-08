@@ -3,14 +3,11 @@
   pkgs,
   config,
   ...
-}:
-
-let
+}: let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.module.helix;
-in
-{
+in {
   options = {
     module.helix.enable = mkEnableOption "Enables helix";
   };
@@ -37,7 +34,7 @@ in
           text-width = 70;
           bufferline = "multiple";
           default-line-ending = "lf";
-          rulers = [ 73 ];
+          rulers = [73];
           cursorline = true;
           auto-info = true;
           color-modes = true;

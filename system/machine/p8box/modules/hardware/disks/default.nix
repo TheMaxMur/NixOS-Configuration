@@ -1,17 +1,14 @@
-_:
-
-let
+_: let
   label = "Nixos-Main";
-in
-{
+in {
   # For impermanence
   boot.initrd.systemd.services.rollback = {
     description = "Rollback BTRFS root subvolume to a pristine state";
     unitConfig.DefaultDependencies = "no";
     serviceConfig.Type = "oneshot";
-    wantedBy = [ "initrd.target" ];
-    after = [ "systemd-cryptsetup@crypted.service" ];
-    before = [ "sysroot.mount" ];
+    wantedBy = ["initrd.target"];
+    after = ["systemd-cryptsetup@crypted.service"];
+    before = ["sysroot.mount"];
 
     script = ''
       vgchange -ay pool
@@ -79,7 +76,7 @@ in
               content = {
                 type = "luks";
                 name = "crypted";
-                extraFormatArgs = [ "--label=${label}" ];
+                extraFormatArgs = ["--label=${label}"];
 
                 content = {
                   type = "lvm_pv";
@@ -102,7 +99,7 @@ in
 
             content = {
               type = "btrfs";
-              extraArgs = [ "-f" ];
+              extraArgs = ["-f"];
 
               subvolumes = {
                 "/root" = {
