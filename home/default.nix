@@ -74,7 +74,6 @@ in
           "${self}/modules"
           "${self}/home/modules"
         ]
-      nixpkgs.overlays = [ inputs.nur.overlay ];
         ++ optional sshModuleExistPath sshModulePath
         ++ optional userConfigurationPathExist userConfigurationPath
         ++ optional userModulesPathExist userModulesPath;

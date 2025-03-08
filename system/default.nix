@@ -36,6 +36,7 @@ in
     overlays = [
       inputs.nix-topology.overlays.default
       inputs.proxmox-nixos.overlays.${platform}
+      inputs.nur.overlays.default
     ];
   };
 }

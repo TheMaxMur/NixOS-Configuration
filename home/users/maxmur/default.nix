@@ -8,8 +8,6 @@
 }:
 
 {
-  nixpkgs.overlays = [ ];
-
   stylix.targets = {
     vscode.enable = false;
     helix.enable = false;

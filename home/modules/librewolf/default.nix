@@ -24,7 +24,7 @@ in
           id = 1;
           name = "Work";
 
-          extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+          extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
             ublock-origin
             vimium
           ];
@@ -50,7 +50,7 @@ in
           name = "Default";
           isDefault = true;
 
-          extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+          extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
             ublock-origin
             sponsorblock
             return-youtube-dislikes
