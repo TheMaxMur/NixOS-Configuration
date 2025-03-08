@@ -80,7 +80,7 @@ in
         # Compositor commands
         "SUPER, Q, killactive"
         "SUPER, F, fullscreen, 1"
-        "SUPER, Space, togglefloating"
+        "SUPERSHIFT, F, togglefloating"
 
         # Grouped (tabbed) windows
         "SUPER, G, togglegroup"
