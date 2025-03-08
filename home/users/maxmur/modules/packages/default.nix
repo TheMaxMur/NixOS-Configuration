@@ -66,6 +66,7 @@ in
         telegram-desktop
         fluffychat
         vesktop
+        google-chrome
 
         # Office
         onlyoffice-bin
@@ -74,6 +75,7 @@ in
         obs-studio
         dconf2nix
         via
+        vial
         gat
         vlc
         eog
