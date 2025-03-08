@@ -21,7 +21,6 @@
     stylix.enable = isWorkstation;
 
     chromium.enable = isLinux && isWorkstation;
-    firefox.enable = isLinux && isWorkstation;
     librewolf.enable = isLinux && isWorkstation;
     thunderbird.enable = isLinux && isWorkstation;
     foot.enable = isLinux && isWorkstation;
