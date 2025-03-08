@@ -61,7 +61,7 @@ in
 
           search = {
             force = true;
-            default = "nogoo";
+            default = "Google";
 
             order = [
               "Google"
