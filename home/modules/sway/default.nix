@@ -54,7 +54,7 @@ in
 
           "type:keyboard" = {
             xkb_layout = "us,ru";
-            xkb_options = "grp:caps_toggle";
+            xkb_options = "grp:win_space_toggle,grp:alt_shift_toggle,grp:caps_toggle";
             repeat_delay = "300";
             repeat_rate = "60";
           };
