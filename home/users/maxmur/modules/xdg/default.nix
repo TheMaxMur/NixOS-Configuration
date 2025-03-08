@@ -32,7 +32,7 @@ in
         "image/jpeg" = "org.gnome.eog.desktop";
         "image/jpg" = "org.gnome.eog.desktop";
 
-        "application/pdf" = "org.pwmt.zathura.desktop";
+        "application/pdf" = "org.pwmt.zathura-pdf-mupdf.desktop";
       };
     };
   };
