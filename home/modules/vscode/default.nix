@@ -22,7 +22,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    programs.vscode = {
+    programs.vscode.profiles.default = {
       enable = true;
       enableUpdateCheck = false;
     };

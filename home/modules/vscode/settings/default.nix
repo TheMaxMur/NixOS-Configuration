@@ -1,7 +1,7 @@
 _:
 
 {
-  programs.vscode.userSettings = {
+  programs.vscode.profiles.default.userSettings = {
     "workbench.startupEditor" = "newUntitledFile";
     "workbench.colorCustomizations" = {
       "[Oceanic Next (dimmed bg)]" = {
