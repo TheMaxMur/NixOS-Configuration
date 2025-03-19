@@ -32,7 +32,12 @@
 - ⚠️ Impermanence - to remove junk files and directories that are not specified in the config.
 - 💈 Stylix - to customize the theme for the entire system and the software you use.
 - 🍎 NixDarwin - to declaratively customize MacOS.
-- 🔐 Lanzaboot - to securely boot the system.
+- 🔐 Lanzaboote - to securely boot the system.
+- 🤖 MicroVMs - for secure separation of services.
+- ⚡ Proxmox - to run non-NixOS machines.
+- 💭 Nix Topology - to visualize the network topology.
+- 🔥 Sops-Nix - to securely store sensitive data.
+- 🎁 NVF - for the declarative configuration neovim
 - 📁 Config file structure and modules with options.
 
 ## 📁 File structure
