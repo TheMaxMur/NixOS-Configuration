@@ -18,7 +18,6 @@
 in {
   imports = [
     "${self}/home/modules/hyprland/binds"
-    "${self}/home/modules/hyprland/monitors"
   ];
 
   options = {
@@ -28,7 +27,6 @@ in {
   config = mkIf cfg.enable {
     module.hyprland = {
       binds.enable = mkDefault cfg.enable;
-      monitors.enable = mkDefault cfg.enable;
     };
 
     wayland.windowManager.hyprland = {

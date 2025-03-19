@@ -24,6 +24,11 @@
               name = "Home maxmur";
               cidrv4 = "192.168.1.0/24";
             };
+
+            hlbox-nat = {
+              name = "Microvm hlbox nat";
+              cidrv4 = "10.0.0.0/24";
+            };
           };
 
           nodes = {

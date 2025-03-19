@@ -24,6 +24,7 @@ in {
           extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
             ublock-origin
             vimium
+            bitwarden
           ];
 
           search = {
@@ -54,13 +55,15 @@ in {
             foxyproxy-standard
             vimium
             wappalyzer
+            bitwarden
           ];
 
           search = {
             force = true;
-            default = "Google";
+            default = "Kagi";
 
             order = [
+              "Kagi"
               "Google"
               "DuckDuckGo"
               "4get"
@@ -75,6 +78,22 @@ in {
             engines = {
               "Bing".metaData.hidden = true;
               "Amazon.com".metaData.hidden = true;
+
+              "Kagi" = {
+                updateInterval = 24 * 60 * 60 * 1000;
+                definedAliases = ["@kagi"];
+                urls = [
+                  {
+                    template = "https://kagi.com/search";
+                    params = [
+                      {
+                        name = "q";
+                        value = "{searchTerms}";
+                      }
+                    ];
+                  }
+                ];
+              };
 
               "4get" = {
                 updateInterval = 24 * 60 * 60 * 1000;
@@ -257,6 +276,9 @@ in {
         "extensions.enabledScopes" = 15;
         "browser.bookmarks.addedImportButton" = false;
         "browser.toolbars.bookmarks.visibility" = "never";
+
+        "network.dns.echconfig.enabled" = false;
+        "network.dns.http3_echconfig.enabled" = false;
       };
     };
   };

@@ -25,7 +25,7 @@
           nodes.internet = mkInternet {
             connections = [
               (mkConnection "mgts-bridge-router" "wan1")
-              (mkConnection "timeweb-router" "wan1")
+              (mkConnection "vpntwvm" "ens3")
             ];
           };
         }

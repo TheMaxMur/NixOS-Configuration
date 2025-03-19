@@ -14,6 +14,7 @@ _: {
     nixos-ng.enable = true;
     plymouth.enable = true;
     binfmt.enable = true;
+    xdg.enable = true;
 
     security = {
       enable = true;

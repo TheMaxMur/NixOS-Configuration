@@ -5,6 +5,7 @@
   config,
   hostname,
   theme,
+  stateVersion,
   ...
 }: let
   inherit (lib) mkEnableOption mkOption mkIf;
@@ -18,13 +19,22 @@
     then 24
     else 14;
 
+  iosevkaPackage =
+    if stateVersion == "24.11"
+    then pkgs.nerdfonts.override {fonts = ["Iosevka"];}
+    else pkgs.nerd-fonts.iosevka;
+  jbPackage =
+    if stateVersion == "24.11"
+    then pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];}
+    else pkgs.nerd-fonts.iosevka;
+
   themes = {
     nord = {
       scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
       wallpaper = "${self}/assets/grey_gradient.png";
 
       font = {
-        package = pkgs.nerd-fonts.iosevka;
+        package = iosevkaPackage;
         name = "Iosevka Nerd Font Mono";
       };
 
@@ -39,7 +49,7 @@
       wallpaper = "${self}/assets/grey_gradient.png";
 
       font = {
-        package = pkgs.nerd-fonts.jetbrains-mono;
+        package = jbPackage;
         name = "JetBrains Mono Nerd Font";
       };
 

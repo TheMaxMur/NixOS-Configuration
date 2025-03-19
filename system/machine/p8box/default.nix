@@ -11,6 +11,7 @@ _: {
     minimal.enable = true;
     nixos-ng.enable = true;
     plymouth.enable = true;
+    xdg.enable = true;
 
     security = {
       enable = true;

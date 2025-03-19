@@ -11,7 +11,6 @@
 in {
   imports = [
     "${self}/home/modules/sway/keybinds"
-    "${self}/home/modules/sway/outputs"
   ];
 
   options.module.sway = {
@@ -21,7 +20,6 @@ in {
   config = mkIf cfg.enable {
     module.sway = {
       keybindings.enable = cfg.enable;
-      outputs.enable = cfg.enable;
     };
 
     home.sessionVariables = {

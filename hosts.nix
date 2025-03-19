@@ -29,7 +29,7 @@
     hlbox = {
       username = "maxmur";
       platform = "x86_64-linux";
-      stateVersion = "25.05";
+      stateVersion = "24.11";
       isWorkstation = false;
       theme = "nord";
     };
@@ -40,6 +40,46 @@
       stateVersion = "25.05";
       isWorkstation = true;
       wm = "sway";
+      theme = "nord";
+    };
+
+    dnsvm = {
+      username = "maxmur";
+      platform = "x86_64-linux";
+      stateVersion = "24.11";
+      isWorkstation = false;
+      theme = "nord";
+    };
+
+    dbvm = {
+      username = "maxmur";
+      platform = "x86_64-linux";
+      stateVersion = "24.11";
+      isWorkstation = false;
+      theme = "nord";
+    };
+
+    gitvm = {
+      username = "maxmur";
+      platform = "x86_64-linux";
+      stateVersion = "24.11";
+      isWorkstation = false;
+      theme = "nord";
+    };
+
+    vaultvm = {
+      username = "maxmur";
+      platform = "x86_64-linux";
+      stateVersion = "24.11";
+      isWorkstation = false;
+      theme = "nord";
+    };
+
+    vpntwvm = {
+      username = "maxmur";
+      platform = "x86_64-linux";
+      stateVersion = "24.11";
+      isWorkstation = false;
       theme = "nord";
     };
   };

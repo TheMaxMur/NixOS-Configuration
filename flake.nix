@@ -13,7 +13,7 @@
 
     # Latest stable
     stable = {
-      url = "github:NixOS/nixpkgs/nixos-24.05";
+      url = "github:NixOS/nixpkgs/nixos-24.11";
     };
 
     # Current nixpkgs branch
@@ -59,6 +59,11 @@
 
     nur = {
       url = "github:nix-community/NUR";
+    };
+
+    microvm = {
+      url = "github:astro/microvm.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # MacOS configuration
@@ -114,7 +119,7 @@
     };
 
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.4.1";
+      url = "github:nix-community/lanzaboote/v0.4.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

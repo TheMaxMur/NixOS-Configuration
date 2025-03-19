@@ -40,11 +40,12 @@ in {
 
     services.openssh = {
       inherit (cfg) listenAddresses;
+
       enable = true;
 
       settings = {
         PermitRootLogin = "no";
-        PasswordAuthentication = true;
+        PasswordAuthentication = false;
       };
     };
   };

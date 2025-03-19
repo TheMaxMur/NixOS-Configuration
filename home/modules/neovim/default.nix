@@ -18,6 +18,7 @@ in {
   config = mkIf cfg.enable {
     programs.nvf = {
       enable = true;
+      defaultEditor = true;
 
       settings = {
         vim = {

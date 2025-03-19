@@ -15,8 +15,10 @@
   };
 
   networking = {
+    nftables.enable = true;
+
     nameservers = [
-      "192.168.1.8"
+      "192.168.1.10"
     ];
 
     firewall = {
@@ -43,33 +45,15 @@
   };
 
   topology.self = {
-    services = {
-      nginx.details = {
-        "https" = {
-          text = "0.0.0.0:443";
-        };
-        "gitlab ssh" = {
-          text = "0.0.0.0:4224";
-        };
-        "syncthing web" = {
-          text = "0.0.0.0:8384";
-        };
-      };
-
-      adguardhome.details = {
-        "dns" = {
-          text = "192.168.1.8:53";
-        };
-      };
-    };
-
-    interfaces.wg0 = {
-      addresses = ["10.200.100.3"];
+    interfaces.wt0 = {
+      addresses = ["100.92.24.177"];
       renderer.hidePhysicalConnections = false;
       virtual = true;
       type = "wireguard";
+      network = "netbird-private";
+
       physicalConnections = [
-        (config.lib.topology.mkConnection "site" "wg0")
+        (config.lib.topology.mkConnection "vpntwvm" "wt0")
       ];
     };
   };
