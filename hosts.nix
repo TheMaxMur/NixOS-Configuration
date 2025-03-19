@@ -74,6 +74,14 @@
       isWorkstation = false;
       theme = "nord";
     };
+
+    vpntwvm = {
+      username = "maxmur";
+      platform = "x86_64-linux";
+      stateVersion = "24.11";
+      isWorkstation = false;
+      theme = "nord";
+    };
   };
 
   darwin = {
