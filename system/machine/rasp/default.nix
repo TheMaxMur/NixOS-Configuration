@@ -4,7 +4,9 @@
     network.enable = true;
     security.enable = true;
     timedate.enable = true;
+    stylix.enable = true;
     users.enable = true;
+    minimal.enable = true;
 
     programs = {
       gnupg.enable = true;
@@ -32,25 +34,10 @@
     };
 
     services = {
+      fail2ban.enable = true;
       unbound.enable = true;
       irqbalance.enable = true;
-
-      adguard-home = {
-        enable = true;
-        httpAddress = "192.168.1.8";
-
-        bindHosts = [
-          "192.168.1.8"
-          "127.0.0.1"
-        ];
-
-        dnsRewrites = [
-          {
-            domain = "gitlab.maxmur.info";
-            anwser = "192.168.1.8";
-          }
-        ];
-      };
+      netbird.enable = true;
 
       ssh = {
         enable = true;
