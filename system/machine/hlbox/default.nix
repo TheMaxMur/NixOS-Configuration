@@ -8,7 +8,6 @@
     variables.enable = true;
     stylix.enable = true;
     nixos-ng.enable = true;
-    plymouth.enable = true;
     minimal.enable = true;
 
     programs = {
@@ -38,7 +37,11 @@
     };
 
     services = {
+      fail2ban.enable = true;
       irqbalance.enable = true;
+      netbird.enable = true;
+      homepage-dashboard.enable = true;
+      uptime-kuma.enable = true;
 
       proxmox-ve = {
         enable = true;
