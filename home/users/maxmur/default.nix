@@ -22,7 +22,6 @@
     librewolf.enable = isLinux && isWorkstation;
     thunderbird.enable = isLinux && isWorkstation;
     foot.enable = isLinux && isWorkstation;
-    ssh.enable = isLinux && isWorkstation;
 
     hyprland.enable = hyprlandEnable && isLinux && isWorkstation;
     hyprlock.enable = hyprlandEnable && isLinux && isWorkstation;
@@ -54,6 +53,7 @@
 
     user = {
       impermanence.enable = isLinux && isWorkstation;
+      ssh.enable = isLinux && isWorkstation;
       xdg.enable = isLinux && isWorkstation;
 
       packages.enable = true;

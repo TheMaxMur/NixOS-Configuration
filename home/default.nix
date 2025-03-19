@@ -32,8 +32,8 @@
   userConfigurationPathExist = builtins.pathExists userConfigurationPath;
   userModulesPath = "${self}/home/users/${username}/modules";
   userModulesPathExist = builtins.pathExists userModulesPath;
-  sshModulePath = "${self}/home/modules/ssh";
-  sshModuleExistPath = builtins.pathExists sshModulePath;
+  # sshModulePath = "${self}/home/modules/ssh";
+  # sshModuleExistPath = builtins.pathExists sshModulePath;
 in {
   home-manager = {
     useGlobalPkgs = true;
@@ -72,7 +72,6 @@ in {
           "${self}/modules"
           "${self}/home/modules"
         ]
-        ++ optional sshModuleExistPath sshModulePath
         ++ optional userConfigurationPathExist userConfigurationPath
         ++ optional userModulesPathExist userModulesPath;
 
