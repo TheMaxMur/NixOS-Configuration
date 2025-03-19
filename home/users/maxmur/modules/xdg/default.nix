@@ -12,24 +12,46 @@ in {
   };
 
   config = mkIf cfg.enable {
-    xdg.mimeApps = {
-      enable = true;
+    xdg = {
+      desktopEntries = {
+        browser = {
+          exec = "${config.module.defaults.browserCmd} %U";
+          genericName = "Browser selector";
+          name = "browser";
+          type = "Application";
+          terminal = false;
+        };
 
-      defaultApplications = {
-        "text/markdown" = "nvim.desktop";
-        "text/plain" = "nvim.desktop";
+        editor = {
+          exec = "${config.module.defaults.editorCmd} %U";
+          genericName = "Editor selector";
+          name = "editor";
+          type = "Application";
+          terminal = true;
+        };
+      };
 
-        "text/html" = "librewolf.desktop";
-        "x-scheme-handler/http" = "librewolf.desktop";
-        "x-scheme-handler/https" = "librewolf.desktop";
-        "x-scheme-handler/about" = "librewolf.desktop";
-        "x-scheme-handler/unknown" = "librewolf.desktop";
+      mimeApps = {
+        enable = true;
 
-        "image/png" = "org.gnome.eog.desktop";
-        "image/jpeg" = "org.gnome.eog.desktop";
-        "image/jpg" = "org.gnome.eog.desktop";
+        defaultApplications = {
+          "text/markdown" = "editor.desktop";
+          "text/plain" = "editor.desktop";
+          "text/x-python" = "editor.desktop";
 
-        "application/pdf" = "org.pwmt.zathura-pdf-mupdf.desktop";
+          "text/html" = "browser.desktop";
+          "x-scheme-handler/http" = "browser.desktop";
+          "x-scheme-handler/https" = "browser.desktop";
+          "x-scheme-handler/about" = "browser.desktop";
+          "x-scheme-handler/unknown" = "browser.desktop";
+
+          "image/png" = "org.gnome.eog.desktop";
+          "image/jpeg" = "org.gnome.eog.desktop";
+          "image/jpg" = "org.gnome.eog.desktop";
+          "image/svg" = "org.gnome.eog.desktop";
+
+          "application/pdf" = "org.pwmt.zathura-pdf-mupdf.desktop";
+        };
       };
     };
   };
