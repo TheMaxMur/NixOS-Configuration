@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  stateVersion,
   isWorkstation,
   ...
 }: let
@@ -9,6 +10,15 @@
   inherit (lib) optionals;
 
   cfg = config.module.programs.systemPackages;
+
+  iosevkaPackage =
+    if stateVersion == "24.11"
+    then pkgs.nerdfonts.override {fonts = ["Iosevka"];}
+    else pkgs.nerd-fonts.iosevka;
+  jbPackage =
+    if stateVersion == "24.11"
+    then pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];}
+    else pkgs.nerd-fonts.iosevka;
 in {
   options = {
     module.programs.systemPackages.enable = mkEnableOption "Enable System Software";
@@ -16,9 +26,8 @@ in {
 
   config = mkIf cfg.enable {
     fonts.packages = with pkgs; [
-      nerd-fonts.jetbrains-mono
-      nerd-fonts.ubuntu-mono
-      nerd-fonts.iosevka
+      iosevkaPackage
+      jbPackage
       corefonts
     ];
 
