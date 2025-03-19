@@ -14,6 +14,6 @@ in {
   config = mkIf cfg.enable {
     # Time settings
     time.timeZone = "Europe/Moscow";
-    services.chrony.enable = true;
+    services.ntpd-rs.enable = true;
   };
 }
