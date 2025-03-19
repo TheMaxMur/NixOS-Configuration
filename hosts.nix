@@ -50,6 +50,14 @@
       isWorkstation = false;
       theme = "nord";
     };
+
+    dbvm = {
+      username = "maxmur";
+      platform = "x86_64-linux";
+      stateVersion = "24.11";
+      isWorkstation = false;
+      theme = "nord";
+    };
   };
 
   darwin = {
