@@ -1,11 +1,18 @@
 _: {
   swapDevices = [];
 
-  boot.zfs.extraPools = [
-    "zmirror"
-    "zpool1"
-    "zpool2"
-  ];
+  boot.zfs = {
+    extraPools = [
+      "zmirror"
+      "zpool1"
+      "zpool2"
+    ];
+  };
+
+  services.zfs = {
+    autoScrub.enable = true;
+    autoSnapshot.enable = true;
+  };
 
   fileSystems = {
     "/" = {
