@@ -30,8 +30,12 @@
     swayEnable = wm == "sway";
     hyprlandEnable = wm == "hyprland";
     wmEnable = hyprlandEnable || swayEnable;
+    nixosSystem =
+      if stateVersion == defaultStateVersion
+      then inputs.stable.lib.nixosSystem
+      else inputs.nixpkgs.lib.nixosSystem;
   in
-    inputs.nixpkgs.lib.nixosSystem {
+    nixosSystem {
       specialArgs = {
         inherit
           inputs
